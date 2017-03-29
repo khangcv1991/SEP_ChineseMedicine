@@ -1,121 +1,78 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>
-<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>
-<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>
-<html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<html>
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My AngularJS App</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
-    <link rel="stylesheet" href="app.css">
-    <link rel="stylesheet" href="view1/view1.css">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/theme.css">
-    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    <link rel="stylesheet" href="library/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="library/bootstrap/css/bootstrap-theme.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+
+    <!--<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>-->
+    <!--<script type="text/javascript"-->
+    <!--src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+
+    <!--<link rel="stylesheet"-->
+    <!--href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"/>-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="library/angular-ui-router.js"></script>
+    <script src="library/md5.js"></script>
+    <script src="library/angular-cookies.js"></script>
+
+    <link rel="stylesheet" href="bower_components/angularjs-datetime-picker/angularjs-datetime-picker.css"/>
+
+    <script src="bower_components/angularjs-datetime-picker/angularjs-datetime-picker.js"></script>
+
+    <script src="app.js"></script>
+
+    <script src="services/dataFactory.js"></script>
+    <script src="services/utilFactory.js"></script>
+
+    <script src="controllers.js"></script>
+    <script src="controllers/shiftDetailController.js"></script>
+    <script src="controllers/shiftController.js"></script>
+    <script src="controllers/homeController.js"></script>
+    <script src="controllers/loginCtrl.js"></script>
+
 </head>
-<body>
-<div class="nav-container bg-dark" style="min-height: 55px;">
-    <a id="top"></a>
-    <nav class="bg-dark">
-        <div class="nav-bar">
-            <div class="module left">
-                <a href="//www.heymanga.me">
-                    <img class="logo logo-light" alt="Manga" src="img/logo-light.png">
-                    <img class="logo logo-dark" alt="Manga" src="img/logo-dark.png">
-                </a>
-            </div>
-            <div class="module widget-handle mobile-toggle right visible-sm visible-xs">
-                <i class="ti-menu"></i>
-            </div>
-            <div class="module-group right">
-                <div class="module left">
-                    <ul class="menu">
-                        <li>
-                            <a href="#!/view1">
-                                Home
-                            </a>
-                        </li>
 
-                        <li>
-                            <a href="">
-                                Manga Genre
-                            </a>
-                        </li>
-                        <li>
-                            <a a href="#!/view6">
-                                Manga Watchlist
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" rel="nofollow">
-                                Random Manga
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" rel="nofollow">
-                                Search
-                            </a>
-                        </li>
-                        <li>
-                            <a rel="nofollow" href="">Contact us</a>
-                        </li>
-                    </ul>
+<!-- define angular controller -->
+<body ng-app="scotchApp">
 
-
-                </div>
-                <!--end of menu module-->
-            </div>
-            <!--end of module group-->
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Angular Routing Example</a>
         </div>
-    </nav>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+            <li><a ui-sref="about"><i class="fa fa-shield"></i> About</a></li>
+            <li><a ui-sref="contact"><i class="fa fa-comment"></i> Contact</a></li>
+            <li ng-hide="currentUserSignedIn"><a ui-sref="login"><i class="fa fa-comment"></i> Login</a></li>
+            <li ng-show="currentUserSignedIn"><a ui-sref="login" ng-click="doLogout()"><i class="fa fa-comment"></i>
+                Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div id="main">
+
+    <!-- angular templating -->
+    <!-- this is where content will be injected -->
+    <div ui-view></div>
+
 </div>
 
+<footer class="text-center">
+    <p>If there is any issues, please contact Admin
+    </p>
 
-<!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
-<![endif]-->
-<div class="content">
+    <p>Good luck!</p>
+</footer>
 
-    <div ng-view></div>
-</div>
-
-
-<!-- In production use:
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
--->
-
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-mocks/ngMockE2E.js"></script>
-<script src="bower_components/angular-mocks/angular-mocks.js"></script>
-
-
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/ngstorage/ngStorage.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="service/MangaService.js"></script>
-<script src="service/AuthenticationService.js"></script>
-<script src="service/UserService.js"></script>
-<script src="service/Fake.Backend.js"></script>
-
-<script src="app.js"></script>
-<script src="view1/view1.js"></script>
-<script src="view2/view2.js"></script>
-<script src="view3/view3.js"></script>
-<script src="view4/view4.js"></script>
-<script src="view5/view5.js"></script>
-<script src="view6/view6.js"></script>
-
-<script src="components/version/version.js"></script>
-<script src="components/version/version-directive.js"></script>
-<script src="components/version/interpolate-filter.js"></script>
 </body>
+
 </html>

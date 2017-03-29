@@ -1,51 +1,82 @@
-'use strict';
+// create the module and name it scotchApp
+var scotchApp = angular.module('scotchApp', ['ngCookies', 'ui.router', 'angularjs-datetime-picker']);
 
-// Declare app level module which depends on views, and components
-angular.module('myApp', [
-    'ngRoute',
-    'MangaService',
-    'AuthenticationService',
-    'UserService',
-    'ngMockE2E',
-    'myApp.view1',
-    'myApp.view2',
+scotchApp.config(function ($stateProvider, $urlRouterProvider) {
+    $stateProvider.state({
+        name: 'home',
+        url: '/',
+        cache: false,
+        templateUrl: 'pages/home.html',
+        controller: 'homeController'
+    });
+    $stateProvider.state({
+        name: 'about',
+        url: '/about',
+        cache: false,
+        templateUrl: 'pages/about.html',
+        controller: 'aboutController'
+    });
+    $stateProvider.state({
+        name: 'contact',
+        url: '/contact',
+        cache: false,
+        templateUrl: 'pages/contact.html',
+        controller: 'contactController'
+    });
+    $stateProvider.state({
+        name: 'login',
+        url: '/login',
+        cache: false,
+        templateUrl: 'pages/login.html',
+        controller: 'loginController'
+    });
+    $stateProvider.state({
+        name: 'shift',
+        url: '/shift/:workerId',
+        cache: false,
+        templateUrl: 'pages/shift.html',
+        controller: 'shiftController'
+    });
+    //shiftDetail page
+    $stateProvider.state({
+        name: 'shiftDetail',
+        url: '/shiftDetail/:shiftId',
+        cache: false,
+        templateUrl: 'pages/shiftEdit.html',
+        controller: 'shiftDetailController'
+    });
+    // if none of the above states are matched, returned to login page
+    $urlRouterProvider.otherwise('/');
+});
 
-    'ngCookies',
-    'myApp.version'
-]).config(config)
-    .run(run);
+scotchApp.run(function ($rootScope, $http, $cookies) {
+    //20170314 khangcv refresh page
+    $rootScope.currentUserSignedIn = false;
 
-config.$inject = ['$routeProvider', '$locationProvider'];
-function config($routeProvider, $locationProvider) {
-    $locationProvider.hashPrefix('!');
+    if ($cookies.get("AuthorizationHeader")) {
 
-    $routeProvider.otherwise({redirectTo: '/view1'});
-}
-
-run.$inject = ['$rootScope', '$location', '$cookies', '$http', '$localStorage', '$httpBackend'];
-function run($rootScope, $location, $cookies, $http, $localStorage, $httpBackend) {
-    // keep user logged in after page refresh
-    if ($localStorage.currentUser) {
-        $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
+        $http.defaults.headers.common['Authorization'] = 'Bearer ' + $cookies.get("AuthorizationHeader");
+        $rootScope.currentUserSignedIn = true;
+        console.log("currentUserSignedIn: " + $rootScope.currentUserSignedIn);
     }
 
+    //end
 
-    var testUser = {username: 'test', password: 'test', firstName: 'Test', lastName: 'User'};
+    console.log("App run");
+    $rootScope.hasVisitedAboutPage = false;
 
-    // fake authenticate api end point
-    $httpBackend.whenPOST('/api/authenticate').respond(function (method, url, data) {
-        // get parameters from post request
-        var params = angular.fromJson(data);
 
-        // check user credentials and return fake jwt token if valid
-        if (params.username === testUser.username && params.password === testUser.password) {
-            return [200, {token: 'fake-jwt-token'}, {}];
-        } else {
-            return [404, {}, {}];
-        }
-    });
+    //20170314 khangcv add Logout function
+    $rootScope.doLogout = function () {
+        console.log('Logout function');
+        $rootScope.currentUserSignedIn = false;
+        //delete $rootScope.currentUser.name;
+        //delete $http.defaults.headers.common['Authorization'];
+        $cookies.remove("AuthorizationHeader");
 
-    // pass through any urls not handled above so static files are served correctly
-    $httpBackend.whenGET(/^\w+.*/).passThrough();
+    }
+    //end
 
-}
+
+    console.log($rootScope);
+});
