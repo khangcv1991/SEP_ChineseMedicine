@@ -1,5 +1,5 @@
 // create the module and name it scotchApp
-var scotchApp = angular.module('scotchApp', ['ngCookies', 'ui.router', 'angularjs-datetime-picker']);
+var scotchApp = angular.module('scotchApp', ['ngCookies', 'ui.router', 'angularjs-datetime-picker', 'angularBootstrapNavTree']);
 
 scotchApp.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
@@ -31,11 +31,11 @@ scotchApp.config(function ($stateProvider, $urlRouterProvider) {
         controller: 'loginController'
     });
     $stateProvider.state({
-        name: 'shift',
-        url: '/shift/:workerId',
+        name: 'users',
+        url: '/users',
         cache: false,
-        templateUrl: 'pages/shift.html',
-        controller: 'shiftController'
+        templateUrl: 'pages/users.html',
+        controller: 'userController'
     });
     //shiftDetail page
     $stateProvider.state({

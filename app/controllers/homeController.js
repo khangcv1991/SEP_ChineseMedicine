@@ -1,28 +1,35 @@
-/**
- * Created by leonnguyen on 20/02/2017.
- */
 scotchApp.controller('homeController', ['$scope', '$location', '$rootScope', '$http', '$cookies', 'dataFactory',
     function ($scope, $location, $rootScope, $http, $cookies, dataFactory) {
 
         (function () {
-            console.log("currentUserSignedIn: " + $rootScope.currentUserSignedIn);
-            //check authorization status for navigating
-            var authorizationHeader = $cookies.get("AuthorizationHeader");
-            if (authorizationHeader != null) {
-                $http.defaults.headers.common['Authorization'] = authorizationHeader;
-            } else {
-                $location.path('/login');
-            }
+
             //end
-            $scope.workers = [];
-
-            dataFactory.getAllWorkers().then(function (response) {
-                console.log(response.data);
-                $scope.workers = response.data;
-
-            }, function (error) {
-                $scope.message = "Error";
-            });
+            var treedata_geography = [{
+                label: 'Data1',
+                children: [{
+                    label: 'Canada',
+                    children: ['Toronto', 'Vancouver']
+                }, {
+                    label: 'USA',
+                    children: ['New York', 'Los Angeles']
+                }, {
+                    label: 'Mexico',
+                    children: ['Mexico City', 'Guadalajara']
+                }]
+            }, {
+                label: 'Data2',
+                children: [{
+                    label: 'Venezuela',
+                    children: ['Caracas', 'Maracaibo']
+                }, {
+                    label: 'Brazil',
+                    children: ['Sao Paulo', 'Rio de Janeiro']
+                }, {
+                    label: 'Argentina',
+                    children: ['Buenos Aires', 'Cordoba']
+                }]
+            }];
+            $scope.my_data = treedata_geography;
 
 
         })();
@@ -30,7 +37,7 @@ scotchApp.controller('homeController', ['$scope', '$location', '$rootScope', '$h
 
         // create a message to display in our view
         console.log("Home");
-        $scope.message = 'This is a list of all the workers';
+        $scope.message = 'This is a demo';
         console.log($rootScope);
 
 
