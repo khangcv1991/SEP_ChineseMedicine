@@ -8,7 +8,7 @@
         <div class="col-md-6 m-row"></div>
         <div class="col-md-4 m-row"></div>
         <div class="col-md-1 m-row"><a href="#/userAdd"><span class="btn btn-success"
-                                                             style="color: #ffffff">Add</span></a></div>
+                                                              style="color: #ffffff">Add</span></a></div>
     </div>
     <div class="row">
         <div class="col-md-2 m-row">ID</div>
@@ -21,12 +21,12 @@
     <br/>
 
     <div class="row" ng-repeat="x in users track by $index">
-        <div class="col-md-2 m-row"></div>
-        <div class="col-md-4 m-row"></div>
+        <div class="col-md-2 m-row">{{x.id}}</div>
+        <div class="col-md-4 m-row">{{x.username}}</div>
 
 
-        <div class="col-md-1 m-row"><a href="#/userDetail/{{}}"><span class="btn btn-success"
-                                                                     style="color: #ffffff">Edit</span></div>
+        <div class="col-md-1 m-row"><a href="#/userDetail/{{x.id}}"><span class="btn btn-success"
+                                                                          style="color: #ffffff">Edit</span></div>
 
     </div>
 

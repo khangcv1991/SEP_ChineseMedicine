@@ -2,6 +2,7 @@ scotchApp.controller('userDetailController', ['$scope', '$location', '$rootScope
     function ($scope, $location, $rootScope, $http, $cookies, dataFactory) {
         console.log("userController");
         var userId = $stateParams.userId;
+
         $scope.newPass = ""
         $scope.updateUser = function () {
             console.log("updateuser");
@@ -11,8 +12,12 @@ scotchApp.controller('userDetailController', ['$scope', '$location', '$rootScope
 
         }
         $scope.removeUser = function () {
-            console.log("removeUser");
 
+            console.log("removeUser");
+            var adminKey = $cookies.get("adminKey");
+            dataFactory.deleteUser(userId, adminKey).then(function (respone) {
+                console.log(respone);
+            })
         }
 
     }]);

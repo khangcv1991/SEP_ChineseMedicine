@@ -50,7 +50,7 @@
             <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
             <li><a ui-sref="about"><i class="fa fa-shield"></i> About</a></li>
             <li><a ui-sref="contact"><i class="fa fa-comment"></i> Contact</a></li>
-            <li><a ui-sref="users"><i class="fa fa-comment"></i> Users</a></li>
+            <li ng-show="currentUserSignedIn"><a ui-sref="users"><i class="fa fa-comment"></i> Users</a></li>
             <li ng-hide="currentUserSignedIn"><a ui-sref="login"><i class="fa fa-comment"></i> Login</a></li>
             <li ng-show="currentUserSignedIn"><a ui-sref="login" ng-click="doLogout()"><i class="fa fa-comment"></i>
                 Logout</a>

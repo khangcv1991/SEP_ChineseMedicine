@@ -20,13 +20,15 @@ angular.module('scotchApp')
             //     "username": username,
             //     "password": hashedPassword
             // };
+
+
             var body = {
 
                 "username": username,
-                "password": hashedPassword
+                "password": Password
             };
-            console.log(body);
-            return $http.post(baseApiUrl + '/login', body);
+
+            return $http.post(baseApiUrl + '/login', body, {headers: {'Authorization': 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='}});
         };
 
         dataFactory.getAllUsers = function () {
@@ -53,17 +55,15 @@ angular.module('scotchApp')
             return $http.post(urlBase + "/addUser", data);
         };
 
-        dataFactory.updateCustomer = function (cust) {
-            return $http.put(urlBase + '/' + cust.ID, cust)
+
+        dataFactory.deleteUser = function (username,adimkey) {
+            var data = {};
+            data.username = username;
+            data.adimkey = adimkey;
+            return $http.delete(urlBase + '/deleteUser', data);
         };
 
-        dataFactory.deleteCustomer = function (id) {
-            return $http.delete(urlBase + '/' + id);
-        };
 
-        dataFactory.getOrders = function (id) {
-            return $http.get(urlBase + '/' + id + '/orders');
-        };
 
         return dataFactory;
     }]);
