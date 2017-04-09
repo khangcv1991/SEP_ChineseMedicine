@@ -2,6 +2,11 @@ scotchApp.controller('homeController', ['$scope', '$location', '$rootScope', '$h
     function ($scope, $location, $rootScope, $http, $cookies, dataFactory) {
 
         (function () {
+            console.log("home page ");
+            //check login
+            if( $rootScope.currentUserSignedIn == false){
+                $location.path('/login');
+            }
 
             //end
             var treedata_geography = [{

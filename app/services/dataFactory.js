@@ -12,11 +12,16 @@ angular.module('scotchApp')
             return $http.get(urlBase + 'generateData');
         };
 
-        dataFactory.login = function (username, hashedPassword) {
+        dataFactory.login = function (username, Password) {
+            // var body = {
+            //     "grant_type": "password",
+            //     "client_id": "android",
+            //     "client_secret": "SomeRandomCharsAndNumbers",
+            //     "username": username,
+            //     "password": hashedPassword
+            // };
             var body = {
-                "grant_type": "password",
-                "client_id": "android",
-                "client_secret": "SomeRandomCharsAndNumbers",
+
                 "username": username,
                 "password": hashedPassword
             };
@@ -24,55 +29,28 @@ angular.module('scotchApp')
             return $http.post(baseApiUrl + '/login', body);
         };
 
-        dataFactory.getAllWorkers = function () {
-            return $http.get(baseApiUrl + "/users?userType=Worker");
+        dataFactory.getAllUsers = function () {
+            return $http.get(baseApiUrl + "/getUserList");
         };
 
-        dataFactory.getShift = function (shiftId) {
-            return $http.get(baseApiUrl + "/shift/" + shiftId);
-        };
 
-        //20170327 Khangcv add endShift
-        dataFactory.updateShiftTime = function (shiftId, startTime, endTime) {
-            console.log(baseApiUrl + "/shift/" + shiftId);
+        dataFactory.updatePassword = function (userId, password) {
+            console.log(baseApiUrl + "/changePassword");
             var data = {};
-            data.action = "UpdateTime";
+            data.userId = username;
+            data.password = password;
 
-            console.log(startTime);
-            console.log(endTime);
 
-            data.shift = {};
-            data.shift.startTime = startTime;
-            data.shift.endTime = endTime;
-
-            return $http.put(baseApiUrl + "/shift/" + shiftId, data);
+            return $http.put(baseApiUrl + "/changePassword", data);
         };
-        //end
 
-        //20170327 Khangcv add endShift
-        dataFactory.endShift = function (shiftId) {
 
-            console.log(baseApiUrl + "/shift/" + shiftId);
+        dataFactory.addUser = function (username, password, permission) {
             var data = {};
-            data.action = "End";
-            return $http.put(baseApiUrl + "/shift/" + shiftId, data);
-        };
-        //end
-
-        //20170327 Khangcv add getShifts
-        dataFactory.getShifts = function (status, workerId) {
-            console.log(baseApiUrl + "/shift?Status=" + status + "&WorkerId=" + workerId);
-
-            return $http.get(baseApiUrl + "/shift?Status=" + status + "&WorkerId=" + workerId);
-        };
-        //end
-
-        dataFactory.getCustomer = function (id) {
-            return $http.get(urlBase + '/' + id);
-        };
-
-        dataFactory.insertCustomer = function (cust) {
-            return $http.post(urlBase, cust);
+            data.username = username;
+            data.password = password;
+            data.permission = permission;
+            return $http.post(urlBase + "/addUser", data);
         };
 
         dataFactory.updateCustomer = function (cust) {

@@ -1,0 +1,38 @@
+<div class="container" style="padding-right: 10%; padding-left: 10%;">
+    <div class="jumbotron text-center">
+        <h1>Add A New User</h1>
+
+        <p>This is add a new user pages</p>
+
+        <form>
+            <div class="form-group">
+                <label for="exampleInputUserName1">User name</label>
+                <input type="text" class="form-control" id="exampleInputUserName1" placeholder="User name"
+                       ng-model="userName">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+                       ng-model="password">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Permission</label>
+                <select>
+                    <option value="1">
+                        Admin
+                    </option>
+                    <option value="2">
+                        Staff
+                    </option>
+                    <option value="3">
+                        Student
+                    </option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="doAdd()">Submit</button>
+            <!--<button class="button button-primary button-block " ng-click="test()">-->
+            <!--Test-->
+            <!--</button>-->
+        </form>
+    </div>
+</div>

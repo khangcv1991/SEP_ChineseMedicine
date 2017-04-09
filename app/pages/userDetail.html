@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="text-center">
+        <h1>User Detail</h1>
+        <h1>This is user detail page</h1>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            ID
+        </div>
+        <div class="col-lg-4">
+            Username
+        </div>
+        <div class="col-lg-4">
+            Status
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <input type="text" ng-model="userID"/>
+
+
+        </div>
+        <div class="col-lg-4">
+
+            <input type="text" ng-model="username"/>
+
+
+        </div>
+        <div class="col-lg-4" style="color: #67b168">
+            active
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-4">
+
+        </div>
+        <div class="col-lg-4">
+            New password
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+
+        </div>
+        <div class="col-lg-4">
+            <input type="text" ng-model="newPass"/>
+
+        </div>
+        <div class="col-lg-4">
+            <span class="btn btn-success" ng-click="updateUser()">Save </span>
+            <br/>
+            <br/>
+            <span class="btn btn-danger" ng-click="removeUser()">Delete </span>
+        </div>
+    </div>
+
+</div>
