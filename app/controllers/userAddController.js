@@ -1,19 +1,18 @@
 scotchApp.controller('userAddController', ['$scope', '$location', '$rootScope', '$http', '$cookies', 'dataFactory',
     function ($scope, $location, $rootScope, $http, $cookies, dataFactory) {
-        console.log("loginController");
+         console.log("add user controller11");
+
         $scope.message = 'Please populate user name, password and permission!!!';
-        $scope.userName = "";
+        $scope.username = "";
         $scope.password = "";
-        $scope.permission = -1;
-        $scope.doLogin = function () {
-            console.log($scope.userName + "|" + $scope.password);
-
-
-            dataFactory.addUser($scope.userName, $scope.password, $scope.permission).then(function (response) {
+        $scope.email = "";
+        $scope.addUser = function () {
+            console.log("add user function11");
+            dataFactory.addUser($scope.username, $scope.password, $scope.email).then(function (response) {
                 console.log(response);
                 // $scope.message = response.data.Status;
 
-                $rootScope.currentUserSignedIn = true;
+                
                 $location.path('/users');
             }, function (error) {
                 $scope.message = "Error";

@@ -54,10 +54,11 @@
 
         </div>
         <div class="col-lg-4">
-            <span class="btn btn-success" ng-click="updateUser()">Save </span>
+            <span class="btn btn-black" ng-click="updateUser()">Save </span>
             <br/>
             <br/>
-            <span class="btn btn-danger" ng-click="removeUser()">Delete </span>
+            <button confirmed-click="removeUser()" 
+				ng-confirm-click="Would you like to delete user?" class="btn btn-black">Delete</button>
         </div>
     </div>
 

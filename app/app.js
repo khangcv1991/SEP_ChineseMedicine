@@ -1,5 +1,5 @@
 // create the module and name it scotchApp
-var scotchApp = angular.module('scotchApp', ['ngCookies', 'ui.router', 'angularBootstrapNavTree']);
+var scotchApp = angular.module('scotchApp', ['ngCookies', 'ui.router', 'angularBootstrapNavTree', 'ngStorage']);
 
 scotchApp.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
@@ -37,6 +37,41 @@ scotchApp.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: 'pages/users.html',
         controller: 'userController'
     });
+    $stateProvider.state({
+        name: 'tempUsers',
+        url: '/tempUsers',
+        cache: false,
+        templateUrl: 'pages/tempUsers.html',
+        controller: 'tempUsersController'
+    });
+	$stateProvider.state({
+        name: 'register',
+        url: '/register',
+        cache: false,
+        templateUrl: 'pages/register.html',
+        controller: 'registerController'
+    });
+    $stateProvider.state({
+        name: 'forgetPassword',
+        url: '/forgetPassword',
+        cache: false,
+        templateUrl: 'pages/forgetPassword.html',
+        controller: 'forgetPasswordController'
+    });
+	$stateProvider.state({
+        name: 'changePassword',
+        url: '/changePassword',
+        cache: false,
+        templateUrl: 'pages/changePassword.html',
+        controller: 'changePasswordController'
+    });
+	$stateProvider.state({
+        name: 'upload',
+        url: '/upload',
+        cache: false,
+        templateUrl: 'pages/upload.html',
+        controller: 'uploadController'
+    });
     //shiftDetail page
     $stateProvider.state({
         name: 'userDetail',
@@ -52,74 +87,46 @@ scotchApp.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: 'pages/userAdd.html',
         controller: 'userAddController'
     });
+
+    
     // if none of the above states are matched, returned to login page
     $urlRouterProvider.otherwise('/');
 });
 
-scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend) {
-    //20170314 khangcv refresh page
-    $rootScope.currentUserSignedIn = false;
-
-    if ($cookies.get("AuthorizationHeader")) {
-
-
+scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage, $location) {
+    
+    // keep user logged in after page refresh
+    if (localStorage['currentUser']) {
         $rootScope.currentUserSignedIn = true;
-        console.log("currentUserSignedIn: " + $rootScope.currentUserSignedIn);
+        console.log(window.localStorage['currentUser'])
+        $http.defaults.headers.common.Authorization = 'JWT ' + window.localStorage['currentUser']['token'];
     }
+    console.log($http.defaults.headers.common.Authorization);
 
-    //end
+    // redirect to login page if not logged in and trying to access a restricted page
+    $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        
+        var publicPages = ['/login'];
+        var restrictedPage = publicPages.indexOf($location.path()) === -1;
+        
+        if (restrictedPage && !window.localStorage['currentUser']) {
+            console.log('test');
+            $location.path('/login');
+        }
+    });
+    
 
     console.log("App run");
     $rootScope.hasVisitedAboutPage = false;
 
-    // $httpBackend
-    //     .when('GET', 'pages/login.html')
-    //     .respond({
-    //
-    //     })
-    // ;
-    // $httpBackend
-    //     .when('GET', 'pages/home.html')
-    //     .respond({
-    //         name: 'home',
-    //         url: '/',
-    //         cache: false,
-    //         templateUrl: 'pages/home.html',
-    //         controller: 'homeController'
-    //     })
-    // ;
-    // $httpBackend
-    //     .when('POST', 'api/login', {
-    //         username: 'admin',
-    //         password: '123'
-    //     })
-    //     .respond({
-    //         staus: 200,
-    //         permission: '1'
-    //     })
-    // ;
-    // $httpBackend
-    //     .when('POST', 'api/login', {
-    //         username: 'user1',
-    //         password: '123'
-    //     })
-    //     .respond({
-    //         staus: 200,
-    //         permission: '2'
-    //     })
-    // ;
-
-    //20170314 khangcv add Logout function
+    
+    //Logout function and remove user from local storage and clear http auth header
     $rootScope.doLogout = function () {
         console.log('Logout function');
+        delete window.localStorage['currentUser'];
+        $http.defaults.headers.common.Authorization = '';
         $rootScope.currentUserSignedIn = false;
-        //delete $rootScope.currentUser.name;
-        //delete $http.defaults.headers.common['Authorization'];
-        $cookies.remove("AuthorizationHeader");
-
     }
-    //end
-
 
     console.log($rootScope);
 });
