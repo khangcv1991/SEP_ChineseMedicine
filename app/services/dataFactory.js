@@ -4,15 +4,15 @@
 angular.module('scotchApp')
     .factory('dataFactory', ['$http', function ($http) {
 
-        var urlBase = '/';
-        var baseApiUrl = '/api';
+        var urlBase = 'http://127.0.0.1:8000';
+        var baseApiUrl = 'http://127.0.0.1:8000';
         var dataFactory = {};
 
         dataFactory.generateData = function () {
             return $http.get(urlBase + 'generateData');
         };
 
-        dataFactory.login = function (username, Password) {
+        dataFactory.login = function (username, password) {
             // var body = {
             //     "grant_type": "password",
             //     "client_id": "android",
@@ -25,18 +25,24 @@ angular.module('scotchApp')
             var body = {
 
                 "username": username,
-                "password": Password
+                "password": password
             };
 
-            return $http.post(baseApiUrl + '/login', body, {headers: {'Authorization': 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='}});
+            return $http.post(baseApiUrl + '/api-token-auth/', body )
+
         };
 
         dataFactory.getAllUsers = function () {
-            return $http.get(baseApiUrl + "/getUserList");
+            console.log(baseApiUrl + "/getRequestList");
+            var data = {};
+            return $http.get(baseApiUrl + "/getRequestList/");
         };
 
+        dataFactory.getAllTempUsers = function () {
+            return $http.get(baseApiUrl + "/getRequestList");
+        };
 
-        dataFactory.updatePassword = function (userId, password) {
+        dataFactory.changePassword = function (userId, password) {
             console.log(baseApiUrl + "/changePassword");
             var data = {};
             data.userId = username;
@@ -47,20 +53,61 @@ angular.module('scotchApp')
         };
 
 
-        dataFactory.addUser = function (username, password, permission) {
+        dataFactory.acceptUser = function (user) {
             var data = {};
+            data.username = user[1];
+            data.password = user[5];
+            data.permission = user[2];
+            data.email = user[4];
+            data.comment = user[3];
+            data.requestID = user[0];
+            console.log(data);
+            
+            return $http.post(baseApiUrl + "/acceptRequest", data);
+        };
+
+        dataFactory.register = function (username, password, permission, email, comment) {
+            var data = {};
+            
             data.username = username;
             data.password = password;
             data.permission = permission;
-            return $http.post(urlBase + "/addUser", data);
+            data.email = email;
+            data.comment = comment;
+
+
+            return $http.post(baseApiUrl + "/register", data);
         };
 
+        dataFactory.findPassword = function (username, email) {
+            var data = {};
+            
+            data.username = username;
+            data.email = email;
+            console.log(data);
 
-        dataFactory.deleteUser = function (username,adimkey) {
+
+            return $http.post(baseApiUrl + "/forgetPassword", data);
+        };
+
+        dataFactory.addUser = function (username, password, email) {
             var data = {};
             data.username = username;
+            data.password = password;
+            data.email = email;
+            
+            
+
+
+            return $http.post(baseApiUrl + "/addAdminUser", data);
+        };
+
+        dataFactory.deleteUser = function (userId,adimkey) {
+            var data = {};
+            data.requestID = userId
             data.adimkey = adimkey;
-            return $http.delete(urlBase + '/deleteUser', data);
+            console.log(data.requestID);
+            return $http.post(baseApiUrl + '/rejectRequest', data);
         };
 
 
