@@ -10,7 +10,7 @@ scotchApp.controller('loginController', ['$scope', '$location', '$rootScope', '$
 
             dataFactory.login($scope.userName, $scope.password).then(function (response) {
                 
-                localStorage['currentUser'] = {}
+                
                 // $scope.message = response.data.Status;
                 console.log(response.data)
                 /*
@@ -21,8 +21,11 @@ scotchApp.controller('loginController', ['$scope', '$location', '$rootScope', '$
                     "userID" : response.data['userID']
                 }
                 */
-                window.localStorage['currentUser'].username = response.data['username']
-                console.log(window.localStorage['currentUser']);
+                window.localStorage['currentUsername'] = response.data['username'];
+                window.localStorage['currentUserID'] = response.data['userID'];
+                window.localStorage['currentToken'] = response.data['token'];
+                window.localStorage['currentPermission'] = response.data['permission'];
+                
                 //$cookies.put("AuthorizationHeader", true, null);
                 $http.defaults.headers.common.Authorization = 'JWT ' + response.data['token'];
                 

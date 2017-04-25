@@ -43,13 +43,13 @@ angular.module('scotchApp')
         };
 
         dataFactory.changePassword = function (userId, password) {
-            console.log(baseApiUrl + "/changePassword");
+            
             var data = {};
-            data.userId = username;
+            data.userID = userId;
             data.password = password;
 
-
-            return $http.put(baseApiUrl + "/changePassword", data);
+            console.log(data);
+            return $http.post(baseApiUrl + "/changePassword", data);
         };
 
 
@@ -87,6 +87,7 @@ angular.module('scotchApp')
             console.log(data);
 
 
+
             return $http.post(baseApiUrl + "/forgetPassword", data);
         };
 
@@ -96,10 +97,10 @@ angular.module('scotchApp')
             data.password = password;
             data.email = email;
             
-            
+            console.log(data)
 
 
-            return $http.post(baseApiUrl + "/addAdminUser", data);
+            //return $http.post(baseApiUrl + "/addAdminUser", data);
         };
 
         dataFactory.deleteUser = function (userId,adimkey) {

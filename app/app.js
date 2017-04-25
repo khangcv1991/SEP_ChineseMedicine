@@ -95,11 +95,15 @@ scotchApp.config(function ($stateProvider, $urlRouterProvider) {
 
 scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage, $location) {
     
+    console.log(window.localStorage['currentToken'])
+    console.log(window.localStorage['currentUsername'])
+    console.log(window.localStorage['currentUserID'])
+    console.log(window.localStorage['currentPermission'])
     // keep user logged in after page refresh
-    if (localStorage['currentUser']) {
+    if (localStorage['currentUsername']) {
         $rootScope.currentUserSignedIn = true;
-        console.log(window.localStorage['currentUser'])
-        $http.defaults.headers.common.Authorization = 'JWT ' + window.localStorage['currentUser']['token'];
+
+        $http.defaults.headers.common.Authorization = 'JWT ' + window.localStorage['currentToken'];
     }
     console.log($http.defaults.headers.common.Authorization);
 
@@ -109,9 +113,14 @@ scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage
         var publicPages = ['/login'];
         var restrictedPage = publicPages.indexOf($location.path()) === -1;
         
-        if (restrictedPage && !window.localStorage['currentUser']) {
+        if (restrictedPage && !window.localStorage['currentUsername']) {
             console.log('test');
+
+
             $location.path('/login');
+
+            //window.location.reload();
+            //$route.reload();
         }
     });
     
@@ -123,7 +132,10 @@ scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage
     //Logout function and remove user from local storage and clear http auth header
     $rootScope.doLogout = function () {
         console.log('Logout function');
-        delete window.localStorage['currentUser'];
+        delete window.localStorage['currentUsername'];
+        delete window.localStorage['currentUserID'];
+        delete window.localStorage['currentToken'];
+        delete window.localStorage['currentPermission'];
         $http.defaults.headers.common.Authorization = '';
         $rootScope.currentUserSignedIn = false;
     }

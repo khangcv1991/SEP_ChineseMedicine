@@ -43,7 +43,8 @@ scotchApp.controller('userController', ['$scope', '$location', '$rootScope', '$h
                 // $scope.message = response.data.Status;
 
                 $rootScope.currentUserSignedIn = true;
-                $location.path('/home');
+                //$location.path('/home');
+                window.location.reload();
             }, function (error) {
                 $scope.message = "Error";
             });
