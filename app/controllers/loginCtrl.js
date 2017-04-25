@@ -1,43 +1,39 @@
-
-scotchApp.controller('loginController', ['$scope', '$location', '$rootScope', '$http', '$cookies', 'dataFactory',
-    function ($scope, $location, $rootScope, $http, $cookies, dataFactory) {
+scotchApp.controller('loginController', ['$scope', '$location', '$rootScope', '$http', '$cookies', 'dataFactory', 
+    function ($scope, $location, $rootScope, $http, $cookies, dataFactory, $localStorage) {
         console.log("loginController");
-        $scope.message = 'Please login with your user name and password';
+        
         $scope.userName = "";
         $scope.password = "";
-
+        
+        
         $scope.doLogin = function () {
-            console.log($scope.userName + "|" + $scope.password);
 
-            var hash = md5($scope.password);
-            console.log(hash);
-
-            dataFactory.login($scope.userName, hash).then(function (response) {
-                console.log(response.data);
+            dataFactory.login($scope.userName, $scope.password).then(function (response) {
+                
+                localStorage['currentUser'] = {}
                 // $scope.message = response.data.Status;
-                var authorizationHeader = 'Bearer ' + response.data.access_token;
                 console.log(response.data)
-                $cookies.put("AuthorizationHeader", authorizationHeader, null);
-                $http.defaults.headers.common['Authorization'] = authorizationHeader;
+                /*
+                window.localStorage['currentUser'] = {
+                    "token" : response.data['token'],
+                    "username" : response.data['username'],
+                    "permission" : response.data['permission'], 
+                    "userID" : response.data['userID']
+                }
+                */
+                window.localStorage['currentUser'].username = response.data['username']
+                console.log(window.localStorage['currentUser']);
+                //$cookies.put("AuthorizationHeader", true, null);
+                $http.defaults.headers.common.Authorization = 'JWT ' + response.data['token'];
+                
                 $rootScope.currentUserSignedIn = true;
                 $location.path('/');
             }, function (error) {
-                $scope.message = "Error";
+                $scope.message = "Invalid Username or Password";
             });
-
-
-            // $http.defaults.headers.common['Accept'] = 'application/json;odata=verbose';
 
         };
 
-        $scope.test = function () {
 
-            console.log("Test");
-
-            $http.get("/generateData").then(function (response) {
-                console.log(response);
-                $scope.message = response.data.Status;
-            });
-        };
 
     }]);

@@ -4,88 +4,113 @@
 angular.module('scotchApp')
     .factory('dataFactory', ['$http', function ($http) {
 
-        var urlBase = '/';
-        var baseApiUrl = '/api';
+        var urlBase = 'http://127.0.0.1:8000';
+        var baseApiUrl = 'http://127.0.0.1:8000';
         var dataFactory = {};
 
         dataFactory.generateData = function () {
             return $http.get(urlBase + 'generateData');
         };
 
-        dataFactory.login = function (username, hashedPassword) {
+        dataFactory.login = function (username, password) {
+            // var body = {
+            //     "grant_type": "password",
+            //     "client_id": "android",
+            //     "client_secret": "SomeRandomCharsAndNumbers",
+            //     "username": username,
+            //     "password": hashedPassword
+            // };
+
+
             var body = {
-                "grant_type": "password",
-                "client_id": "android",
-                "client_secret": "SomeRandomCharsAndNumbers",
+
                 "username": username,
-                "password": hashedPassword
+                "password": password
             };
-            console.log(body);
-            return $http.post(baseApiUrl + '/login', body);
+
+            return $http.post(baseApiUrl + '/api-token-auth/', body )
+
         };
 
-        dataFactory.getAllWorkers = function () {
-            return $http.get(baseApiUrl + "/users?userType=Worker");
-        };
-
-        dataFactory.getShift = function (shiftId) {
-            return $http.get(baseApiUrl + "/shift/" + shiftId);
-        };
-
-        //20170327 Khangcv add endShift
-        dataFactory.updateShiftTime = function (shiftId, startTime, endTime) {
-            console.log(baseApiUrl + "/shift/" + shiftId);
+        dataFactory.getAllUsers = function () {
+            console.log(baseApiUrl + "/getRequestList");
             var data = {};
-            data.action = "UpdateTime";
-
-            console.log(startTime);
-            console.log(endTime);
-
-            data.shift = {};
-            data.shift.startTime = startTime;
-            data.shift.endTime = endTime;
-
-            return $http.put(baseApiUrl + "/shift/" + shiftId, data);
+            return $http.get(baseApiUrl + "/getRequestList/");
         };
-        //end
 
-        //20170327 Khangcv add endShift
-        dataFactory.endShift = function (shiftId) {
+        dataFactory.getAllTempUsers = function () {
+            return $http.get(baseApiUrl + "/getRequestList");
+        };
 
-            console.log(baseApiUrl + "/shift/" + shiftId);
+        dataFactory.changePassword = function (userId, password) {
+            console.log(baseApiUrl + "/changePassword");
             var data = {};
-            data.action = "End";
-            return $http.put(baseApiUrl + "/shift/" + shiftId, data);
-        };
-        //end
+            data.userId = username;
+            data.password = password;
 
-        //20170327 Khangcv add getShifts
-        dataFactory.getShifts = function (status, workerId) {
-            console.log(baseApiUrl + "/shift?Status=" + status + "&WorkerId=" + workerId);
 
-            return $http.get(baseApiUrl + "/shift?Status=" + status + "&WorkerId=" + workerId);
-        };
-        //end
-
-        dataFactory.getCustomer = function (id) {
-            return $http.get(urlBase + '/' + id);
+            return $http.put(baseApiUrl + "/changePassword", data);
         };
 
-        dataFactory.insertCustomer = function (cust) {
-            return $http.post(urlBase, cust);
+
+        dataFactory.acceptUser = function (user) {
+            var data = {};
+            data.username = user[1];
+            data.password = user[5];
+            data.permission = user[2];
+            data.email = user[4];
+            data.comment = user[3];
+            data.requestID = user[0];
+            console.log(data);
+            
+            return $http.post(baseApiUrl + "/acceptRequest", data);
         };
 
-        dataFactory.updateCustomer = function (cust) {
-            return $http.put(urlBase + '/' + cust.ID, cust)
+        dataFactory.register = function (username, password, permission, email, comment) {
+            var data = {};
+            
+            data.username = username;
+            data.password = password;
+            data.permission = permission;
+            data.email = email;
+            data.comment = comment;
+
+
+            return $http.post(baseApiUrl + "/register", data);
         };
 
-        dataFactory.deleteCustomer = function (id) {
-            return $http.delete(urlBase + '/' + id);
+        dataFactory.findPassword = function (username, email) {
+            var data = {};
+            
+            data.username = username;
+            data.email = email;
+            console.log(data);
+
+
+            return $http.post(baseApiUrl + "/forgetPassword", data);
         };
 
-        dataFactory.getOrders = function (id) {
-            return $http.get(urlBase + '/' + id + '/orders');
+        dataFactory.addUser = function (username, password, email) {
+            var data = {};
+            data.username = username;
+            data.password = password;
+            data.email = email;
+            
+            
+
+
+            return $http.post(baseApiUrl + "/addAdminUser", data);
         };
+
+        dataFactory.deleteUser = function (userId,adimkey) {
+            var data = {};
+            data.requestID = userId
+            data.adimkey = adimkey;
+            console.log(data.requestID);
+            return $http.post(baseApiUrl + '/rejectRequest', data);
+        };
+
+
 
         return dataFactory;
     }]);

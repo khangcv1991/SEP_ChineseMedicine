@@ -2,42 +2,97 @@ scotchApp.controller('homeController', ['$scope', '$location', '$rootScope', '$h
     function ($scope, $location, $rootScope, $http, $cookies, dataFactory) {
 
         (function () {
+            console.log("home page ");
+            //check login
+            if( $rootScope.currentUserSignedIn == false){
+                $location.path('/login');
+            }
 
             //end
             var treedata_geography = [{
-                label: 'Data1',
+                label: 'Clinical guielines',
                 children: [{
-                    label: 'Canada',
-                    children: ['Toronto', 'Vancouver']
-                }, {
-                    label: 'USA',
-                    children: ['New York', 'Los Angeles']
-                }, {
-                    label: 'Mexico',
-                    children: ['Mexico City', 'Guadalajara']
-                }]
+                    label: 'File1',
+                    data: {
+                        title: "File1",
+                        description: "Herb",
+                        data1: "sadasdaa",
+                        type: "pdf",
+                        author: "Cheng",
+                        size: ""
+                    },
+                }, ]
             }, {
-                label: 'Data2',
+                label: 'EndNote Libraries',
                 children: [{
-                    label: 'Venezuela',
+                    label: 'File2', 
+                    data: {
+                        title: "File2",
+                        description: "studies",
+                        data1: "sadasdaa",
+                        type: "Excel",
+                        author: "KD",
+                        size: ""
+                    },             
+                }, ]
+            },{
+                label: 'Experimental Studies',
+                children: [{
+                    label: 'File3', 
+                    data: {
+                        title: "File3",
+                        description: "Herb",
+                        data1: "sadasdaa",
+                        type: "Word",
+                        author: "Deng",
+                        size: ""
+                    },             
+                }, ]
+            },
+            {
+                label: 'Modern Clinical',
+                children: [{
+                    label: 'Excel files',
                     children: ['Caracas', 'Maracaibo']
                 }, {
-                    label: 'Brazil',
+                    label: 'PDFs',
                     children: ['Sao Paulo', 'Rio de Janeiro']
                 }, {
-                    label: 'Argentina',
+                    label: 'RevMan  fiels',
+                    children: ['Buenos Aires', 'Cordoba']
+                }, {
+                    label: 'Excel files',
+                    children: ['Caracas', 'Maracaibo']
+                }, {
+                    label: 'PDFs',
+                    children: ['Sao Paulo', 'Rio de Janeiro']
+                }, {
+                    label: 'RevManfiels',
                     children: ['Buenos Aires', 'Cordoba']
                 }]
-            }];
+            }
+            ];
             $scope.my_data = treedata_geography;
 
 
         })();
+        $scope.my_tree_handler = function(branch) {
+            var _ref;
+            
+            $scope.output = "Selected: ";
+            if ((_ref = branch.data) != null ? _ref.description : void 0) {
 
+                $scope.output += "Title: " + _ref.title + " ";
+                $scope.output += "Author: " + _ref.author + " ";
+                $scope.output += "description: " + _ref.description + " ";
+            }
+            if ((_ref = branch.data) != null ? _ref.data1 : void 0) {
+                 
+            }
+            return $scope.output;
+    };
 
         // create a message to display in our view
-        console.log("Home");
-        $scope.message = 'This is a demo';
         console.log($rootScope);
 
 

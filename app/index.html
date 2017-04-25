@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="css/homecss.css">
     <link rel="stylesheet" href="library/tree.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
-
+   
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
 
@@ -20,10 +19,11 @@
     <script src="library/md5.js"></script>
     <script src="library/angular-cookies.js"></script>
     <script src="library/abn_tree_directive.js"></script>
+    <script src="library/ngStorage.js"></script>
+    <script src="library/ngStorage.min.js"></script>
+    <script src="library/angular-local-storage/angular-local-storage.js"></script>
 
-    <link rel="stylesheet" href="bower_components/angularjs-datetime-picker/angularjs-datetime-picker.css"/>
-
-    <script src="bower_components/angularjs-datetime-picker/angularjs-datetime-picker.js"></script>
+    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
 
     <script src="app.js"></script>
 
@@ -31,31 +31,48 @@
     <script src="services/utilFactory.js"></script>
 
     <script src="controllers.js"></script>
-    <script src="controllers/shiftDetailController.js"></script>
-    <script src="controllers/shiftController.js"></script>
+
     <script src="controllers/homeController.js"></script>
     <script src="controllers/loginCtrl.js"></script>
-
+    <script src="controllers/userController.js"></script>
+    <script src="controllers/userDetailController.js"></script>
+    <script src="controllers/userAddController.js"></script>
+	<script src="controllers/registerController.js"></script>
+    <script src="controllers/forgetPasswordController.js"></script>
+	<script src="controllers/uploadController.js"></script>
+	<script src="controllers/changePasswordController.js"></script>
+	<script src="services/multipartForm.js"></script>
+	<script src="directives/fileModel.js"></script>
+	
 </head>
 
 <!-- define angular controller -->
 <body ng-app="scotchApp">
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-custom">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">Angular Routing Example</a>
+            <a class="navbar-brand"  ui-sref="home">Chinese Medicine</a>
         </div>
-
+		
         <ul class="nav navbar-nav navbar-right">
+			<li ng-show="currentUserSignedIn"><div >
+				<form class="navbar-form" role="search">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+					<div class="input-group-btn">
+						<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+					</div>
+				</div>
+			</li>
             <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
             <li><a ui-sref="about"><i class="fa fa-shield"></i> About</a></li>
-            <li><a ui-sref="contact"><i class="fa fa-comment"></i> Contact</a></li>
-            <li><a ui-sref="users"><i class="fa fa-comment"></i> Users</a></li>
+            <li ng-show="currentUserSignedIn"><a ui-sref="users"><i class="fa fa-comment"></i> Users</a></li>
             <li ng-hide="currentUserSignedIn"><a ui-sref="login"><i class="fa fa-comment"></i> Login</a></li>
             <li ng-show="currentUserSignedIn"><a ui-sref="login" ng-click="doLogout()"><i class="fa fa-comment"></i>
                 Logout</a>
             </li>
+			<li ng-show="currentUserSignedIn"><a ui-sref="changePassword"><i class="fa fa-comment"></i> Change Password</a></li>
         </ul>
     </div>
 </nav>
@@ -69,10 +86,6 @@
 </div>
 
 <footer class="text-center">
-    <p>If there is any issues, please contact Admin
-    </p>
-
-    <p>Good luck!</p>
 </footer>
 
 </body>

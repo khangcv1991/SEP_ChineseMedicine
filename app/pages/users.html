@@ -4,29 +4,39 @@
 
         <p>this is user management page</p>
     </div>
-
+    </div>
     <div class="row">
-        <div class="col-md-2 m-row">ID</div>
-        <div class="col-md-4 m-row">User name</div>
-
-        <div class="col-md-1 m-row">Status</div>
-        <div class="col-md-1 m-row">Action</div>
+        <div class="col-md-4 m-row"></div>
+        <div class="col-md-4 m-row"></div>
+        <div class="col-md-1 m-row"><a href="#/userAdd"><span class="btn btn-black"
+                                                              >Add Admin</span></a></div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 m-row"></div>
+        <div class="col-md-4 m-row"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-1 m-row">ID</div>
+        <div class="col-md-2 m-row">User name</div>
+        <div class="col-md-2 m-row">E-mail</div>
+        <div class="col-md-2 m-row">Comment</div>
+        <div class="col-md-1 m-row">Permission</div>
     </div>
     <br/>
     <br/>
 
     <div class="row" ng-repeat="x in users track by $index">
-        <div class="col-md-2 m-row"></div>
-        <div class="col-md-4 m-row"></div>
+        <div class="col-md-1 m-row">{{x[0]}}</div>
+        <div class="col-md-2 m-row">{{x[1]}}</div>
+        <div class="col-md-2 m-row">{{x[4]}}</div>
+        <div class="col-md-2 m-row">{{x[3]}}</div>
+        <div class="col-md-1 m-row">{{x[2]}}</div>
 
-        <div class="col-md-1 m-row">
-            <span ng-switch on="x.status">
-                    <span ng-switch-when="inactive" style="color: #d43f3a">{{x.status}}</span>
-                    <span ng-switch-when="active" style="color: #4cae4c">{{x.status}}</span>
-                </span>
-        </div>
-        <div class="col-md-1 m-row"><span class="btn btn-success"  style="color: #ffffff"
-                                          ng-click="endShift(x._id)">Edit</span></div>
+        <div class="col-md-1 m-row"><button type="button" confirmed-click = "addUser($index)" ng-confirm-click="Would you like to accpet user?" class="btn btn-black">Accept</button></div>
+        <div class="col-md-1 m-row"><button type="button" confirmed-click="removeUser($index)" 
+                ng-confirm-click="Would you like to reject user?" class="btn btn-black"  class="btn btn-black">Reject</button></div>
+
+
 
     </div>
 
