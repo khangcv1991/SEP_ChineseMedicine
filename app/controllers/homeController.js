@@ -25,9 +25,9 @@ scotchApp.controller('homeController', ['$scope', '$location', '$rootScope', '$h
             }, {
                 label: 'EndNote Libraries',
                 children: [{
-                    label: 'File2', 
+                    label: 'Test File2', 
                     data: {
-                        title: "File2",
+                        title: "Test File2",
                         description: "studies",
                         data1: "sadasdaa",
                         type: "Excel",
@@ -38,9 +38,9 @@ scotchApp.controller('homeController', ['$scope', '$location', '$rootScope', '$h
             },{
                 label: 'Experimental Studies',
                 children: [{
-                    label: 'File3', 
+                    label: 'Test File3', 
                     data: {
-                        title: "File3",
+                        title: "Test File3",
                         description: "Herb",
                         data1: "sadasdaa",
                         type: "Word",
@@ -60,15 +60,7 @@ scotchApp.controller('homeController', ['$scope', '$location', '$rootScope', '$h
                 }, {
                     label: 'RevMan  fiels',
                     children: ['Buenos Aires', 'Cordoba']
-                }, {
-                    label: 'Excel files',
-                    children: ['Caracas', 'Maracaibo']
-                }, {
-                    label: 'PDFs',
-                    children: ['Sao Paulo', 'Rio de Janeiro']
-                }, {
-                    label: 'RevManfiels',
-                    children: ['Buenos Aires', 'Cordoba']
+                
                 }]
             }
             ];

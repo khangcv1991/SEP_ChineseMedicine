@@ -5,17 +5,24 @@ scotchApp.controller('changePasswordController', ['$scope', '$location', '$rootS
         $scope.password = "";
         console.log($scope.username + "|" + $scope.password);
 
-        $scope.usernameLabel = "Test";
+        $scope.usernameLabel = window.localStorage['currentUsername']
         console.log($localStorage);
         $scope.changePassword = function () {
             console.log("updateuser");
             
-            dataFactory.changePassword(userId, $scope.newPass).then(function (respone) {
+            dataFactory.changePassword(window.localStorage['currentUserID'], $scope.password).then(function (respone) {
                 console.log(respone);
                 if(respone.data.status == 200)
-                    $location.path('/users');
-                else
-                    console.log("can not update");
+                    
+                    delete window.localStorage['currentUsername'];
+                    delete window.localStorage['currentUserID'];
+                    delete window.localStorage['currentToken'];
+                    delete window.localStorage['currentPermission'];
+                    $http.defaults.headers.common.Authorization = '';
+                    $rootScope.currentUserSignedIn = false;
+                    $location.path('/login');
+
+              
             });
 
         }
