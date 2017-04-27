@@ -1,0 +1,47 @@
+<div class="container" style="padding-right: 10%; padding-left: 10%">
+	
+    <div class= "col-sm-12 pull-center " style="background:transparent !important">
+    	<h1>Search</h1>
+        <form class="form-inline" action="#" method="POST">
+            <center>  
+                <select class="form-control" ng-model = "key">
+		            <option>Title</option>
+		            <option>Study Ref</option>
+		            <option>Study ID</option>
+		            <option>File Type</option>
+		            <option>Category</option>
+		        </select>
+            
+            
+               <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" ng-model = "word" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button ng-click = "search()" class="btn btn-default" type="button">
+                              Search
+                            </button>
+                        </span>
+                </div>
+	    </form>
+	    <table class="table">
+	        <thead>
+	          
+	        </thead>
+	        <tbody ng-repeat="x in files track by $index">
+	          <tr>
+	            <td>{{x[1]}}</td>
+	            <td>{{x[2]}}</td>
+	            <td>{{x[3]}}</td>
+	            
+	            <td style = "padding-top:0.2cm; padding-bottom: 0.2cm"><button type="button" ng-click = "view($index)" class="btn btn-black btn-sm">View</button></td>
+	            <td style = "padding-top:0.2cm; padding-bottom: 0.2cm"><button type="button" ng-click = "edit($index)" class="btn btn-black btn-sm">Edit</button></td>
+	            <td style = "padding-top:0.2cm; padding-bottom: 0.2cm"><a ng-href="{{ x[4] }}" download={{x[1]}}><button type="button"  class="btn btn-black btn-sm" >Download</button></td>
+	            <td style = "padding-top:0.2cm; padding-bottom: 0.2cm"><button type="button" ng-click="removeFile($index)" 
+	                ng-confirm-click="Would you like to remove file?" class="btn btn-black btn-sm">Remove</button></td>
+	            
+	          </tr>
+	        </tbody>
+	    </table>    
+	    
+    </div>
+    
+</div>

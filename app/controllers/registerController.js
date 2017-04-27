@@ -16,6 +16,7 @@ scotchApp.controller('registerController', ['$scope', '$location', '$rootScope',
 
                 $rootScope.currentUserSignedIn = false;
                 $location.path('/login');
+                window.location.reload();
             }, function (error) {
                 $scope.message = "Error";
             });
