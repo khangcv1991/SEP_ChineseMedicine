@@ -28,14 +28,14 @@ angular.module('scotchApp')
                 "password": password
             };
 
-            return $http.post(baseApiUrl + '/api-token-auth/', body )
+            return $http.post(baseApiUrl + '/api-token-auth', body )
 
         };
 
         dataFactory.getAllUsers = function () {
             console.log(baseApiUrl + "/getRequestList");
             var data = {};
-            return $http.get(baseApiUrl + "/getRequestList/");
+            return $http.get(baseApiUrl + "/getRequestList");
         };
 
         dataFactory.getAllTempUsers = function () {
@@ -111,7 +111,29 @@ angular.module('scotchApp')
             return $http.post(baseApiUrl + '/rejectRequest', data);
         };
 
+        dataFactory.doSearch = function (key,word) {
+            var data = {};
+            data.type = key
+            data.keyword = word;
+            //data.count = 1;
+            console.log(data);
+            return $http.post(baseApiUrl + '/search', data);
+        };
 
+        dataFactory.view = function (bookID) {
+            var data = {};
+            data.id = bookID
+            //data.count = 1;
+            console.log(data);
+            return $http.post(baseApiUrl + '/viewFile', data);
+        };
 
+        dataFactory.download = function (bookID) {
+            var data = {};
+            data.id = bookID
+            //data.count = 1;
+            console.log(data);
+            return $http.post(baseApiUrl + '/downloadFile', data);
+        };
         return dataFactory;
     }]);

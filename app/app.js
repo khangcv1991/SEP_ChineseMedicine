@@ -1,5 +1,5 @@
 // create the module and name it scotchApp
-var scotchApp = angular.module('scotchApp', ['ngCookies', 'ui.router', 'angularBootstrapNavTree', 'ngStorage']);
+var scotchApp = angular.module('scotchApp', ['ngCookies', 'ui.router', 'angularBootstrapNavTree', 'ngStorage', 'ngPassword']);
 
 scotchApp.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
@@ -71,6 +71,13 @@ scotchApp.config(function ($stateProvider, $urlRouterProvider) {
         cache: false,
         templateUrl: 'pages/upload.html',
         controller: 'uploadController'
+    });
+    $stateProvider.state({
+        name: 'search',
+        url: '/search',
+        cache: false,
+        templateUrl: 'pages/search.html',
+        controller: 'searchController'
     });
     //shiftDetail page
     $stateProvider.state({

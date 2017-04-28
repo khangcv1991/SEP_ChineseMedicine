@@ -11,6 +11,7 @@
         <div class="col-md-1 m-row"><a href="#/userAdd"><span class="btn btn-black"
                                                               >Add Admin</span></a></div>
     </div>
+    <!--
     <div class="row">
         <div class="col-md-6 m-row"></div>
         <div class="col-md-4 m-row"></div>
@@ -39,5 +40,28 @@
 
 
     </div>
-
+    -->
+    <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>E-mail</th>
+            <th>Comment</th>
+            <th>Permission</th>
+          </tr>
+        </thead>
+        <tbody ng-repeat="x in users track by $index">
+          <tr>
+            <td>{{x[0]}}</td>
+            <td>{{x[1]}}</td>
+            <td>{{x[4]}}</td>
+            <td>{{x[3]}}</td>
+            <td>{{x[2]}}</td>
+            <td style = "padding-top:0.1cm; padding-bottom: 0.1cm"><button type="button" confirmed-click = "addUser($index)" ng-confirm-click="Would you like to accpet user?" class="btn btn-black btn-sm">Accept</button></td>
+            <td style = "padding-top:0.1cm; padding-bottom: 0.1cm"><button type="button" confirmed-click="removeUser($index)" 
+                ng-confirm-click="Would you like to reject user?" class="btn btn-black btn-sm">Reject</button></td>
+          </tr>
+        </tbody>
+    </table>              
 </div>

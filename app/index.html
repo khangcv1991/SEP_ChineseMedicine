@@ -22,6 +22,8 @@
     <script src="library/ngStorage.js"></script>
     <script src="library/ngStorage.min.js"></script>
     <script src="library/angular-local-storage/angular-local-storage.js"></script>
+    <script src="library/angular-password.min.js"></script>
+    <script src="library/angular-password.js"></script>
 
     <script src="bower_components/angular-mocks/angular-mocks.js"></script>
 
@@ -40,6 +42,7 @@
 	<script src="controllers/registerController.js"></script>
     <script src="controllers/forgetPasswordController.js"></script>
 	<script src="controllers/uploadController.js"></script>
+    <script src="controllers/searchController.js"></script>
 	<script src="controllers/changePasswordController.js"></script>
 	<script src="services/multipartForm.js"></script>
 	<script src="directives/fileModel.js"></script>
@@ -54,18 +57,72 @@
         <div class="navbar-header">
             <a class="navbar-brand"  ui-sref="home">Chinese Medicine</a>
         </div>
-		
+		<div ng-show="currentUserSignedIn" class="navbar-left" style="width:400px; padding-top: 0.2cm">    
+                <!--
+                <div class="input-group">
+                    <div class="input-group-btn search-panel">
+                        
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span id="search_concept">Filter by</span> <span class="caret"></span>
+                        </button>
+                        
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#contains">Title</a></li>
+                          <li><a href="#its_equal">Study Ref</a></li>
+                          <li><a href="#greather_than">Study ID</a></li>
+                          <li><a href="#less_than">File Type</a></li>
+                          <li><a href="#all">Category</a></li>
+                        </ul>
+                        
+                    </div>
+                    <input type="hidden" name="search_param" value="all" id="search_param">         
+                    <input type="text" class="form-control" name="x" placeholder="Search term...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div>
+                -->
+            <form class="form-inline" action="#" method="POST">
+             
+                <select class="form-control">
+                    <option>Title</option>
+                    <option>Study Ref</option>
+                    <option>Study ID</option>
+                    <option>File Type</option>
+                    <option>Category</option>
+                </select>
+                    
+                    
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button ng-href="/login.html" class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                        </span>
+                </div>
+            </form>
+                
+            
+        </div>
         <ul class="nav navbar-nav navbar-right">
+            <!--
 			<li ng-show="currentUserSignedIn"><div >
 				<form class="navbar-form" role="search">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+					<input type="text" ng-model="content" class="form-control" placeholder="Search.." name="srch-term" id="srch-term">
+                    <select ng-model="key"  class="form-control">
+                       <option value="$">Any</option>
+                       <option value="number">Student Number</option>
+                       <option value="region">Student Region</option>
+                     </select> 
 					<div class="input-group-btn">
 						<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 					</div>
 				</div>
+                </form>
 			</li>
+            -->
             <li ng-show="currentUserSignedIn"><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+            <li ng-show="currentUserSignedIn"><a ui-sref="search"><i class="fa fa-home"></i> Search</a></li>
             <li><a ui-sref="about"><i class="fa fa-shield"></i> About</a></li>
             <li ng-show="currentUserSignedIn"><a ui-sref="users"><i class="fa fa-comment"></i> Users</a></li>
             <li ng-hide="currentUserSignedIn"><a ui-sref="login"><i class="fa fa-comment"></i> Login</a></li>
