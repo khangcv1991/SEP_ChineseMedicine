@@ -1,67 +1,70 @@
-<div class="container">
-    <div class="text-center">
-        <h1>USER MANAGEMENT </h1>
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Users List
+                <small></small>
+            </h3>
+        </div>
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-10 form-group pull-right top_search">
+                <a href="#/userAdd"><i class="fa fa-plus-circle"></i>Add Admin</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2> Result
+                        </h2>
 
-        <p>this is user management page</p>
-    </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 m-row"></div>
-        <div class="col-md-4 m-row"></div>
-        <div class="col-md-1 m-row"><a href="#/userAdd"><span class="btn btn-black"
-                                                              >Add Admin</span></a></div>
-    </div>
-    <!--
-    <div class="row">
-        <div class="col-md-6 m-row"></div>
-        <div class="col-md-4 m-row"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-1 m-row">ID</div>
-        <div class="col-md-2 m-row">User name</div>
-        <div class="col-md-2 m-row">E-mail</div>
-        <div class="col-md-2 m-row">Comment</div>
-        <div class="col-md-1 m-row">Permission</div>
-    </div>
-    <br/>
-    <br/>
+                        <div class="clearfix"></div>
+                    </div>
 
-    <div class="row" ng-repeat="x in users track by $index">
-        <div class="col-md-1 m-row">{{x[0]}}</div>
-        <div class="col-md-2 m-row">{{x[1]}}</div>
-        <div class="col-md-2 m-row">{{x[4]}}</div>
-        <div class="col-md-2 m-row">{{x[3]}}</div>
-        <div class="col-md-1 m-row">{{x[2]}}</div>
+                    <div class="x_content">
+                        <div class="table-responsive">
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                <tr class="headings">
 
-        <div class="col-md-1 m-row"><button type="button" confirmed-click = "addUser($index)" ng-confirm-click="Would you like to accpet user?" class="btn btn-black">Accept</button></div>
-        <div class="col-md-1 m-row"><button type="button" confirmed-click="removeUser($index)" 
-                ng-confirm-click="Would you like to reject user?" class="btn btn-black"  class="btn btn-black">Reject</button></div>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>E-mail</th>
+                                    <th>Comment</th>
+                                    <th>Permission</th>
 
 
+                                </tr>
+                                </thead>
 
+
+                                <tbody ng-repeat="x in users track by $index">
+                                <td>{{x[0]}}</td>
+                                <td>{{x[1]}}</td>
+                                <td>{{x[4]}}</td>
+                                <td>{{x[3]}}</td>
+                                <td>{{x[2]}}</td>
+                                <td style="padding-top:0.1cm; padding-bottom: 0.1cm">
+                                    <button type="button" confirmed-click="addUser($index)"
+                                            ng-confirm-click="Would you like to accpet user?"
+                                            class="btn btn-black btn-sm">Accept
+                                    </button>
+                                </td>
+                                <td style="padding-top:0.1cm; padding-bottom: 0.1cm">
+                                    <button type="button" confirmed-click="removeUser($index)"
+                                            ng-confirm-click="Would you like to reject user?"
+                                            class="btn btn-black btn-sm">Reject
+                                    </button>
+                                </td>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        </row>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
     </div>
-    -->
-    <table class="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>E-mail</th>
-            <th>Comment</th>
-            <th>Permission</th>
-          </tr>
-        </thead>
-        <tbody ng-repeat="x in users track by $index">
-          <tr>
-            <td>{{x[0]}}</td>
-            <td>{{x[1]}}</td>
-            <td>{{x[4]}}</td>
-            <td>{{x[3]}}</td>
-            <td>{{x[2]}}</td>
-            <td style = "padding-top:0.1cm; padding-bottom: 0.1cm"><button type="button" confirmed-click = "addUser($index)" ng-confirm-click="Would you like to accpet user?" class="btn btn-black btn-sm">Accept</button></td>
-            <td style = "padding-top:0.1cm; padding-bottom: 0.1cm"><button type="button" confirmed-click="removeUser($index)" 
-                ng-confirm-click="Would you like to reject user?" class="btn btn-black btn-sm">Reject</button></td>
-          </tr>
-        </tbody>
-    </table>              
 </div>
