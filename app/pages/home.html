@@ -1,47 +1,90 @@
-<div>
-
-    <div class="text-center">
-        <h1>Home</h1>
-
-        <p>{{ message }}</p>
+<div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="x_panel">
+            <abn-tree tree-data="my_data" tree-control="my_tree" on-select="my_tree_handler(branch)" expand-level="2"
+                      initial-selection="Granny Smith"></abn-tree>
+        </div>
     </div>
 
-</div>
-<div class="row">
-    <div class="col-md-1 btn btn-black" ui-sref="upload">UPLOAD</div>
-</div>
-<div class="row">
-    <div class="col-lg-6" id="left-container">
-        <abn-tree tree-data="my_data" tree-control="my_tree" on-select="my_tree_handler(branch)" expand-level="2"
-                  initial-selection="Granny Smith"></abn-tree>
-    </div>
-    <div class="col-lg-6">
-        <div id="file-detail" class="rounded">
-            <div class = "row">
-                <div class="col-lg-1 "><label for="MyField">{{output}}</label></div>
-                <div class="col-md-1 "></div>
-                <div class="col-md-2 "></div>
-                
+
+    <div class="col-md-8 col-sm-8 col-xs-12">
+
+
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>File Detail
+
+                        </h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="dashboard-widget-content">
+                            <div class="col-md-8 hidden-small">
+                                <h2 class="line_30">Tile</h2>
+
+                                <table class="countries_list">
+                                    <tbody>
+                                    <tr>
+                                        {{output}}
+                                    </tr>
+                                    <tr>
+                                        <td>Detail1</td>
+                                        <td class="fs15 fw700 text-right">27%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Detail1</td>
+                                        <td class="fs15 fw700 text-right">16%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Detail1</td>
+                                        <td class="fs15 fw700 text-right">11%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Detail1</td>
+                                        <td class="fs15 fw700 text-right">10%</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-4 hidden-small">
+                                <h2 class="line_30"> Action </h2>
+
+                                <table class="countries_list">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <span class="btn btn-round btn-success"> View</span>
+                                            <span class="btn btn-round btn-success"> DOWNLOAD</span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="btn btn-round btn-warning" ui-sref="upload">Edit</span>
+                                            <span class="btn btn-round btn-danger"> REMOVE</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div id="world-map-gdp" class="col-md-8 col-sm-12 col-xs-12"
+                                 style="height:230px;"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class = "row">
-                <div class="col-lg-9 m-row"> </div>
-            </div>
-            <div class = "row">
-                <div class="col-lg-9 m-row"> </div>
-                <div class="col-lg-2 btn btn-black m-row"> View</div>
-                <div class="col-lg-9"> </div>
-                <div class="col-lg-2 btn btn-black m-row" ui-sref="upload">Edit</div>
-                <div class="col-lg-9"> </div>
-                <div class="col-lg-2 btn btn-black m-row"> DOWNLOAD</div>
-                
-                <div class="col-lg-9"> </div>
-                <div class="col-lg-2 btn btn-danger m-row"> REMOVE</div>
-                <div class="col-lg-2 "></div>
-            </div>
-            
+
         </div>
 
     </div>
 </div>
-
-
