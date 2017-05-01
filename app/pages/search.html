@@ -1,47 +1,97 @@
-<div class="container" style="padding-right: 10%; padding-left: 10%">
-	
-    <div class= "col-sm-12 pull-center " style="background:transparent !important">
-    	<h1>Search</h1>
-        <form class="form-inline" action="#" method="POST">
-            <center>  
-                <select class="form-control" ng-model = "key">
-		            <option>Title</option>
-		            <option>Study Ref</option>
-		            <option>Study ID</option>
-		            <option>File Type</option>
-		            <option>Category</option>
-		        </select>
-            
-            
-               <div class="input-group custom-search-form">
-                    <input type="text" class="form-control" ng-model = "word" placeholder="Search...">
-                        <span class="input-group-btn">
-                            <button ng-click = "search()" class="btn btn-default" type="button">
-                              Search
-                            </button>
-                        </span>
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Results List
+                <small></small>
+            </h3>
+        </div>
+
+        <div class="title_right">
+            <form class="form-inline" action="#" method="POST">
+                <div class="col-md-2 col-sm-2 col-xs-2 form-group pull-right top_search">
+                    <select class="form-group pull-right top_search" ng-model="key">
+                        <option>Title</option>
+                        <option>Study Ref</option>
+                        <option>Study ID</option>
+                        <option>File Type</option>
+                        <option>Category</option>
+                    </select>
                 </div>
-	    </form>
-	    <table class="table">
-	        <thead>
-	          
-	        </thead>
-	        <tbody ng-repeat="x in files track by $index">
-	          <tr>
-	            <td>{{x[1]}}</td>
-	            <td>{{x[2]}}</td>
-	            <td>{{x[3]}}</td>
-	            
-	            <td style = "padding-top:0.2cm; padding-bottom: 0.2cm"><button type="button" ng-click = "view($index)" class="btn btn-black btn-sm">View</button></td>
-	            <td style = "padding-top:0.2cm; padding-bottom: 0.2cm"><button type="button" ng-click = "edit($index)" class="btn btn-black btn-sm">Edit</button></td>
-	            <td style = "padding-top:0.2cm; padding-bottom: 0.2cm"><a ng-href="{{ x[4] }}" download={{x[1]}}><button type="button"  class="btn btn-black btn-sm" >Download</button></td>
-	            <td style = "padding-top:0.2cm; padding-bottom: 0.2cm"><button type="button" ng-click="removeFile($index)" 
-	                ng-confirm-click="Would you like to remove file?" class="btn btn-black btn-sm">Remove</button></td>
-	            
-	          </tr>
-	        </tbody>
-	    </table>    
-	    
+                <div class="col-md-5 col-sm-5 col-xs-10 form-group pull-right top_search">
+
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for..." ng-model="word">
+                        <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" ng-click="search()">Go!</button>
+                    </span>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2> Result
+                    </h2>
+
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+
+
+                    <div class="table-responsive">
+                        <table class="table table-striped jambo_table bulk_action">
+                            <thead>
+                            <tr class="headings">
+                                <th>
+                                    <input type="checkbox" id="check-all" class="flat">
+                                </th>
+                                <th class="column-title">Title</th>
+                                <th class="column-title">Size</th>
+                                <th class="column-title"></th>
+                                <th class="column-title"></th>
+                                <th class="column-title"></th>
+                                <th class="column-title"></th>
+
+
+                            </tr>
+                            </thead>
+
+
+                            <tbody ng-repeat="x in files track by $index">
+                            <td>{{x[1]}}</td>
+                            <td>{{x[2]}}</td>
+                            <td>{{x[3]}}</td>
+
+                            <td>
+                                <span ng-click="view($index)" class="btn btn-round btn-success"> View</span>
+                            </td>
+                            <td>
+                                <span ng-click="edit($index)" class="btn btn-round btn-warning"
+                                      ui-sref="upload">Edit</span>
+                            </td>
+                            <td>
+                                <a class="" ng-href="{{ x[4] }}"
+                                   download={{x[1]}}>
+
+                                    <span class="btn btn-round btn-success">Download</span></a></td>
+                            <td>
+                                <span class="btn btn-round btn-danger" ng-click="removeFile($index)"
+                                      ng-confirm-click="Would you like to remove file?"> REMOVE</span>
+                            </td>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
