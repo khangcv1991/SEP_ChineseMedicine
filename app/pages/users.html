@@ -6,9 +6,8 @@
     </div>
     </div>
     <div class="row">
-        <div class="col-md-4 m-row"></div>
-        <div class="col-md-4 m-row"></div>
-        <div class="col-md-1 m-row"><a href="#/userAdd"><span class="btn btn-black"
+        
+        <div style="padding-left: 33cm" class="col-md-1 m-row"><a href="#/userAdd"><span class="btn btn-black"
                                                               >Add Admin</span></a></div>
     </div>
     <!--
@@ -41,7 +40,7 @@
 
     </div>
     -->
-    <table class="table">
+    <table class="table table-striped table-condensed table-hover">
         <thead>
           <tr>
             <th>ID</th>
@@ -51,8 +50,8 @@
             <th>Permission</th>
           </tr>
         </thead>
-        <tbody ng-repeat="x in users track by $index">
-          <tr>
+        <tbody >
+          <tr ng-repeat="x in users track by $index">
             <td>{{x[0]}}</td>
             <td>{{x[1]}}</td>
             <td>{{x[4]}}</td>

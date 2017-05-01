@@ -57,8 +57,8 @@
         <div class="navbar-header">
             <a class="navbar-brand"  ui-sref="home">Chinese Medicine</a>
         </div>
-		<div ng-show="currentUserSignedIn" class="navbar-left" style="width:400px; padding-top: 0.2cm">    
-                <!--
+		<!-- <div ng-show="currentUserSignedIn" class="navbar-left" style="width:400px; padding-top: 0.2cm">    
+                
                 <div class="input-group">
                     <div class="input-group-btn search-panel">
                         
@@ -81,7 +81,7 @@
                         <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                     </span>
                 </div>
-                -->
+                
             <form class="form-inline" action="#" method="POST">
              
                 <select class="form-control">
@@ -102,7 +102,7 @@
             </form>
                 
             
-        </div>
+        </div> -->
         <ul class="nav navbar-nav navbar-right">
             <!--
 			<li ng-show="currentUserSignedIn"><div >
@@ -123,13 +123,14 @@
             -->
             <li ng-show="currentUserSignedIn"><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
             <li ng-show="currentUserSignedIn"><a ui-sref="search"><i class="fa fa-home"></i> Search</a></li>
-            <li><a ui-sref="about"><i class="fa fa-shield"></i> About</a></li>
-            <li ng-show="currentUserSignedIn"><a ui-sref="users"><i class="fa fa-comment"></i> Users</a></li>
+            <li ng-show="currentUserSignedIn"><a ui-sref="about"><i class="fa fa-shield"></i> About</a></li>
+            <li ng-show="permission == 1"><a ui-sref="users"><i class="fa fa-comment"></i> Users</a></li>
+            
+			<li ng-show="currentUserSignedIn"><a ui-sref="changePassword"><i class="fa fa-comment"></i> Change Password</a></li>
             <li ng-hide="currentUserSignedIn"><a ui-sref="login"><i class="fa fa-comment"></i> Login</a></li>
             <li ng-show="currentUserSignedIn"><a ui-sref="login" ng-click="doLogout()"><i class="fa fa-comment"></i>
                 Logout</a>
             </li>
-			<li ng-show="currentUserSignedIn"><a ui-sref="changePassword"><i class="fa fa-comment"></i> Change Password</a></li>
         </ul>
     </div>
 </nav>
