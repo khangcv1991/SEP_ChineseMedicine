@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="library/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="library/bootstrap/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="library/css/myCSS.css">
+    <link rel="stylesheet" href="bower_components/angular-bootstrap-nav-tree/dist/abn_tree.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-animate.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="library/angular-ui-router.js"></script>
+    <script src="library/md5.js"></script>
+    <script src="library/angular-cookies.js"></script>
+
+    <link rel="stylesheet" href="bower_components/angularjs-datetime-picker/angularjs-datetime-picker.css"/>
+
+    <script src="bower_components/angularjs-datetime-picker/angularjs-datetime-picker.js"></script>
+    <script src="bower_components/file-saver/FileSaver.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
+    <script src="bower_components/angular-bootstrap-nav-tree/dist/abn_tree_directive.js"></script>
+    <script src="bower_components/js-xlsx/dist/"></script>
+
+
+    <script src="app.js"></script>
+
+
+    <script src="services/dataFactory.js"></script>
+    <script src="services/utilFactory.js"></script>
+
+    <script src="controllers.js"></script>
+    <script src="controllers/dashboardController.js"></script>
+    <script src="controllers/userDetailController.js"></script>
+    <script src="controllers/registerController.js"></script>
+    <script src="controllers/usersController.js"></script>
+    <script src="controllers/loginCtrl.js"></script>
+
+    <style>
+        #kh_container {
+            min-height: 500px;
+        }
+    </style>
+
+</head>
+
+<!-- define angular controller -->
+<body ng-app="scotchApp">
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Chinese medicine</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li ng-show="currentUserSignedIn"><a ui-sref="dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
+            <li ng-show="isAdmin"><a ui-sref="users">Users</a></li>
+
+
+            <li><a ui-sref="about"><i class="fa fa-shield"></i> About</a></li>
+            <li><a ng-show="currentUserSignedIn" ui-sref="userDetail"><i class="fa fa-comment"></i> Profile</a></li>
+            <li ng-hide="currentUserSignedIn"><a ui-sref="login"><i class="fa fa-comment"></i> Login</a></li>
+            <li ng-show="currentUserSignedIn"><a ui-sref="login" ng-click="doLogout()"><i class="fa fa-comment"></i>
+                Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div id="main">
+    <div class="input-group" id="adv-search">
+        <input type="text" class="form-control" placeholder="Search for snippets"/>
+        <div class="input-group-btn">
+            <div class="btn-group" role="group">
+                <div class="dropdown dropdown-lg">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-expanded="false"><span class="caret"></span></button>
+                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label>Filter by</label>
+                                <select class="form-control">
+                                    <option value="0" selected>All Snippets</option>
+                                    <option value="1">Featured</option>
+                                    <option value="2">Most popular</option>
+                                    <option value="3">Top rated</option>
+                                    <option value="4">Most commented</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Author</label>
+                                <input class="form-control" type="text"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Contains the words</label>
+                                <input class="form-control" type="text"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"
+                                                                                aria-hidden="true"></span></button>
+                        </form>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search"
+                                                                    aria-hidden="true"></span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- angular templating -->
+<!-- this is where content will be injected -->
+<div ui-view id="kh_container"></div>
+
+</div>
+
+<footer class="text-center">
+    <p ng-hide="currentUserSignedIn">If there is any issues, please contact Admin
+    </p>
+
+    <p ng-hide="currentUserSignedIn">Good luck!</p>
+
+    © RMIT
+
+</footer>
+
+</body>
+
+</html>

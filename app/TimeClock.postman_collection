@@ -1,0 +1,336 @@
+{
+	"variables": [],
+	"info": {
+		"name": "TimeClock",
+		"_postman_id": "9369ba24-9241-ceaa-b349-0d29e5d75ea4",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "UserRegister",
+			"request": {
+				"url": "{{url}}/api/users/registerAdmin",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"leon9\",\n    \"password\":\"81dc9bdb52d04dc20036dbd8313ed055\",\n    \"phone\" : \"000\",\n    \"address\": \"000\",\n    \"faithToken\": \"c9b359951c09c5d04de4f852746671ab2b2d0994\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetUsers",
+			"request": {
+				"url": "{{url}}/api/users?userType=Worker&active=false",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{adminToken}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "WorkerRegister",
+			"request": {
+				"url": "{{url}}/api/users/register",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{adminToken}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"hieu4@timeclock.mobi\",\n    \"password\":\"81dc9bdb52d04dc20036dbd8313ed055\",\n    \"userFullName\": \"Hieu Nguyen\",\n    \"phone\" : \"000\",\n    \"address\": \"000\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "LoginGetAccessToken",
+			"request": {
+				"url": "{{url}}/api/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"grant_type\":\"password\",\n    \"client_id\":\"android\",\n    \"client_secret\":\"SomeRandomCharsAndNumbers\",\n    \"username\":\"leon9\",\n    \"password\":\"81dc9bdb52d04dc20036dbd8313ed055\"\n}"
+				},
+				"description": ""
+			},
+			"response": [
+				{
+					"id": "70fbe4fe-9ce8-474a-8e3a-28feffcf38d7",
+					"name": "LoginResponse",
+					"originalRequest": {
+						"url": "{{url}}/api/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"enabled": true,
+								"description": "The mime type of this content"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"grant_type\":\"password\",\n    \"client_id\":\"android\",\n    \"client_secret\":\"SomeRandomCharsAndNumbers\",\n    \"username\":\"leon6@homefoodie.mobi\",\n    \"password\":\"c9b359951c09c5d04de4f852746671ab2b2d0994\"\n}"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "javascript",
+					"_postman_previewtype": "html",
+					"header": [
+						{
+							"name": "Cache-Control",
+							"key": "Cache-Control",
+							"value": "no-store",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "keep-alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "Content-Length",
+							"key": "Content-Length",
+							"value": "230",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "Date",
+							"key": "Date",
+							"value": "Sat, 01 Oct 2016 13:45:14 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "Pragma",
+							"key": "Pragma",
+							"value": "no-cache",
+							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+						},
+						{
+							"name": "X-Powered-By",
+							"key": "X-Powered-By",
+							"value": "Express",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookie": [],
+					"responseTime": 56,
+					"body": "{\"access_token\":\"ac108eab2bd01d76561f2875dca353d9316b46751603cadd8935c3a1ae4d4fec\",\"refresh_token\":\"7f87a2643a8183e2d5489fa455b04e2912dcd046c8f57d0aab8a52759fca6eaa\",\"expires_in\":31536000,\"user_type\":\"Admin\",\"token_type\":\"Bearer\"}"
+				}
+			]
+		},
+		{
+			"name": "CreateShift",
+			"request": {
+				"url": "{{url}}/api/shift",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{adminToken}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"workerId\": \"hieu0@timeclock.mobi\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "EndShift",
+			"request": {
+				"url": "{{url}}/api/shift/583439e0729e0c754ed18090",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{adminToken}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"action\": \"End\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "AllShifts",
+			"request": {
+				"url": "{{url}}/api/shift?Status=Created&WorkerId=hieu1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{adminToken}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateShift",
+			"request": {
+				"url": "{{url}}/api/shift/57f254f5be801c18d35bc057",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{adminToken}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"action\": \"UpdateImage\",\n\t\"shift\": {\n\t\t\"startImageLink\": \"Sample\",\n\t\t\"endImageLink\": \"Sample\"\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetRoot",
+			"request": {
+				"url": "{{url}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{adminToken}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ChangePassword",
+			"request": {
+				"url": "{{url}}/api/users/hieu2",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{adminToken}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\": \"81dc9bdb52d04dc20036dbd8313ed055\",\n\t\"disabled\": true\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetShiftWithId",
+			"request": {
+				"url": "{{url}}/api/shift/58673934748da64909298e00",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{adminToken}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

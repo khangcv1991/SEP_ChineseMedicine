@@ -1,0 +1,43 @@
+
+
+<div>
+
+    <div class="text-center">
+        <h1>Dashboard</h1>
+
+
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-1 btn btn-success" ng-show="isAdmin">UPLOAD</div>
+</div>
+<div class="row">
+    <div class="col-lg-6" id="left-container">
+        <abn-tree tree-data="my_data" tree-control="my_tree" on-select="my_tree_handler(branch)" expand-level="2"
+                  initial-selection="Granny Smith"></abn-tree>
+
+    </div>
+    <div class="col-lg-6">
+        <div id="file-detail" class="rounded">
+            <div class="row">
+                <div class="col-lg-1 "><label>{{output}}</label></div>
+                <div class="col-md-1 "></div>
+                <div class="col-md-2 "></div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-9 m-row"></div>
+            </div>
+            <div class="row" ng-show="isFile">
+                <a ng-href="api/file/download?path={{selectedFile.data}}"><span class="btn btn-success"> VIEW</span></a>
+                <span class="btn btn-success" ui-sref="upload" ng-show="isWorker">EDIT</span>
+                <span class="btn btn-success m-row" ng-click="onDownload();" ng-show="isWorker"> DOWNLOAD</span>
+                <span class="btn btn-danger" ng-show="isAdmin" confirmed-click="onDeleteFile()" ng-confirm-click="Are you sure to delete this item ?"> REMOVE</span>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

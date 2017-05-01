@@ -1,0 +1,37 @@
+<div class="jumbotron text-center" style="padding-left: 10%; padding-right: 10%;">
+    <h1>Register</h1>
+
+    <p>{{ message }}</p>
+
+    <form>
+        <div class="form-group">
+            <label for="exampleInputUserName1">User full name</label>
+            <input type="text" class="form-control" id="exampleInputUserName1" placeholder="User name"
+                   ng-model="userName">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+                   ng-model="password">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="Email" class="form-control" id="exampleInputEmail1" ng-model="email" laceholder="Email">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPhone1">Phone</label>
+            <input type="text" class="form-control" id="exampleInputPhone1" ng-model="phone" laceholder="Phone">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputUsertype1">UserType</label>
+            <select type="text" class="form-control" id="exampleInputUsertype1" ng-model="userType" laceholder="Phone">
+                <option value="Worker">Worker</option>
+                <option value="Student">Student</option>
+            </select>
+        </div>
+        <a href="#/"></a>
+        <button type="submit" class="btn btn-default" ng-click="doRegister()">Submit</button>
+
+
+    </form>
+</div>

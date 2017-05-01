@@ -1,0 +1,37 @@
+div.pagination {
+    width: 625px;
+    clear: both;
+    padding: 10px 0 10px 0;
+    margin: 0px;
+    text-align: center;
+    /*float: left;*/
+    clear: both;
+    font-size: 18px;
+    display: block;
+}
+
+div.pagination span.disabled {
+    padding: 2px 5px 2px 5px;
+    margin-right: 2px;
+    border: 1px solid #f3f3f3;
+    color: #ccc;
+    text-align: center;
+}
+
+div.pagination a {
+    padding: 2px 5px 2px 5px;
+    margin-right: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.98);
+    text-decoration: none;
+    color: #000000;
+    cursor: auto;
+}
+
+.kh20170417_1 {
+    min-height: 500px;
+}
+
+footer {
+    border-top: 1px solid #000000;
+    height: 50px;
+}

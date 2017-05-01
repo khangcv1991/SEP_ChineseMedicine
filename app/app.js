@@ -1,151 +1,100 @@
-// create the module and name it scotchApp
-var scotchApp = angular.module('scotchApp', ['ngCookies', 'ui.router', 'angularBootstrapNavTree', 'ngStorage', 'ngPassword']);
+var express = require('express');
+var path = require('path');
+var http = require('http');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var Constants = require("./common/app_constants");
 
-scotchApp.config(function ($stateProvider, $urlRouterProvider) {
-    $stateProvider.state({
-        name: 'home',
-        url: '/',
-        cache: false,
-        templateUrl: 'pages/home.html',
-        controller: 'homeController'
-    });
-    $stateProvider.state({
-        name: 'about',
-        url: '/about',
-        cache: false,
-        templateUrl: 'pages/about.html',
-        controller: 'aboutController'
-    });
-    $stateProvider.state({
-        name: 'contact',
-        url: '/contact',
-        cache: false,
-        templateUrl: 'pages/contact.html',
-        controller: 'contactController'
-    });
-    $stateProvider.state({
-        name: 'login',
-        url: '/login',
-        cache: false,
-        templateUrl: 'pages/login.html',
-        controller: 'loginController'
-    });
-    $stateProvider.state({
-        name: 'users',
-        url: '/users',
-        cache: false,
-        templateUrl: 'pages/users.html',
-        controller: 'userController'
-    });
-    $stateProvider.state({
-        name: 'tempUsers',
-        url: '/tempUsers',
-        cache: false,
-        templateUrl: 'pages/tempUsers.html',
-        controller: 'tempUsersController'
-    });
-	$stateProvider.state({
-        name: 'register',
-        url: '/register',
-        cache: false,
-        templateUrl: 'pages/register.html',
-        controller: 'registerController'
-    });
-    $stateProvider.state({
-        name: 'forgetPassword',
-        url: '/forgetPassword',
-        cache: false,
-        templateUrl: 'pages/forgetPassword.html',
-        controller: 'forgetPasswordController'
-    });
-	$stateProvider.state({
-        name: 'changePassword',
-        url: '/changePassword',
-        cache: false,
-        templateUrl: 'pages/changePassword.html',
-        controller: 'changePasswordController'
-    });
-	$stateProvider.state({
-        name: 'upload',
-        url: '/upload',
-        cache: false,
-        templateUrl: 'pages/upload.html',
-        controller: 'uploadController'
-    });
-    $stateProvider.state({
-        name: 'search',
-        url: '/search',
-        cache: false,
-        templateUrl: 'pages/search.html',
-        controller: 'searchController'
-    });
-    //shiftDetail page
-    $stateProvider.state({
-        name: 'userDetail',
-        url: '/userDetail/:userId',
-        cache: false,
-        templateUrl: 'pages/userDetail.html',
-        controller: 'userDetailController'
-    });
-    $stateProvider.state({
-        name: 'userAdd',
-        url: '/userAdd',
-        cache: false,
-        templateUrl: 'pages/userAdd.html',
-        controller: 'userAddController'
-    });
+var libs = process.cwd() + '/libs/';
 
-    
-    // if none of the above states are matched, returned to login page
-    $urlRouterProvider.otherwise('/');
+/**
+ * ATTENTION: THE LINE BELOW IS VERY IMPORTANT
+ * it sets up the passport so tokens can be linked to users
+ */
+require(libs + 'auth/auth');
+//====================
+
+var config = require('./libs/config');
+//var log = require('./libs/log')(module);
+var oauth2 = require('./libs/auth/oauth2');
+var passport = require('passport');
+
+// Private Handlers
+var _userRouter = require('./routes/userRouter');
+var _shiftRouter = require('./routes/shiftRouter');
+var _fileRouter = require('./routes/fileRouter');
+var _todoRouter = require('./routes/todoRouter');
+
+var app = express();
+
+// view engine setup
+app.set('port', process.env.PORT || Constants.LISTENING_PORT);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get("/generateData", function (request, response) {
+    require(libs + 'model/generateData');
+    console.log(request.headers);
+    response.status(200).send({'Status': 'It works'});
 });
 
-scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage, $location) {
-    
-    console.log(window.localStorage['currentToken'])
-    console.log(window.localStorage['currentUsername'])
-    console.log(window.localStorage['currentUserID'])
-    console.log(window.localStorage['currentPermission'])
-    // keep user logged in after page refresh
-    if (localStorage['currentUsername']) {
-        $rootScope.currentUserSignedIn = true;
+// app.get('*', function(req, res) {
+//     res.sendFile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+// });
 
-        $http.defaults.headers.common.Authorization = 'JWT ' + window.localStorage['currentToken'];
-    }
-    console.log($http.defaults.headers.common.Authorization);
+// ==== COMMON APIs ====
+app.get("/api/time", function (req, res) {
+    var now = new Date();
+    res.json(
+        {now: Math.round(now.getTime() / 1000)}
+    );
+});
 
-    // redirect to login page if not logged in and trying to access a restricted page
-    $rootScope.$on('$locationChangeStart', function (event, next, current) {
-        
-        var publicPages = ['/login'];
-        var restrictedPage = publicPages.indexOf($location.path()) === -1;
-        
-        if (restrictedPage && !window.localStorage['currentUsername']) {
-            console.log('test');
+// AUTHENTICATION
+app.use('/api/users', _userRouter);
+app.use('/api/login', oauth2.token);
+// // Shift management
+app.use('/api/shift', _shiftRouter);
+// // File management
+app.use('/api/file', _fileRouter);
 
+// TODO
+app.use('/api/todos', _todoRouter);
 
-            $location.path('/login');
-
-            //window.location.reload();
-            //$route.reload();
-        }
+// ERROR HANDLING
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+    res.status(404);
+    //log.debug('%s %d %s', req.method, res.statusCode, req.url);
+    console.log('%s %d %s', req.method, res.statusCode, req.url);
+    res.json({
+        error: 'Not found'
     });
-    
+    return;
+});
 
-    console.log("App run");
-    $rootScope.hasVisitedAboutPage = false;
+// error handlers
+app.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+    //log.error('%s %d %s', req.method, res.statusCode, err.message);
+    console.log('%s %d %s', req.method, res.statusCode, err.message);
+    res.json({
+        error: err.message
+    });
+    return;
+});
 
-    
-    //Logout function and remove user from local storage and clear http auth header
-    $rootScope.doLogout = function () {
-        console.log('Logout function');
-        delete window.localStorage['currentUsername'];
-        delete window.localStorage['currentUserID'];
-        delete window.localStorage['currentToken'];
-        delete window.localStorage['currentPermission'];
-        $http.defaults.headers.common.Authorization = '';
-        $rootScope.currentUserSignedIn = false;
-    }
-
-    console.log($rootScope);
+http.createServer(app).listen(app.get('port'), function () {
+    console.log('Express server listening on port ' + app.get('port'));
 });

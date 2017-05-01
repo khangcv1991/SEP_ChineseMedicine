@@ -1,0 +1,28 @@
+{
+    "port": 3000,
+    "security": {
+        "tokenLife" : 31536000
+    },
+    "mongoose": {
+        "uri": "mongodb://localhost:27017/timeclock"
+    },
+    "default": {
+        "api": {
+            "version" : "v1"
+        },
+        "user": {
+            "username": "myapi",
+            "password": "abc1234"
+        },
+        "androidClient": {
+            "name": "Android API v1",
+            "clientId": "android",
+            "clientSecret": "SomeRandomCharsAndNumbers"
+        },
+        "iosClient": {
+            "name": "iOS API v1",
+            "clientId": "ios",
+            "clientSecret": "SomeRandomCharsAndNumbers"
+        }
+    }
+}

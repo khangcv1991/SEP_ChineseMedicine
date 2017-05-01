@@ -1,0 +1,39 @@
+<div class="container kh20170417_1">
+    <div class="text-center">
+        <h1>User management</h1>
+
+        <p>{{ message }}</p>
+    </div>
+
+
+    <table st-table="workers" class="table table-striped">
+        <thead>
+        <tr>
+            <th>User Name</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Status</th>
+
+            <th>Action</th>
+
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr ng-repeat="x in workers track by $index">
+            <td><a href="#/shift/{{x.username}}">{{ x.username }}</a></td>
+            <td>{{ x.fullName }}</td>
+            <td>{{ x.userType }}</td>
+            <td><span ng-if="x.disabled == false" class="kh-20170316_1"
+                      style="color: #4cae4c">Active</span><span
+                    ng-if="x.disabled == true"
+                    class="kh-20170316_2" style="color: #d43f3a">Disable</span>
+                <span ng-if="x.disabled == unidentified" class="kh-20170316_1" style="color: #4cae4c">Active</span></td>
+
+            <td><span class="btn btn-danger" style="color: #ffffff"
+                      confirmed-click="removeUser(x._id)" ng-confirm-click="Are you sure to delete this record ?">Delete </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
