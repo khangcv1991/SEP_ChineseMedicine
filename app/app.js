@@ -121,15 +121,15 @@ scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage
         var publicPages = ['/login'];
         var restrictedPage = publicPages.indexOf($location.path()) === -1;
         
-        if (restrictedPage && !window.localStorage['currentUsername']) {
-            console.log('test');
+        // if (restrictedPage && !window.localStorage['currentUsername']) {
+        //     console.log('test');
 
 
-            $location.path('/login');
-            window.location.reload();
-            //window.location.reload();
-            //$route.reload();
-        }
+        //     $location.path('/login');
+        //     window.location.reload();
+        //     //window.location.reload();
+        //     //$route.reload();
+        // }
     });
 
 
