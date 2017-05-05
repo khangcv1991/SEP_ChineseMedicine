@@ -102,39 +102,41 @@ scotchApp.config(function ($stateProvider, $urlRouterProvider) {
 
 scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage, $location) {
     
-    console.log(window.localStorage['currentToken'])
-    console.log(window.localStorage['currentUsername'])
-    console.log(window.localStorage['currentUserID'])
-    console.log(window.localStorage['currentPermission'])
+    $rootScope.currentUserName = window.localStorage['currentUsername'];
     // keep user logged in after page refresh
     if (localStorage['currentUsername']) {
         $rootScope.currentUserSignedIn = true;
 
         $http.defaults.headers.common.Authorization = 'JWT ' + window.localStorage['currentToken'];
-    }
-    console.log($http.defaults.headers.common.Authorization);
+        $rootScope.permission = window.localStorage['currentPermission'];
+        $rootScope.files = JSON.parse(localStorage.getItem("files"));
 
+        
+    }
+    
+    console.log($rootScope.files);
     // redirect to login page if not logged in and trying to access a restricted page
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
         
         var publicPages = ['/login'];
         var restrictedPage = publicPages.indexOf($location.path()) === -1;
         
-        if (restrictedPage && !window.localStorage['currentUsername']) {
-            console.log('test');
+        // if (restrictedPage && !window.localStorage['currentUsername']) {
+        //     console.log('test');
 
 
-            $location.path('/login');
-
-            //window.location.reload();
-            //$route.reload();
-        }
+        //     $location.path('/login');
+        //     window.location.reload();
+        //     //window.location.reload();
+        //     //$route.reload();
+        // }
     });
-    
+
+
 
     console.log("App run");
     $rootScope.hasVisitedAboutPage = false;
-
+    console.log($rootScope);
     
     //Logout function and remove user from local storage and clear http auth header
     $rootScope.doLogout = function () {
@@ -143,6 +145,9 @@ scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage
         delete window.localStorage['currentUserID'];
         delete window.localStorage['currentToken'];
         delete window.localStorage['currentPermission'];
+        delete window.localStorage['key'];
+        delete window.localStorage['word'];
+        delete window.localStorage['files'];
         $http.defaults.headers.common.Authorization = '';
         $rootScope.currentUserSignedIn = false;
     }

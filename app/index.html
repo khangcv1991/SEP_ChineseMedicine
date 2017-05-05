@@ -1,286 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap -->
-    <link href="library/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="library/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="library/vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- iCheck -->
-    <link href="library/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+		<title> Chinese medicine </title>
 
-    <!-- bootstrap-progressbar -->
-    <link href="library/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-    <!-- JQVMap -->
-    <link href="library/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
-    <!-- bootstrap-daterangepicker -->
-    <link href="library/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+		<!-- Bootstrap -->
+		<link href="library/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Font Awesome -->
+		<link href="library/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<!-- NProgress -->
+		<link href="library/vendors/nprogress/nprogress.css" rel="stylesheet">
+		<!-- iCheck -->
+		<link href="library/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
-    <!-- Custom Theme Style -->
-    <link href="library/build/css/custom.min.css" rel="stylesheet">
+		<!-- bootstrap-progressbar -->
+		<link href="library/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+		<!-- JQVMap -->
+		<link href="library/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+		<!-- bootstrap-daterangepicker -->
+		<link href="library/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
+		<!-- Custom Theme Style -->
+		<link href="library/build/css/custom.min.css" rel="stylesheet">
 
-    <!--add angularjs loading -->
-    <link rel="stylesheet" href="library/abn_tree.css">
-    <link rel="stylesheet" href="css/homecss.css">
-    <link rel="stylesheet" href="library/tree.css">
+		<!--add angularjs loading -->
+		<link rel="stylesheet" href="library/abn_tree.css">
+		<link rel="stylesheet" href="css/homecss.css">
+		<link rel="stylesheet" href="library/tree.css">
 
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+		<script src="library/angular-ui-router.js"></script>
+		<script src="library/md5.js"></script>
+		<script src="library/angular-cookies.js"></script>
+		<script src="library/abn_tree_directive.js"></script>
+		<script src="library/ngStorage.js"></script>
+		<script src="library/ngStorage.min.js"></script>
+		<script src="library/angular-local-storage/angular-local-storage.js"></script>
+		<script src="library/angular-password.min.js"></script>
+		<script src="library/angular-password.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    <script src="library/angular-ui-router.js"></script>
-    <script src="library/md5.js"></script>
-    <script src="library/angular-cookies.js"></script>
-    <script src="library/abn_tree_directive.js"></script>
-    <script src="library/ngStorage.js"></script>
-    <script src="library/ngStorage.min.js"></script>
-    <script src="library/angular-local-storage/angular-local-storage.js"></script>
-    <script src="library/angular-password.min.js"></script>
-    <script src="library/angular-password.js"></script>
+		<script src="bower_components/angular-mocks/angular-mocks.js"></script>
 
-    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+		<script src="app.js"></script>
 
-    <script src="app.js"></script>
+		<script src="services/dataFactory.js"></script>
+		<script src="services/utilFactory.js"></script>
 
-    <script src="services/dataFactory.js"></script>
-    <script src="services/utilFactory.js"></script>
+		<script src="controllers.js"></script>
 
-    <script src="controllers.js"></script>
+		<script src="controllers/homeController.js"></script>
+		<script src="controllers/loginCtrl.js"></script>
+		<script src="controllers/userController.js"></script>
+		<script src="controllers/userDetailController.js"></script>
+		<script src="controllers/userAddController.js"></script>
+		<script src="controllers/registerController.js"></script>
+		<script src="controllers/forgetPasswordController.js"></script>
+		<script src="controllers/uploadController.js"></script>
+		<script src="controllers/searchController.js"></script>
+		<script src="controllers/changePasswordController.js"></script>
+		<script src="services/multipartForm.js"></script>
+		<script src="directives/fileModel.js"></script>
 
-    <script src="controllers/homeController.js"></script>
-    <script src="controllers/loginCtrl.js"></script>
-    <script src="controllers/userController.js"></script>
-    <script src="controllers/userDetailController.js"></script>
-    <script src="controllers/userAddController.js"></script>
-    <script src="controllers/registerController.js"></script>
-    <script src="controllers/forgetPasswordController.js"></script>
-    <script src="controllers/uploadController.js"></script>
-    <script src="controllers/searchController.js"></script>
-    <script src="controllers/changePasswordController.js"></script>
-    <script src="services/multipartForm.js"></script>
-    <script src="directives/fileModel.js"></script>
+	</head>
 
-</head>
+	<body class="nav-md" ng-app="scotchApp">
+		<div class="container body">
+			<div class="main_container">
+				<div class="col-md-3 left_col">
+					<div class="left_col scroll-view">
+						<div class="navbar nav_title" style="border: 0;">
+							<a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Chinese Medicine</span></a>
+						</div>
 
-<body class="nav-md" ng-app="scotchApp">
-<div class="container body">
-    <div class="main_container">
-        <div class="col-md-3 left_col">
-            <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Chinese Medicine</span></a>
-                </div>
+						<div class="clearfix"></div>
 
-                <div class="clearfix"></div>
+						<!-- menu profile quick info -->
+						<div class="profile clearfix" ng-hide="currentUserSignedIn">
+							<div class="profile_pic">
+								<img src="images/img.jpg" alt="..." class="img-circle profile_img">
+							</div>
+							<div class="profile_info">
+								<span>Welcome,</span>
+								<h2>{{currentUserName}}</h2>
+							</div>
+						</div>
+						<!-- /menu profile quick info -->
 
-                <!-- menu profile quick info -->
-                <div class="profile clearfix" ng-show="currentUserSignedIn">
-                    <div class="profile_pic">
-                        <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-                    </div>
-                    <div class="profile_info">
-                        <span>Welcome,</span>
-                        <h2>Admin</h2>
-                    </div>
-                </div>
-                <!-- /menu profile quick info -->
+						<br/>
 
-                <br/>
+						<!-- sidebar menu -->
+						<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+							<div class="menu_section">
+								<h3>General</h3>
+								<ul class="nav side-menu">
+									<li ng-hide="currentUserSignedIn">
+										<a ui-sref="home"><i class="fa fa-home"></i> Home</a>
+									</li>
+									<li ng-hide="currentUserSignedIn">
+										<a ui-sref="search"><i class="fa fa-search"></i> Search
+										</a>
+									</li>
+									<li>
+										<a ui-sref="about"><i class="fa fa-info"></i> About</a>
+									</li>
+									<li ng-hide="currentUserSignedIn">
+										<a ui-sref="users"><i class="fa fa-user"></i> Users</a>
+									</li>
+									<li ng-hide="currentUserSignedIn">
+										<a ui-sref="login"><i class="fa fa-sign-in"></i> Login</a>
+									</li>
+									<li ng-show="currentUserSignedIn">
+										<a href="#/login" ng-click="doLogout()"><i class="fa fa-sign-out"></i> Logout
+										</a>
+									</li>
+									<li ng-hide="currentUserSignedIn">
+										<a ui-sref="changePassword"><i class="fa fa-key"></i> Change Password</a>
+									</li>
+								</ul>
+							</div>
 
-                <!-- sidebar menu -->
-                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                    <div class="menu_section">
-                        <h3>General</h3>
-                        <ul class="nav side-menu">
-                            <li ng-show="currentUserSignedIn"><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
-                            <li ng-show="currentUserSignedIn"><a ui-sref="search"><i class="fa fa-search"></i>
-                                Search</a></li>
-                            <li><a ui-sref="about"><i class="fa fa-info"></i> About</a></li>
-                            <li ng-show="currentUserSignedIn"><a ui-sref="users"><i class="fa fa-user"></i> Users</a>
-                            </li>
-                            <li ng-hide="currentUserSignedIn"><a ui-sref="login"><i class="fa fa-sign-in"></i> Login</a>
-                            </li>
-                            <li ng-show="currentUserSignedIn"><a href="/login" ng-click="doLogout()"><i
-                                    class="fa fa-sign-out"></i>
-                                Logout</a>
-                            </li>
-                            <li ng-show="currentUserSignedIn"><a ui-sref="changePassword"><i class="fa fa-key"></i>
-                                Change Password</a>
-                            </li>
-                        </ul>
-                    </div>
+						</div>
 
+					</div>
+				</div>
 
-                </div>
+				<!-- top navigation -->
+				<div class="top_nav">
+					<div class="nav_menu">
+						<nav>
+							<div class="nav toggle">
+								<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+							</div>
 
-            </div>
-        </div>
+							<ul class="nav navbar-nav navbar-right" ng-hide="currentUserSignedIn">
+								<li class="">
+									<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+										<img src="images/img.jpg" alt="">{{currentUserName}}
+										<span class=" fa fa-angle-down"></span>
+									</a>
+									<ul class="dropdown-menu dropdown-usermenu pull-right">
+										<li>
+											<a href="javascript:;"> Profile</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<span class="badge bg-red pull-right">50%</span>
+												<span>Settings</span>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">Help</a>
+										</li>
+										<li>
+											<a href="#/login"><i class="fa fa-sign-out pull-right" ng-click="doLogout()"></i> Log Out</a>
+										</li>
+									</ul>
+								</li>
 
-        <!-- top navigation -->
-        <div class="top_nav">
-            <div class="nav_menu">
-                <nav>
-                    <div class="nav toggle">
-                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                    </div>
+								<li role="presentation" class="dropdown">
 
-                    <ul class="nav navbar-nav navbar-right" ng-show="currentUserSignedIn">
-                        <li class="">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                               aria-expanded="false">
-                                <img src="images/img.jpg" alt="">Admin
-                                <span class=" fa fa-angle-down"></span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="javascript:;"> Profile</a></li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <span class="badge bg-red pull-right">50%</span>
-                                        <span>Settings</span>
-                                    </a>
-                                </li>
-                                <li><a href="javascript:;">Help</a></li>
-                                <li><a href="login.html"><i class="fa fa-sign-out pull-right" ng-click="doLogout()"></i>
-                                    Log Out</a></li>
-                            </ul>
-                        </li>
-
-                        <li role="presentation" class="dropdown">
-
-                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
-                                        <span>
+									<ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+										<li>
+											<a>
+												<span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
+												<span>
                           <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
+												<span class="time">3 mins ago</span>
+												</span>
+												<span class="message">
                           Film festivals used to be do-or-die moments for movie makers. They were where...
                         </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
-                                        <span>
+											</a>
+										</li>
+										<li>
+											<a>
+												<span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
+												<span>
                           <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
+												<span class="time">3 mins ago</span>
+												</span>
+												<span class="message">
                           Film festivals used to be do-or-die moments for movie makers. They were where...
                         </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
-                                        <span>
+											</a>
+										</li>
+										<li>
+											<a>
+												<span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
+												<span>
                           <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
+												<span class="time">3 mins ago</span>
+												</span>
+												<span class="message">
                           Film festivals used to be do-or-die moments for movie makers. They were where...
                         </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
-                                        <span>
+											</a>
+										</li>
+										<li>
+											<a>
+												<span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
+												<span>
                           <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
+												<span class="time">3 mins ago</span>
+												</span>
+												<span class="message">
                           Film festivals used to be do-or-die moments for movie makers. They were where...
                         </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="text-center">
-                                        <a>
-                                            <strong>See All Alerts</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <!-- /top navigation -->
+											</a>
+										</li>
+										<li>
+											<div class="text-center">
+												<a>
+													<strong>See All Alerts</strong>
+													<i class="fa fa-angle-right"></i>
+												</a>
+											</div>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+				<!-- /top navigation -->
 
-        <!-- page content -->
-        <div class="right_col" role="main">
-            <!-- top tiles -->
+				<!-- page content -->
+				<div class="right_col" role="main">
+					<!-- top tiles -->
 
-            <div ui-view></div>
+					<div ui-view></div>
 
+				</div>
+				<!-- /page content -->
 
-        </div>
-        <!-- /page content -->
+				<!-- footer content -->
+				<footer>
+					<div class="pull-right">
+						© Gentelella
+					</div>
+					<div class="clearfix"></div>
+				</footer>
+				<!-- /footer content -->
+			</div>
+		</div>
 
-        <!-- footer content -->
-        <footer>
-            <div class="pull-right">
-                © Gentelella
-            </div>
-            <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
-    </div>
-</div>
+		<!-- jQuery -->
+		<script src="library/vendors/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="library/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="library/vendors/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->
+		<script src="libraryvendors/nprogress/nprogress.js"></script>
+		<!-- Chart.js -->
+		<script src="library/vendors/Chart.js/dist/Chart.min.js"></script>
+		<!-- gauge.js -->
+		<script src="library/vendors/gauge.js/dist/gauge.min.js"></script>
+		<!-- bootstrap-progressbar -->
+		<script src="library/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+		<!-- iCheck -->
+		<script src="library/vendors/iCheck/icheck.min.js"></script>
+		<!-- Skycons -->
+		<script src="library/vendors/skycons/skycons.js"></script>
+		<!-- Flot -->
+		<script src="library/vendors/Flot/jquery.flot.js"></script>
+		<script src="library/vendors/Flot/jquery.flot.pie.js"></script>
+		<script src="library/vendors/Flot/jquery.flot.time.js"></script>
+		<script src="library/vendors/Flot/jquery.flot.stack.js"></script>
+		<script src="library/vendors/Flot/jquery.flot.resize.js"></script>
+		<!-- Flot plugins -->
+		<script src="library/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+		<script src="library/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+		<script src="library/vendors/flot.curvedlines/curvedLines.js"></script>
+		<!-- DateJS -->
+		<script src="library/vendors/DateJS/build/date.js"></script>
+		<!-- JQVMap -->
+		<script src="library/vendors/jqvmap/dist/jquery.vmap.js"></script>
+		<script src="library/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+		<script src="library/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+		<!-- bootstrap-daterangepicker -->
+		<script src="library/vendors/moment/min/moment.min.js"></script>
+		<script src="library/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-<!-- jQuery -->
-<script src="library/vendors/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="library/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- FastClick -->
-<script src="library/vendors/fastclick/lib/fastclick.js"></script>
-<!-- NProgress -->
-<script src="libraryvendors/nprogress/nprogress.js"></script>
-<!-- Chart.js -->
-<script src="library/vendors/Chart.js/dist/Chart.min.js"></script>
-<!-- gauge.js -->
-<script src="library/vendors/gauge.js/dist/gauge.min.js"></script>
-<!-- bootstrap-progressbar -->
-<script src="library/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-<!-- iCheck -->
-<script src="library/vendors/iCheck/icheck.min.js"></script>
-<!-- Skycons -->
-<script src="library/vendors/skycons/skycons.js"></script>
-<!-- Flot -->
-<script src="library/vendors/Flot/jquery.flot.js"></script>
-<script src="library/vendors/Flot/jquery.flot.pie.js"></script>
-<script src="library/vendors/Flot/jquery.flot.time.js"></script>
-<script src="library/vendors/Flot/jquery.flot.stack.js"></script>
-<script src="library/vendors/Flot/jquery.flot.resize.js"></script>
-<!-- Flot plugins -->
-<script src="library/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-<script src="library/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-<script src="library/vendors/flot.curvedlines/curvedLines.js"></script>
-<!-- DateJS -->
-<script src="library/vendors/DateJS/build/date.js"></script>
-<!-- JQVMap -->
-<script src="library/vendors/jqvmap/dist/jquery.vmap.js"></script>
-<script src="library/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-<script src="library/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-<!-- bootstrap-daterangepicker -->
-<script src="library/vendors/moment/min/moment.min.js"></script>
-<script src="library/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+		<!-- Custom Theme Scripts -->
+		<script src="library/build/js/custom.min.js"></script>
 
-<!-- Custom Theme Scripts -->
-<script src="library/build/js/custom.min.js"></script>
+	</body>
 
-</body>
 </html>

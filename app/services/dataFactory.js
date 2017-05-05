@@ -100,7 +100,7 @@ angular.module('scotchApp')
             console.log(data)
 
 
-            //return $http.post(baseApiUrl + "/addAdminUser", data);
+            return $http.post(baseApiUrl + "/addAdminUser", data);
         };
 
         dataFactory.deleteUser = function (userId,adimkey) {
@@ -135,5 +135,14 @@ angular.module('scotchApp')
             console.log(data);
             return $http.post(baseApiUrl + '/downloadFile', data);
         };
+
+        dataFactory.removeFile = function (bookID) {
+            var data = {};
+            data.id = bookID
+            //data.count = 1;
+            console.log(data);
+            return $http.post(baseApiUrl + '/DeleteFile', data);
+        };
+
         return dataFactory;
     }]);

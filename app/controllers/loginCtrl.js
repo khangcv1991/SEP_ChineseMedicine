@@ -21,16 +21,19 @@ scotchApp.controller('loginController', ['$scope', '$location', '$rootScope', '$
                     "userID" : response.data['userID']
                 }
                 */
+               $rootScope.currentUserName = response.data['username'];
                 window.localStorage['currentUsername'] = response.data['username'];
                 window.localStorage['currentUserID'] = response.data['userID'];
                 window.localStorage['currentToken'] = response.data['token'];
                 window.localStorage['currentPermission'] = response.data['permission'];
+                $rootScope.permission = window.localStorage['currentPermission'];
                 
                 //$cookies.put("AuthorizationHeader", true, null);
                 $http.defaults.headers.common.Authorization = 'JWT ' + response.data['token'];
                 
                 $rootScope.currentUserSignedIn = true;
                 $location.path('/');
+                window.location.reload();
             }, function (error) {
                 $scope.message = "Invalid Username or Password";
             });

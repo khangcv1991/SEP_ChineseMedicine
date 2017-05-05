@@ -14,6 +14,7 @@ scotchApp.controller('userAddController', ['$scope', '$location', '$rootScope', 
 
                 
                 $location.path('/users');
+                window.location.reload();
             }, function (error) {
                 $scope.message = "Error";
             });

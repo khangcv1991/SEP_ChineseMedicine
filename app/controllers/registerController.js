@@ -18,7 +18,7 @@ scotchApp.controller('registerController', ['$scope', '$location', '$rootScope',
                 $location.path('/login');
                 window.location.reload();
             }, function (error) {
-                $scope.message = "Error";
+                $scope.message = "Error " + error;
             });
 
         };
