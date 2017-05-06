@@ -144,5 +144,15 @@ angular.module('scotchApp')
             return $http.post(baseApiUrl + '/DeleteFile', data);
         };
 
+        dataFactory.getDetails = function (bookID, bookType) {
+            var data = {};
+            data.id = bookID
+            data.type = bookType
+            //data.count = 1;
+            
+            return $http.post(baseApiUrl + '/getFileDetail', data);
+            
+
+        };
         return dataFactory;
     }]);

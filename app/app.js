@@ -1,5 +1,5 @@
 // create the module and name it scotchApp
-var scotchApp = angular.module('scotchApp', ['ngCookies', 'ui.router', 'angularBootstrapNavTree', 'ngStorage', 'ngPassword']);
+var scotchApp = angular.module('scotchApp', ['ngCookies', 'ui.router', 'angularBootstrapNavTree', 'ngStorage', 'ngPassword', 'ui.bootstrap']);
 
 scotchApp.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
@@ -88,13 +88,26 @@ scotchApp.config(function ($stateProvider, $urlRouterProvider) {
         controller: 'userDetailController'
     });
     $stateProvider.state({
+        name: 'fileDetails',
+        url: '/fileDetails',
+        cache: false,
+        templateUrl: 'pages/fileDetails.html',
+        controller: 'fileDetailsController'
+    });
+    $stateProvider.state({
         name: 'userAdd',
         url: '/userAdd',
         cache: false,
         templateUrl: 'pages/userAdd.html',
         controller: 'userAddController'
     });
-
+    $stateProvider.state({
+        name: 'edit',
+        url: '/edit',
+        cache: false,
+        templateUrl: 'pages/edit.html',
+        controller: 'editController'
+    })
     
     // if none of the above states are matched, returned to login page
     $urlRouterProvider.otherwise('/');
@@ -116,21 +129,21 @@ scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage
     
     console.log($rootScope.files);
     // redirect to login page if not logged in and trying to access a restricted page
-    $rootScope.$on('$locationChangeStart', function (event, next, current) {
+    // $rootScope.$on('$locationChangeStart', function (event, next, current) {
         
-        var publicPages = ['/login'];
-        var restrictedPage = publicPages.indexOf($location.path()) === -1;
+    //     var publicPages = ['/login'];
+    //     var restrictedPage = publicPages.indexOf($location.path()) === -1;
         
-        // if (restrictedPage && !window.localStorage['currentUsername']) {
-        //     console.log('test');
+    //     if (restrictedPage && !window.localStorage['currentUsername']) {
+    //         console.log('test');
 
 
-        //     $location.path('/login');
-        //     window.location.reload();
-        //     //window.location.reload();
-        //     //$route.reload();
-        // }
-    });
+    //         $location.path('/login');
+    //         window.location.reload();
+    //         //window.location.reload();
+    //         //$route.reload();
+    //     }
+    // });
 
 
 
@@ -154,3 +167,11 @@ scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage
 
     console.log($rootScope);
 });
+
+scotchApp.filter('startFrom', function(){
+    return function(data, start){
+        
+        
+        return data.slice(start);
+    }
+})
