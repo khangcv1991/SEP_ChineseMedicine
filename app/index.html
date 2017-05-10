@@ -138,12 +138,21 @@
             <!-- <li ng-show="currentUserSignedIn"><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li> -->
             <li ng-show="currentUserSignedIn"><a ui-sref="search"><i class="fa fa-home"></i> Search</a></li>
             <!-- <li ng-show="currentUserSignedIn"><a ui-sref="about"><i class="fa fa-shield"></i> About</a></li> -->
-            <li ng-show="permission == 1"><a ui-sref="users"><i class="fa fa-comment"></i> Users</a></li>
             
-			<li ng-show="currentUserSignedIn"><a ui-sref="changePassword"><i class="fa fa-comment"></i> Change Password</a></li>
+            
+			
             <li ng-hide="currentUserSignedIn"><a ui-sref="login"><i class="fa fa-comment"></i> Login</a></li>
-            <li ng-show="currentUserSignedIn"><a ui-sref="login" ng-click="doLogout()"><i class="fa fa-comment"></i>
-                Logout</a>
+            
+            <li ng-show="currentUserSignedIn" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ username }} <span class="redbadge">{{userCount}}</span><span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li ng-show="permission == 1"><a ui-sref="users"><i class="fa fa-comment"></i>Users <span class="redbadge">{{userCount}}</span></a></li>
+                <li ng-show="currentUserSignedIn"><a ui-sref="changePassword"><i class="fa fa-comment"></i> Change Password</a></li>
+                <li role="separator" class="divider"></li>
+                <li ng-show="currentUserSignedIn"><a ui-sref="login" ng-click="doLogout()"><i class="fa fa-comment"></i>
+                    Logout</a>
+                </li>
+              </ul>
             </li>
         </ul>
     </div>

@@ -131,6 +131,8 @@ scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage
 
         $http.defaults.headers.common.Authorization = 'JWT ' + window.localStorage['currentToken'];
         $rootScope.permission = window.localStorage['currentPermission'];
+        $rootScope.username = window.localStorage['currentUsername'];
+        $rootScope.userCount = window.localStorage['usersCount'];
         $rootScope.files = JSON.parse(localStorage.getItem("files"));
 
         
@@ -170,6 +172,7 @@ scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage
         delete window.localStorage['key'];
         delete window.localStorage['word'];
         delete window.localStorage['files'];
+        delete window.localStorage['usersCount'];
         console.log($rootScope);
         $http.defaults.headers.common.Authorization = '';
         $rootScope.currentUserSignedIn = false;
@@ -188,4 +191,7 @@ scotchApp.filter('startFrom', function(){
         }
         
     }
-})
+});
+
+
+

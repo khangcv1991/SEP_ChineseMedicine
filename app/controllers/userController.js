@@ -33,6 +33,7 @@ scotchApp.controller('userController', ['$scope', '$location', '$rootScope', '$h
             var adminKey = $cookies.get("adminKey");
             dataFactory.deleteUser(userId, adminKey).then(function (respone) {
                 console.log(respone);
+                window.localStorage['usersCount'] = window.localStorage['usersCount'] - 1;
                 $location.path('/users');
                 window.location.reload();
             })
@@ -46,7 +47,7 @@ scotchApp.controller('userController', ['$scope', '$location', '$rootScope', '$h
             dataFactory.acceptUser($scope.users[index]).then(function (response) {
                 console.log(response);
                 // $scope.message = response.data.Status;
-
+                window.localStorage['usersCount'] = window.localStorage['usersCount'] - 1;
                 $rootScope.currentUserSignedIn = true;
                 $location.path('/users');
                 window.location.reload();

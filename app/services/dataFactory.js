@@ -33,9 +33,14 @@ angular.module('scotchApp')
         };
 
         dataFactory.getAllUsers = function () {
-            console.log(baseApiUrl + "/getRequestList");
-            var data = {};
+            
             return $http.get(baseApiUrl + "/getRequestList");
+        };
+
+        dataFactory.getUsersCount = function () {
+            
+            
+            return $http.get(baseApiUrl + "/getUsersCount");
         };
 
         dataFactory.getAllTempUsers = function () {
