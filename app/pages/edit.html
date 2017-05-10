@@ -1,6 +1,6 @@
 <div  class="container" style="padding-right: 10%; padding-left: 10%;">
     <h2>Edit</h2>
-    <form name="form" ng-submit="vm.upload()" role="form">
+    <form name="form" enctype="multipart/form-data" role="form">
         <div class="form-group" }">
             <label>Title: </label><br />
             <label for="text">{{ title }}</label>
@@ -14,10 +14,10 @@
         
         
 		<div class="form-group" >
-            <input type="file" name="file" id="file"  ng-model="file" />
+            <input type="file"  ngf-select ngf-max-size="1000MB" name="file" id="id_file"  ng-model="file" />
 		</div>
         <div class="form-actions">
-            <button type="submit" ng-click="edit()" class="btn btn-black">Save</button>
+            <button ng-click="edit(file)" class="btn btn-black">Save</button>
             <a ui-sref="fileDetails" class="btn btn-link">
 			<button class="btn btn-black">Cancel</button>
         </div>

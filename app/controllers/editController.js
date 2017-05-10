@@ -27,17 +27,17 @@ scotchApp.controller('editController', ['$scope', '$location', '$rootScope', '$h
 
 
         
-        $scope.edit = function () {
+        $scope.edit = function (file) {
             
             
-            console.log($scope.file);
-            // dataFactory.edit(id).then(function (response) {
-            //     var uploadUrl = '/upload';
-            //     multipartForm.post(uploadUrl, $scope.upFile);
+            console.log(file);
+            dataFactory.edit(file, $scope.id,$scope.fileType).then(function (response) {
+                
+                console.log(response);
 
-            // }, function (error) {
-            //     $scope.message = "Error";
-            // });
+            }, function (error) {
+                $scope.message = "Error";
+            });
             
 
             

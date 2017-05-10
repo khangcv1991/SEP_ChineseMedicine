@@ -1,5 +1,5 @@
 // create the module and name it scotchApp
-var scotchApp = angular.module('scotchApp', ['ngCookies', 'ui.router', 'angularBootstrapNavTree', 'ngStorage', 'ngPassword', 'ui.bootstrap']);
+var scotchApp = angular.module('scotchApp', ['ngCookies', 'ui.router', 'angularBootstrapNavTree', 'ngStorage', 'ngPassword', 'ui.bootstrap', 'ngFileUpload']);
 
 scotchApp.config(function ($stateProvider, $urlRouterProvider) {
     // $stateProvider.state({

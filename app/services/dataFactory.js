@@ -191,5 +191,30 @@ angular.module('scotchApp')
             
 
         };
+
+        dataFactory.edit = function (file,id,type) {
+            
+            
+            var data = new FormData();
+            data.append("id", id);
+            data.append('type', type);
+            data.append('file', file);
+            console.log(data);
+            //data.count = 1;
+            
+            // return $http.post(baseApiUrl + '/editFile', data);
+
+            return $http({
+                url: baseApiUrl + '/editFile',
+                method: 'POST',
+                data: data,
+                //assign content-type as undefined, the browser
+                //will assign the correct boundary for us
+                headers: { 'Content-Type': undefined},
+                
+            });
+            
+
+        };
         return dataFactory;
     }]);
