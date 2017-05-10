@@ -45,6 +45,7 @@
     <script src="controllers/forgetPasswordController.js"></script>
 	<script src="controllers/uploadController.js"></script>
     <script src="controllers/searchController.js"></script>
+    <script src="controllers/advancedSearchController.js"></script>
 	<script src="controllers/changePasswordController.js"></script>
     <script src="controllers/fileDetailsController.js"></script>
     <script src="controllers/editController.js"></script>
@@ -59,7 +60,7 @@
 <nav class="navbar navbar-custom">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand"  ui-sref="home">Chinese Medicine</a>
+            <a class="navbar-brand"  ui-sref="search">Chinese Medicine</a>
         </div>
 		<!-- <div ng-show="currentUserSignedIn" class="navbar-left" style="width:400px; padding-top: 0.2cm">    
                 
@@ -125,9 +126,9 @@
                 </form>
 			</li>
             -->
-            <li ng-show="currentUserSignedIn"><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+            <!-- <li ng-show="currentUserSignedIn"><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li> -->
             <li ng-show="currentUserSignedIn"><a ui-sref="search"><i class="fa fa-home"></i> Search</a></li>
-            <li ng-show="currentUserSignedIn"><a ui-sref="about"><i class="fa fa-shield"></i> About</a></li>
+            <!-- <li ng-show="currentUserSignedIn"><a ui-sref="about"><i class="fa fa-shield"></i> About</a></li> -->
             <li ng-show="permission == 1"><a ui-sref="users"><i class="fa fa-comment"></i> Users</a></li>
             
 			<li ng-show="currentUserSignedIn"><a ui-sref="changePassword"><i class="fa fa-comment"></i> Change Password</a></li>

@@ -154,5 +154,42 @@ angular.module('scotchApp')
             
 
         };
+        dataFactory.advancedSearch = function (choices) {
+            data =  {
+                "type":[],
+                "keyword":[]
+            };
+            for (var i = 0; i < choices.length; i++)
+            {
+                console.log(choices[i].key);
+                data.type[i] = choices[i].key;
+                data.keyword[i] = choices[i].word;
+            }
+            console.log(data);
+            //data.count = 1;
+            
+            return $http.post(baseApiUrl + '/advancedSearch', data);
+            
+
+        };
+
+        dataFactory.andSearch = function (choices) {
+            data =  {
+                "type":[],
+                "keyword":[]
+            };
+            for (var i = 0; i < choices.length; i++)
+            {
+                console.log(choices[i].key);
+                data.type[i] = choices[i].key;
+                data.keyword[i] = choices[i].word;
+            }
+            console.log(data);
+            //data.count = 1;
+            
+            return $http.post(baseApiUrl + '/advancedSearchAnd', data);
+            
+
+        };
         return dataFactory;
     }]);

@@ -1,6 +1,10 @@
 scotchApp.controller('fileDetailsController', ['$scope', '$location', '$rootScope', '$http', '$cookies', 'dataFactory',
     function ($scope, $location, $rootScope, $http, $cookies, dataFactory, $stateParams) {
         console.log(dataFactory.getDetails);
+        if($rootScope.currentUserSignedIn == false || $rootScope.currentUserSignedIn== null){
+            console.log("test");
+            $location.path('/login');
+        }
         
         console.log('test')
         console.log($stateParams);

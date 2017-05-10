@@ -2,6 +2,7 @@ scotchApp.controller('userDetailController', ['$scope', '$location', '$rootScope
     function ($scope, $location, $rootScope, $http, $cookies, dataFactory) {
         console.log("userController");
         var userId = $stateParams.userId;
+        
 
         $scope.newPass = ""
         $scope.updateUser = function () {

@@ -1,6 +1,12 @@
 scotchApp.controller('changePasswordController', ['$scope', '$location', '$rootScope', '$http', '$cookies', 'dataFactory',
     function ($scope, $location, $rootScope, $http, $cookies, dataFactory, $localStorage) {
         console.log("changePasswordController");
+
+        if($rootScope.currentUserSignedIn == false || $rootScope.currentUserSignedIn== null){
+            console.log("test");
+            $location.path('/login');
+        }
+        
 		$scope.userName = "";
         $scope.password = "";
         console.log($scope.username + "|" + $scope.password);

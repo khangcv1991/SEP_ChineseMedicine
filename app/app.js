@@ -2,13 +2,13 @@
 var scotchApp = angular.module('scotchApp', ['ngCookies', 'ui.router', 'angularBootstrapNavTree', 'ngStorage', 'ngPassword', 'ui.bootstrap']);
 
 scotchApp.config(function ($stateProvider, $urlRouterProvider) {
-    $stateProvider.state({
-        name: 'home',
-        url: '/',
-        cache: false,
-        templateUrl: 'pages/home.html',
-        controller: 'homeController'
-    });
+    // $stateProvider.state({
+    //     name: 'home',
+    //     url: '/',
+    //     cache: false,
+    //     templateUrl: 'pages/home.html',
+    //     controller: 'homeController'
+    // });
     $stateProvider.state({
         name: 'about',
         url: '/about',
@@ -74,11 +74,12 @@ scotchApp.config(function ($stateProvider, $urlRouterProvider) {
     });
     $stateProvider.state({
         name: 'search',
-        url: '/search',
+        url: '/',
         cache: false,
         templateUrl: 'pages/search.html',
         controller: 'searchController'
     });
+
     //shiftDetail page
     $stateProvider.state({
         name: 'userDetail',
@@ -107,9 +108,16 @@ scotchApp.config(function ($stateProvider, $urlRouterProvider) {
         cache: false,
         templateUrl: 'pages/edit.html',
         controller: 'editController'
-    })
+    });
+    $stateProvider.state({
+        name: 'advancedSearch',
+        url: '/advancedSearch',
+        cache: false,
+        templateUrl: 'pages/advancedSearch.html',
+        controller: 'advancedSearchController'
+    });
     
-    // if none of the above states are matched, returned to login page
+    // if none of the above states are matched, returned to search page
     $urlRouterProvider.otherwise('/');
 });
 
@@ -118,6 +126,7 @@ scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage
     
     // keep user logged in after page refresh
     if (localStorage['currentUsername']) {
+
         $rootScope.currentUserSignedIn = true;
 
         $http.defaults.headers.common.Authorization = 'JWT ' + window.localStorage['currentToken'];
@@ -161,8 +170,10 @@ scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage
         delete window.localStorage['key'];
         delete window.localStorage['word'];
         delete window.localStorage['files'];
+        console.log($rootScope);
         $http.defaults.headers.common.Authorization = '';
         $rootScope.currentUserSignedIn = false;
+        $rootScope.permission = '';
     }
 
     console.log($rootScope);
@@ -171,7 +182,10 @@ scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage
 scotchApp.filter('startFrom', function(){
     return function(data, start){
         
+        if (data)
+        {
+            return data.slice(start);
+        }
         
-        return data.slice(start);
     }
 })

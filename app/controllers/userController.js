@@ -2,6 +2,10 @@ scotchApp.controller('userController', ['$scope', '$location', '$rootScope', '$h
     function ($scope, $location, $rootScope, $http, $cookies, dataFactory) {
         console.log("userController");
         $scope.users = [];
+        if($rootScope.currentUserSignedIn == false || $rootScope.currentUserSignedIn== null){
+            console.log("test");
+            $location.path('/login');
+        }
         
         dataFactory.getAllUsers().then(function (response) {
             

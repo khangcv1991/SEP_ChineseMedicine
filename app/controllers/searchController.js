@@ -3,17 +3,22 @@ scotchApp.controller('searchController', ['$scope', '$location', '$rootScope', '
          console.log("searchController");
 
         $scope.message = 'Please populate user name, password and permission!!!';
-        $scope.key = "";
+        $scope.key = "All";
         $scope.word = "";
         $scope.files = [];
         $scope.files = JSON.parse(localStorage.getItem("files"));
         $scope.pageSize = 20;
         $scope.currentPage = 1;
         $scope.maxSize = 5;
+        $scope.keys = ['All', 'Title', 'Study Ref', 'Study ID', 'File Type', 'Category'];
 
         var key = ''
+        console.log($rootScope.currentUserSignedIn)
         //var orderBy = $filter('orderBy');
-        
+        if($rootScope.currentUserSignedIn == false || $rootScope.currentUserSignedIn== null){
+            console.log("test");
+            $location.path('/login');
+        }
         
         $scope.search = function () {
             key = $scope.key;
@@ -38,6 +43,7 @@ scotchApp.controller('searchController', ['$scope', '$location', '$rootScope', '
                     window.localStorage.setItem("files", JSON.stringify($scope.files));
                     var storedFiles = JSON.parse(localStorage.getItem("files"));
                     console.log(storedFiles);
+                    
                 }
                 else if(response.data.book_list)
                 {

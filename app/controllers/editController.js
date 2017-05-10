@@ -1,6 +1,11 @@
 scotchApp.controller('editController', ['$scope', '$location', '$rootScope', '$http', '$cookies', 'dataFactory',
     function ($scope, $location, $rootScope, $http, $cookies, dataFactory, $stateParams) {
         
+
+        if($rootScope.currentUserSignedIn == false || $rootScope.currentUserSignedIn== null){
+            console.log("test");
+            $location.path('/login');
+        }
         
         console.log('edit')
         console.log($stateParams);
