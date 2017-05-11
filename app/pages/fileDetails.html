@@ -35,8 +35,11 @@
 
         <div>
         <button type="button" ng-click = "view(id)" class="btn btn-black btn-sm">View</button>
+
         <a ng-hide="permission == 3" ui-sref="edit"><button type="button" class="btn btn-black btn-sm"> Edit</button></a>
-        <a ng-hide="permission == 3" ng-href="{{ path }}" download={{title}}><button type="button"  class="btn btn-black btn-sm" >Download</button>
+
+        <a ng-hide="permission == 3" ng-href="{{ path }}" download={{title}}><button type="button"  class="btn btn-black btn-sm" >Download</button></a>
+
         <button ng-hide="permission == 3" type="button" confirmed-click="removeFile(id)" 
                         ng-confirm-click="Would you like to remove file?" class="btn btn-black btn-sm">Remove</button>
         </div> 

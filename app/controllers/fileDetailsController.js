@@ -112,7 +112,7 @@ scotchApp.controller('fileDetailsController', ['$scope', '$location', '$rootScop
         $scope.removeFile = function (id) {
             
             console.log(id);
-            dataFactory.removeFile(id).then(function (response) {
+            dataFactory.removeFile(id, $scope.fileType).then(function (response) {
                 console.log(response);
                 // var pdfFileURL = baseUrl + response.data.path;
                 // var file = new Blob([pdfFileURL], {type: 'application/pdf'});
@@ -122,7 +122,8 @@ scotchApp.controller('fileDetailsController', ['$scope', '$location', '$rootScop
                 // window.open(response.data.path);
                 
                 // $scope.message = response.data.Status;
-                window.location.reload();
+                window.localStorage.setItem("files", null);
+                $location.path('/');
                 
                 
 

@@ -34,6 +34,9 @@ scotchApp.controller('editController', ['$scope', '$location', '$rootScope', '$h
             dataFactory.edit(file, $scope.id,$scope.fileType).then(function (response) {
                 
                 console.log(response);
+                window.localStorage.setItem("files", null);
+                $location.path('/');
+                
 
             }, function (error) {
                 $scope.message = "Error";
