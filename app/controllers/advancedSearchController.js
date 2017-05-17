@@ -9,7 +9,7 @@ scotchApp.controller('advancedSearchController', ['$scope', '$location', '$rootS
         
         //var orderBy = $filter('orderBy');
         $scope.choices = [{id: 'choice1', key: 'All', word:''}, {id: 'choice2', key: 'All', word:''}];
-  
+        currchoices = [];
         $scope.addNewChoice = function() {
             var newItemNo = $scope.choices.length+1;
             $scope.choices.push({'id':'choice'+newItemNo});
@@ -23,7 +23,9 @@ scotchApp.controller('advancedSearchController', ['$scope', '$location', '$rootS
             
         $scope.advancedSearch = function (choices) {
             console.log(choices.length);  
+            window.localStorage.searchType = '';
             
+            console.log(window.localStorage.searchType);
             // console.log($scope.key);
             for (var i = 0; i < choices.length; i++)
             {
@@ -38,10 +40,20 @@ scotchApp.controller('advancedSearchController', ['$scope', '$location', '$rootS
                     choices[i].word = '';
                 }  
             }
-            console.log(choices['0'].key); 
             
-             
-
+            
+            for (var i = 0; i < choices.length; i++)
+            {
+                currchoices.push({ 
+                    "type" : choices[i].key,
+                    "keyword"  : choices[i].word,
+                    "search"   : "Or"
+                }); 
+            }
+            console.log(currchoices);
+            
+            window.localStorage.setItem("currchoices", JSON.stringify(currchoices));
+            
 
             // console.log(key);
             dataFactory.advancedSearch(choices).then(function (response) {
@@ -53,8 +65,7 @@ scotchApp.controller('advancedSearchController', ['$scope', '$location', '$rootS
                     console.log('tst');
                     $scope.files = response.data.book_list.concat(response.data.other_list);
                     window.localStorage.setItem("files", JSON.stringify($scope.files));
-                    var storedFiles = JSON.parse(localStorage.getItem("files"));
-                    console.log(storedFiles);
+                    window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
                     $location.path('/');
                     
                 }
@@ -63,8 +74,7 @@ scotchApp.controller('advancedSearchController', ['$scope', '$location', '$rootS
                     $scope.files = response.data.book_list;
                     console.log(response.data.book_list)
                     window.localStorage.setItem("files", JSON.stringify($scope.files));
-                    var storedFiles = JSON.parse(localStorage.getItem("files"));
-                    console.log(storedFiles);
+                    window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
                     $location.path('/');
                 }
 
@@ -81,7 +91,10 @@ scotchApp.controller('advancedSearchController', ['$scope', '$location', '$rootS
         };
 
         $scope.andSearch = function (choices) {
-            console.log(choices.length);  
+            console.log(choices.length); 
+            window.localStorage.searchType = '';
+
+            
             
             // console.log($scope.key);
             for (var i = 0; i < choices.length; i++)
@@ -99,8 +112,15 @@ scotchApp.controller('advancedSearchController', ['$scope', '$location', '$rootS
             }
             console.log(choices['0'].key); 
             
-             
-
+            for (var i = 0; i < choices.length; i++)
+            {
+                currchoices.push({ 
+                    "type" : choices[i].key,
+                    "keyword"  : choices[i].word,
+                    "search"   : 'And'
+                }); 
+            }
+            window.localStorage.setItem("currchoices", JSON.stringify(currchoices));
 
             // console.log(key);
             dataFactory.andSearch(choices).then(function (response) {
@@ -112,8 +132,7 @@ scotchApp.controller('advancedSearchController', ['$scope', '$location', '$rootS
                     console.log('tst');
                     $scope.files = response.data.book_list.concat(response.data.other_list);
                     window.localStorage.setItem("files", JSON.stringify($scope.files));
-                    var storedFiles = JSON.parse(localStorage.getItem("files"));
-                    console.log(storedFiles);
+                    window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
                     $location.path('/');
                     
                 }
@@ -122,8 +141,7 @@ scotchApp.controller('advancedSearchController', ['$scope', '$location', '$rootS
                     $scope.files = response.data.book_list;
                     console.log(response.data.book_list)
                     window.localStorage.setItem("files", JSON.stringify($scope.files));
-                    var storedFiles = JSON.parse(localStorage.getItem("files"));
-                    console.log(storedFiles);
+                    window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
                     $location.path('/');
                 }
 

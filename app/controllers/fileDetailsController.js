@@ -122,7 +122,7 @@ scotchApp.controller('fileDetailsController', ['$scope', '$location', '$rootScop
                 // window.open(response.data.path);
                 
                 // $scope.message = response.data.Status;
-                window.localStorage.setItem("files", null);
+                window.localStorage.setItem("currfiles", null);
                 $location.path('/');
                 
                 

@@ -1,7 +1,7 @@
 scotchApp.controller('registerController', ['$scope', '$location', '$rootScope', '$http', '$cookies', 'dataFactory',
     function ($scope, $location, $rootScope, $http, $cookies, dataFactory) {
         console.log("registerController");
-        $scope.message = 'Please populate user name, password and permission!!!';
+        
         $scope.username = "";
         $scope.password = "";
         $scope.permission = "";
@@ -18,7 +18,7 @@ scotchApp.controller('registerController', ['$scope', '$location', '$rootScope',
                 $location.path('/login');
                 window.location.reload();
             }, function (error) {
-                $scope.message = "Error";
+                $scope.message = "Invalid Username";
             });
 
         };

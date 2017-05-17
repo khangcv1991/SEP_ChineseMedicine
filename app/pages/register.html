@@ -1,6 +1,9 @@
 <div class="container" style="padding-right: 10%; padding-left: 10%;">
 
     <h2>Register</h2>
+
+    <label>{{ message }}</label>
+
     <form name="form" ng-submit="register()" role="form">
         <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
             <label for="email">E-mail</label>

@@ -173,6 +173,8 @@ scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage
         delete window.localStorage['word'];
         delete window.localStorage['files'];
         delete window.localStorage['usersCount'];
+        delete window.localStorage['currfiles'];
+        delete window.localStorage['currchoices'];
         console.log($rootScope);
         $http.defaults.headers.common.Authorization = '';
         $rootScope.currentUserSignedIn = false;

@@ -118,8 +118,9 @@ angular.module('scotchApp')
 
         dataFactory.doSearch = function (key,word) {
             var data = {};
-            data.type = key
+            data.type = key;
             data.keyword = word;
+            data.keyword = data.keyword.toUpperCase();
             //data.count = 1;
             console.log(data);
             return $http.post(baseApiUrl + '/search', data);
@@ -174,7 +175,7 @@ angular.module('scotchApp')
             console.log(data);
             //data.count = 1;
             
-            return $http.post(baseApiUrl + '/advancedSearch', data);
+            return $http.post(baseApiUrl + '/advancedSearchOr', data);
             
 
         };
