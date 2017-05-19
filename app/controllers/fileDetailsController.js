@@ -112,7 +112,8 @@ scotchApp.controller('fileDetailsController', ['$scope', '$location', '$rootScop
         $scope.removeFile = function (id) {
             
             console.log(id);
-            dataFactory.removeFile(id, $scope.fileType).then(function (response) {
+            userID = window.localStorage['currentUserID'];
+            dataFactory.removeFile(id, $scope.fileType, userID).then(function (response) {
                 console.log(response);
                 // var pdfFileURL = baseUrl + response.data.path;
                 // var file = new Blob([pdfFileURL], {type: 'application/pdf'});

@@ -37,6 +37,11 @@ angular.module('scotchApp')
             return $http.get(baseApiUrl + "/getRequestList");
         };
 
+        dataFactory.getLogs = function () {
+            
+            return $http.get(baseApiUrl + "/getLogsList");
+        };
+
         dataFactory.getUsersCount = function () {
             
             
@@ -74,13 +79,15 @@ angular.module('scotchApp')
         dataFactory.register = function (username, password, permission, email, comment) {
             var data = {};
             
+            console.log("test");
+
             data.username = username;
             data.password = password;
             data.permission = permission;
             data.email = email;
             data.comment = comment;
 
-
+            console.log(baseApiUrl + "/register");
             return $http.post(baseApiUrl + "/register", data);
         };
 
@@ -142,10 +149,11 @@ angular.module('scotchApp')
             return $http.post(baseApiUrl + '/downloadFile', data);
         };
 
-        dataFactory.removeFile = function (bookID, type) {
+        dataFactory.removeFile = function (bookID, type, userID) {
             var data = {};
             data.id = bookID;
             data.type = type;
+            data.userID = userID;
             //data.count = 1;
             console.log(data);
             return $http.post(baseApiUrl + '/deleteFile', data);
@@ -170,7 +178,7 @@ angular.module('scotchApp')
             {
                 console.log(choices[i].key);
                 data.type[i] = choices[i].key;
-                data.keyword[i] = choices[i].word;
+                data.keyword[i] = choices[i].word.toUpperCase();;
             }
             console.log(data);
             //data.count = 1;
@@ -189,7 +197,7 @@ angular.module('scotchApp')
             {
                 console.log(choices[i].key);
                 data.type[i] = choices[i].key;
-                data.keyword[i] = choices[i].word;
+                data.keyword[i] = choices[i].word.toUpperCase();;
             }
             console.log(data);
             //data.count = 1;
@@ -199,13 +207,14 @@ angular.module('scotchApp')
 
         };
 
-        dataFactory.edit = function (file,id,type) {
+        dataFactory.edit = function (file,id,type, userID) {
             
             
             var data = new FormData();
             data.append("id", id);
             data.append('type', type);
             data.append('file', file);
+            data.append('userID', userID);
             console.log(data);
             //data.count = 1;
             

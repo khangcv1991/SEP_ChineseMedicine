@@ -117,6 +117,14 @@ scotchApp.config(function ($stateProvider, $urlRouterProvider) {
         controller: 'advancedSearchController'
     });
     
+    $stateProvider.state({
+        name: 'logs',
+        url: '/logs',
+        cache: false,
+        templateUrl: 'pages/logs.html',
+        controller: 'logsController'
+    });
+    
     // if none of the above states are matched, returned to search page
     $urlRouterProvider.otherwise('/');
 });
@@ -194,6 +202,13 @@ scotchApp.filter('startFrom', function(){
         
     }
 });
+
+scotchApp.filter('split', function() {
+        return function(input, splitChar, splitIndex) {
+            // do some bounds checking here to ensure it has that index
+            return input.split(splitChar)[splitIndex];
+        }
+    });
 
 
 

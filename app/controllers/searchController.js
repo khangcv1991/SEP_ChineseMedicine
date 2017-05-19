@@ -64,6 +64,17 @@ scotchApp.controller('searchController', ['$scope', '$location', '$rootScope', '
                 {
                     
                     $scope.files = response.data.book_list.concat(response.data.other_list);
+                    
+                    for (var i = 0; i < $scope.files.length; i++)
+                    {
+                        if (!$scope.files[i][6])
+                        {
+                            
+                            $scope.files[i][6] = "NA ";
+
+
+                        }
+                    }
                     window.localStorage.setItem("files", JSON.stringify($scope.files));
                     window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
                     
@@ -74,17 +85,39 @@ scotchApp.controller('searchController', ['$scope', '$location', '$rootScope', '
                     
                     $scope.files = response.data.book_list;
                     console.log(response.data.book_list)
+                    
+                    for (var i = 0; i < $scope.files.length; i++)
+                    {
+                        if (!$scope.files[i][6])
+                        {
+                            
+                            $scope.files[i][6] = "NA ";
+
+
+                        }
+                    }
+
                     window.localStorage.setItem("files", JSON.stringify($scope.files));
                     window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
-                    
                 }
                 else
                 {
                     console.log('test');
                     $scope.files = response.data;
+                    for (var i = 0; i < $scope.files.length; i++)
+                    {
+                        if (!$scope.files[i][6])
+                        {
+                            
+                            $scope.files[i][6] = "NA ";
+
+
+                        }
+                    }
                     
                     window.localStorage.setItem("files", JSON.stringify($scope.files));
                     window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+
                 }
 
                
@@ -235,7 +268,7 @@ scotchApp.controller('searchController', ['$scope', '$location', '$rootScope', '
             totalfiles = JSON.parse(localStorage.getItem("files"));
             for (index = 0; index < totalfiles.length; ++index) {
                 
-                if (totalfiles[index][1].toUpperCase() == 'DOCX')
+                if (totalfiles[index][1].toUpperCase() == 'DOCX' || totalfiles[index][1].toUpperCase() == 'DOC')
                 {
 
                     docFiles.push(totalfiles[index]);

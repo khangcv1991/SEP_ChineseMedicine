@@ -7,11 +7,10 @@ scotchApp.controller('editController', ['$scope', '$location', '$rootScope', '$h
             $location.path('/login');
         }
         
-        console.log('edit')
-        console.log($stateParams);
+        
         var deta = localStorage.getItem("fileDetail")
         var detail = JSON.parse(deta)
-        console.log(detail.title)
+        console.log(detail.id)
 
         baseUrl = 'localhost';
         $scope.title = detail.title;
@@ -30,8 +29,8 @@ scotchApp.controller('editController', ['$scope', '$location', '$rootScope', '$h
         $scope.edit = function (file) {
             
             
-            console.log(file);
-            dataFactory.edit(file, $scope.id,$scope.fileType).then(function (response) {
+            userID = window.localStorage['currentUserID'];
+            dataFactory.edit(file, $scope.id,$scope.fileType, userID).then(function (response) {
                 
                 console.log(response);
                 window.localStorage.setItem("currfiles", null);

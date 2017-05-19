@@ -64,6 +64,16 @@ scotchApp.controller('advancedSearchController', ['$scope', '$location', '$rootS
                 {
                     console.log('tst');
                     $scope.files = response.data.book_list.concat(response.data.other_list);
+                    for (var i = 0; i < $scope.files.length; i++)
+                    {
+                        if (!$scope.files[i][6])
+                        {
+                            
+                            $scope.files[i][6] = "NA ";
+                            console.log( $scope.files[i][6]);
+
+                        }
+                    }
                     window.localStorage.setItem("files", JSON.stringify($scope.files));
                     window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
                     $location.path('/');
@@ -72,7 +82,34 @@ scotchApp.controller('advancedSearchController', ['$scope', '$location', '$rootS
                 else if(response.data.book_list)
                 {
                     $scope.files = response.data.book_list;
-                    console.log(response.data.book_list)
+                    for (var i = 0; i < $scope.files.length; i++)
+                    {
+                        if (!$scope.files[i][6])
+                        {
+                            
+                            $scope.files[i][6] = "NA ";
+                            console.log( $scope.files[i][6]);
+
+                        }
+                    }
+                    window.localStorage.setItem("files", JSON.stringify($scope.files));
+                    window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+                    $location.path('/');
+                }
+                else
+                {
+                    $scope.files = response.data.book_list;
+                    for (var i = 0; i < $scope.files.length; i++)
+                    {
+                        if (!$scope.files[i][6])
+                        {
+                            
+                            $scope.files[i][6] = "NA ";
+                            console.log( $scope.files[i][6]);
+
+
+                        }
+                    }
                     window.localStorage.setItem("files", JSON.stringify($scope.files));
                     window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
                     $location.path('/');
@@ -131,6 +168,16 @@ scotchApp.controller('advancedSearchController', ['$scope', '$location', '$rootS
                 {
                     console.log('tst');
                     $scope.files = response.data.book_list.concat(response.data.other_list);
+                    for (var i = 0; i < $scope.files.length; i++)
+                    {
+                        if (!$scope.files[i][6])
+                        {
+                            
+                            $scope.files[i][6] = "NA ";
+                            console.log( $scope.files[i][6]);
+
+                        }
+                    }
                     window.localStorage.setItem("files", JSON.stringify($scope.files));
                     window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
                     $location.path('/');
@@ -139,7 +186,34 @@ scotchApp.controller('advancedSearchController', ['$scope', '$location', '$rootS
                 else if(response.data.book_list)
                 {
                     $scope.files = response.data.book_list;
-                    console.log(response.data.book_list)
+                    for (var i = 0; i < $scope.files.length; i++)
+                    {
+                        if (!$scope.files[i][6])
+                        {
+                            
+                            $scope.files[i][6] = "NA ";
+                            console.log( $scope.files[i][6]);
+
+                        }
+                    }
+                    window.localStorage.setItem("files", JSON.stringify($scope.files));
+                    window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+                    $location.path('/');
+                }
+                else
+                {
+                    $scope.files = response.data.book_list;
+                    for (var i = 0; i < $scope.files.length; i++)
+                    {
+                        if (!$scope.files[i][6])
+                        {
+                            
+                            $scope.files[i][6] = "NA ";
+                            console.log( $scope.files[i][6]);
+
+
+                        }
+                    }
                     window.localStorage.setItem("files", JSON.stringify($scope.files));
                     window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
                     $location.path('/');
