@@ -41,20 +41,23 @@
                 <th>Change By</th>
                 <th>File title</th>
                 <th><a style="color: #000; font-weight: bold;" ng-click="sortData('4')">Modification time</th>
+                <th></th>
               </tr>
             </thead>
             <tbody >
-              <tr ng-repeat="log in logs.slice().reverse() track by $index">
+              <tr ng-repeat="log in logs track by $index">
                 <td>{{log[1]}}</td>
                 <td>{{log[3]}}</td>
                 <td>{{log[2]}}</td>
                 <td>{{log[4]}}</td>
-                
+                <td style = "padding-top:0.1cm; padding-bottom: 0.1cm; text-align: right;">
+                <button ng-show="log[1] == 'Delete'" type="button"  confirmed-click="recover($index + (currentPage-1) * 20)" 
+                    ng-confirm-click="Would you like to recover this file?" class="btn btn-black btn-sm">Undo</button></td>
               </tr>
             </tbody>
              <tfoot >
-                <td  colspan="4">
-                    <div >
+                <td  colspan="5">
+                    <div class="text-center">
                         <ul style = "background-color: #000" uib-pagination total-items="logs.length" ng-model="currentPage" items-per-page ="pageSize" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" rotate="false">
                             
                         </ul>

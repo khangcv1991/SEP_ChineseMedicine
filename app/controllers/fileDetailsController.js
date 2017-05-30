@@ -10,7 +10,7 @@ scotchApp.controller('fileDetailsController', ['$scope', '$location', '$rootScop
         console.log($stateParams);
         var deta = localStorage.getItem("fileDetail")
         var detail = JSON.parse(deta)
-        console.log(detail.fileType)
+        
 
         baseUrl = 'localhost';
         $scope.title = detail.title;
@@ -23,17 +23,18 @@ scotchApp.controller('fileDetailsController', ['$scope', '$location', '$rootScop
         $scope.intervention = detail.intervention;
         $scope.id = detail.id;
         $scope.path = detail.path;
+        console.log($scope.path);
 
 
         $scope.view = function (id) {
             
             console.log(id);
-            dataFactory.view(id).then(function (response) {
+            dataFactory.view(id, $scope.fileType).then(function (response) {
                 console.log(response);
                 var pdfFileURL = baseUrl + response.data.path;
                 // var file = new Blob([pdfFileURL], {type: 'application/pdf'});
                 // var fileURL = URL.createObjectURL(file);
-                console.log(response.data.path);
+                console.log(pdfFileURL);
                 
                 window.open(response.data.path);
                 

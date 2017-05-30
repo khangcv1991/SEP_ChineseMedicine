@@ -1,15 +1,35 @@
-<div  class="container" style="padding-right: 10%; padding-left: 10%;">
+<div class="col-md-6 col-md-offset-3">
     <h2>Edit</h2>
     <form name="form" enctype="multipart/form-data" role="form">
-        <div class="form-group" }">
-            <label>Title: </label><br />
-            <label for="text">{{ title }}</label>
+        <div class="form-group" >
+            <label>Title: {{ title }}</label><br />
         </div>
         
+        <div class="form-group" >
+            <label>Study ID: {{ studyID }}</label><br />
+        </div>
         
-        <div class="form-group" }">
-            <label>Modification: </label><br />
-            <label for="username">{{ modification }}</label>
+        <div class="form-group" >
+            <label>Study Reference: {{ studyReference }}</label><br />
+        </div>
+        
+        <div class="form-group" >
+            <label>Modification: {{ modification }}</label><br />
+        </div>
+        
+        <div class="form-group" >
+            <label>Monograph: {{ monograph }}</label><br />
+        </div>
+        
+        <div class="form-group" >
+            <label>Intervention: {{ intervention }}</label><br />
+        </div>
+        <div class="form-group" >
+            <label>Category: {{ category }}</label><br />
+        </div>
+        
+        <div class="form-group" >
+            <label>File Type: {{ fileType }}</label><br />
         </div>
         
         

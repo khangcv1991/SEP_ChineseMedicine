@@ -38,11 +38,11 @@ scotchApp.config(function ($stateProvider, $urlRouterProvider) {
         controller: 'userController'
     });
     $stateProvider.state({
-        name: 'tempUsers',
-        url: '/tempUsers',
+        name: 'currentUsers',
+        url: '/currentUsers',
         cache: false,
-        templateUrl: 'pages/tempUsers.html',
-        controller: 'tempUsersController'
+        templateUrl: 'pages/currentUsers.html',
+        controller: 'currentUsersController'
     });
 	$stateProvider.state({
         name: 'register',
@@ -81,13 +81,7 @@ scotchApp.config(function ($stateProvider, $urlRouterProvider) {
     });
 
     //shiftDetail page
-    $stateProvider.state({
-        name: 'userDetail',
-        url: '/userDetail/:userId',
-        cache: false,
-        templateUrl: 'pages/userDetail.html',
-        controller: 'userDetailController'
-    });
+    
     $stateProvider.state({
         name: 'fileDetails',
         url: '/fileDetails',
@@ -211,4 +205,17 @@ scotchApp.filter('split', function() {
     });
 
 
-
+scotchApp.directive('ngConfirmClick', [
+        function(){
+            return {
+                link: function (scope, element, attr) {
+                    var msg = attr.ngConfirmClick || "Are you sure?";
+                    var clickAction = attr.confirmedClick;
+                    element.bind('click',function (event) {
+                        if ( window.confirm(msg) ) {
+                            scope.$eval(clickAction)
+                        }
+                    });
+                }
+            };
+    }])

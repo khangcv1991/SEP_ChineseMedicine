@@ -8,7 +8,7 @@ scotchApp.controller('userAddController', ['$scope', '$location', '$rootScope', 
         $scope.email = "";
         $scope.addUser = function () {
             console.log("add user function11");
-            dataFactory.addUser($scope.username, $scope.password, $scope.email).then(function (response) {
+            dataFactory.addUser($scope.username, $scope.password, $scope.email, $scope.firstname, $scope.lastname).then(function (response) {
                 console.log(response);
                 // $scope.message = response.data.Status;
 

@@ -10,7 +10,7 @@ scotchApp.controller('registerController', ['$scope', '$location', '$rootScope',
         $scope.register = function () {
             console.log($scope.username + "|" + $scope.password + "|" + $scope.email + "|" + $scope.permission + "|" + $scope.comment);
 
-            dataFactory.register($scope.username, $scope.password, $scope.permission, $scope.email, $scope.comment).then(function (response) {
+            dataFactory.register($scope.username, $scope.password, $scope.permission, $scope.email, $scope.comment, $scope.firstname, $scope.lastname).then(function (response) {
                 console.log(response);
                 // $scope.message = response.data.Status;
 

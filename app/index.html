@@ -48,7 +48,7 @@
     <script src="controllers/homeController.js"></script>
     <script src="controllers/loginCtrl.js"></script>
     <script src="controllers/userController.js"></script>
-    <script src="controllers/userDetailController.js"></script>
+    <script src="controllers/currentUsersController.js"></script>
     <script src="controllers/userAddController.js"></script>
 	<script src="controllers/registerController.js"></script>
     <script src="controllers/forgetPasswordController.js"></script>
@@ -70,7 +70,7 @@
 <nav class="navbar navbar-custom">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand"  ui-sref="search">Chinese Medicine</a>
+            <a class="navbar-brand" ui-sref="search">Chinese Medicine</a>
         </div>
 		<!-- <div ng-show="currentUserSignedIn" class="navbar-left" style="width:400px; padding-top: 0.2cm">    
                 
@@ -139,16 +139,17 @@
             <!-- <li ng-show="currentUserSignedIn"><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li> -->
             <li ng-show="currentUserSignedIn"><a ui-sref="search"><i class="fa fa-home"></i> Search</a></li>
             <!-- <li ng-show="currentUserSignedIn"><a ui-sref="about"><i class="fa fa-shield"></i> About</a></li> -->
+             <li ng-show="permission == 1 || permission == 2"><a ui-sref="upload"><i class="fa fa-comment"></i>Upload </a></li>
             
-            
-			
             <li ng-hide="currentUserSignedIn"><a ui-sref="login"><i class="fa fa-comment"></i> Login</a></li>
             
             <li ng-show="currentUserSignedIn" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ username }} <span ng-show="userCount > 0 && permission == 1" class="redbadge">{{userCount}}</span><span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li ng-show="permission == 1"><a ui-sref="users"><i class="fa fa-comment"></i>Users <span ng-show="userCount > 0" class="redbadge">{{userCount}}</span></a></li>
+                <li ng-show="permission == 1"><a ui-sref="users"><i class="fa fa-comment"></i>Requests <span ng-show="userCount > 0" class="redbadge">{{userCount}}</span></a></li>
+                <li ng-show="permission == 1"><a ui-sref="currentUsers"><i class="fa fa-comment"></i>Users </a></li>
                 <li ng-show="permission == 1"><a ui-sref="logs"><i class="fa fa-comment"></i>Logs </a></li>
+               
                 <li ng-show="currentUserSignedIn"><a ui-sref="changePassword"><i class="fa fa-comment"></i> Change Password</a></li>
                 <li role="separator" class="divider"></li>
                 <li ng-show="currentUserSignedIn"><a ui-sref="login" ng-click="doLogout()"><i class="fa fa-comment"></i>

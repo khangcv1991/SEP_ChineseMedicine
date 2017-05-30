@@ -2,26 +2,36 @@ scotchApp.controller('searchController', ['$scope', '$location', '$rootScope', '
     function ($scope, $location, $rootScope, $http, $cookies, dataFactory, orderBy) {
          console.log("searchController");
 
+
         $scope.message = 'Please populate user name, password and permission!!!';
-        $scope.key = "All";
-        $scope.word = "";
+        $scope.key =  'All';
+        $scope.word = '';
         $scope.files = [];
         $scope.files = JSON.parse(localStorage.getItem("currfiles"));
         $scope.pageSize = 20;
         $scope.currentPage = 1;
-        $scope.maxSize = 5;
+        $scope.maxSize = 15;
         $scope.keys = ['All', 'Title', 'Study Ref', 'Study ID', 'File Type', 'Category'];
         $scope.choices = JSON.parse(localStorage.getItem("currchoices"));
+        $scope.fType = true;
+        $scope.studyDes = true;
+        $scope.inte = true;
+        $scope.mono = true;
+        $scope.cate = true;
+        
+
         
         if(window.localStorage.searchType)
         {
-            console.log("test1");
+            
             $scope.type = window.localStorage.searchType;
-            $scope.keyword =  window.localStorage.searchKeyword;
+            $scope.keyword = window.localStorage.searchKeyword;
+            $scope.key = $scope.type;
+            $scope.word = $scope.keyword;
         }
         else
         {
-            console.log("test");
+            console.log("test2");
             $scope.type = null;
         }
 
@@ -32,6 +42,7 @@ scotchApp.controller('searchController', ['$scope', '$location', '$rootScope', '
         if($rootScope.currentUserSignedIn == false || $rootScope.currentUserSignedIn== null){
             console.log("test");
             $location.path('/login');
+            window.location.reload();
         }
         
         $scope.search = function () {
@@ -84,16 +95,13 @@ scotchApp.controller('searchController', ['$scope', '$location', '$rootScope', '
                 {
                     
                     $scope.files = response.data.book_list;
-                    console.log(response.data.book_list)
+                    
                     
                     for (var i = 0; i < $scope.files.length; i++)
                     {
                         if (!$scope.files[i][6])
-                        {
-                            
-                            $scope.files[i][6] = "NA ";
-
-
+                        {                            
+                            $scope.files[i][6] = "NA "
                         }
                     }
 
@@ -108,9 +116,7 @@ scotchApp.controller('searchController', ['$scope', '$location', '$rootScope', '
                     {
                         if (!$scope.files[i][6])
                         {
-                            
                             $scope.files[i][6] = "NA ";
-
 
                         }
                     }
@@ -254,7 +260,11 @@ scotchApp.controller('searchController', ['$scope', '$location', '$rootScope', '
         $scope.allFilter = function () {
             
             
-
+            $scope.cate = true;
+            $scope.inte = true;
+            $scope.studyDes = true;
+            $scope.mono = true;
+            $scope.fType = true;
             $scope.files = JSON.parse(localStorage.getItem("files"));
             
             window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
@@ -282,5 +292,363 @@ scotchApp.controller('searchController', ['$scope', '$location', '$rootScope', '
             
 
         };
+
+
+        $scope.txtFilter = function () {
+            
+            txtFiles = [];
+            totalfiles = JSON.parse(localStorage.getItem("files"));
+            for (index = 0; index < totalfiles.length; ++index) {
+                
+                if (totalfiles[index][1].toUpperCase() == 'TXT')
+                {
+
+                    txtFiles.push(totalfiles[index]);
+                }
+                
+            }
+
+            $scope.files = txtFiles;
+            
+            window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+            
+
+        };
+
+        $scope.publFilter = function () {
+            
+            txtFiles = [];
+            totalfiles = JSON.parse(localStorage.getItem("files"));
+            for (index = 0; index < totalfiles.length; ++index) {
+                
+                if (totalfiles[index][4] == 'Publications')
+                {
+
+                    txtFiles.push(totalfiles[index]);
+                }
+                
+            }
+
+            $scope.files = txtFiles;
+            
+            window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+            
+
+        };
+
+        $scope.modeFilter = function () {
+            
+            txtFiles = [];
+            totalfiles = JSON.parse(localStorage.getItem("files"));
+            for (index = 0; index < totalfiles.length; ++index) {
+                
+                if (totalfiles[index][4] == 'Modern Clinical studies')
+                {
+
+                    txtFiles.push(totalfiles[index]);
+                }
+                
+            }
+
+            $scope.files = txtFiles;
+            
+            window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+            
+
+        };
+
+        $scope.endnFilter = function () {
+            
+            txtFiles = [];
+            totalfiles = JSON.parse(localStorage.getItem("files"));
+            for (index = 0; index < totalfiles.length; ++index) {
+                
+                if (totalfiles[index][4] == 'EndNote libraries')
+                {
+
+                    txtFiles.push(totalfiles[index]);
+                }
+                
+            }
+
+            $scope.files = txtFiles;
+            
+            window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+            
+
+        };
+
+        $scope.expeFilter = function () {
+            
+            txtFiles = [];
+            totalfiles = JSON.parse(localStorage.getItem("files"));
+            for (index = 0; index < totalfiles.length; ++index) {
+                
+                if (totalfiles[index][4] == 'Experimental studies')
+                {
+
+                    txtFiles.push(totalfiles[index]);
+                }
+                
+            }
+
+            $scope.files = txtFiles;
+            
+            window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+            
+
+        };
+
+        $scope.classFilter = function () {
+            
+            txtFiles = [];
+            totalfiles = JSON.parse(localStorage.getItem("files"));
+            for (index = 0; index < totalfiles.length; ++index) {
+                
+                if (totalfiles[index][4] == 'Classical literature')
+                {
+
+                    txtFiles.push(totalfiles[index]);
+                }
+                
+            }
+
+            $scope.files = txtFiles;
+            
+            window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+            
+
+        };
+
+        $scope.epidFilter = function () {
+            
+            txtFiles = [];
+            totalfiles = JSON.parse(localStorage.getItem("files"));
+            for (index = 0; index < totalfiles.length; ++index) {
+                
+                if (totalfiles[index][4] == 'Epidata')
+                {
+
+                    txtFiles.push(totalfiles[index]);
+                }
+                
+            }
+
+            $scope.files = txtFiles;
+            
+            window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+            
+
+        };
+
+        $scope.monoFilter = function () {
+            
+            txtFiles = [];
+            totalfiles = JSON.parse(localStorage.getItem("files"));
+            for (index = 0; index < totalfiles.length; ++index) {
+                
+                if (totalfiles[index][4] == 'Monograph')
+                {
+
+                    txtFiles.push(totalfiles[index]);
+                }
+                
+            }
+
+            $scope.files = txtFiles;
+            
+            window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+            
+
+        };
+
+        $scope.acuFilter = function () {
+            
+            txtFiles = [];
+            totalfiles = JSON.parse(localStorage.getItem("files"));
+            for (index = 0; index < totalfiles.length; ++index) {
+                
+                if (totalfiles[index][7] == 'ACU')
+                {
+
+                    txtFiles.push(totalfiles[index]);
+                }
+                
+            }
+
+            $scope.files = txtFiles;
+            
+            window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+            
+
+        };
+
+        $scope.chmFilter = function () {
+            
+            txtFiles = [];
+            totalfiles = JSON.parse(localStorage.getItem("files"));
+            for (index = 0; index < totalfiles.length; ++index) {
+                
+                if (totalfiles[index][7] == 'CHM')
+                {
+
+                    txtFiles.push(totalfiles[index]);
+                }
+                
+            }
+
+            $scope.files = txtFiles;
+            
+            window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+            
+
+        };
+
+        $scope.combFilter = function () {
+            
+            txtFiles = [];
+            totalfiles = JSON.parse(localStorage.getItem("files"));
+            for (index = 0; index < totalfiles.length; ++index) {
+                
+                if (totalfiles[index][7] == 'COMB')
+                {
+
+                    txtFiles.push(totalfiles[index]);
+                }
+                
+            }
+
+            $scope.files = txtFiles;
+            
+            window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+            
+
+        };
+
+        $scope.othFilter = function () {
+            
+            txtFiles = [];
+            totalfiles = JSON.parse(localStorage.getItem("files"));
+            for (index = 0; index < totalfiles.length; ++index) {
+                
+                if (totalfiles[index][7] == 'OTH')
+                {
+
+                    txtFiles.push(totalfiles[index]);
+                }
+                
+            }
+
+            $scope.files = txtFiles;
+            
+            window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+            
+
+        };
+
+        $scope.cctFilter = function () {
+            
+            txtFiles = [];
+            totalfiles = JSON.parse(localStorage.getItem("files"));
+            for (index = 0; index < totalfiles.length; ++index) {
+                
+                if (totalfiles[index][8] == 'CCT')
+                {
+
+                    txtFiles.push(totalfiles[index]);
+                }
+                
+            }
+
+            $scope.files = txtFiles;
+            
+            window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+            
+
+        };
+
+        $scope.ncsFilter = function () {
+            
+            txtFiles = [];
+            totalfiles = JSON.parse(localStorage.getItem("files"));
+            for (index = 0; index < totalfiles.length; ++index) {
+                
+                if (totalfiles[index][8] == 'NCS')
+                {
+
+                    txtFiles.push(totalfiles[index]);
+                }
+                
+            }
+
+            $scope.files = txtFiles;
+            
+            window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+            
+
+        };
+
+        $scope.rctFilter = function () {
+            
+            txtFiles = [];
+            totalfiles = JSON.parse(localStorage.getItem("files"));
+            for (index = 0; index < totalfiles.length; ++index) {
+                
+                if (totalfiles[index][8] == 'RCT')
+                {
+
+                    txtFiles.push(totalfiles[index]);
+                }
+                
+            }
+
+            $scope.files = txtFiles;
+            
+            window.localStorage.setItem("currfiles", JSON.stringify($scope.files));
+            
+
+        };
+
+        $scope.fileType = function() {
+            $scope.fType = $scope.fType === false ? true: false;
+            $scope.cate = true;
+            $scope.inte = true;
+            $scope.studyDes = true;
+            $scope.mono = true;
+        };
+
+        $scope.monograph = function() {
+            $scope.mono = $scope.mono === false ? true: false;
+            $scope.cate = true;
+            $scope.inte = true;
+            $scope.studyDes = true;
+            $scope.fType = true;
+        };
+
+        $scope.category = function() {
+            $scope.cate = $scope.cate === false ? true: false;
+            $scope.mono = true;
+            $scope.inte = true;
+            $scope.studyDes = true;
+            $scope.fType = true;
+        };
+
+        $scope.intervention = function() {
+            $scope.inte = $scope.inte === false ? true: false;
+            $scope.cate = true;
+            $scope.mono = true;
+            $scope.studyDes = true;
+            $scope.fType = true;
+        };
+
+        $scope.studyDesign = function() {
+            $scope.studyDes = $scope.studyDes === false ? true: false;
+            $scope.cate = true;
+            $scope.inte = true;
+            $scope.mono = true;
+            $scope.fType = true;
+        };
+
+
 
     }]);

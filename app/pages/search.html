@@ -1,7 +1,7 @@
 <h1  style="padding-left: 17cm; padding-bottom: 0.5cm">Search</h1>
 <div class="container" >
-	<div style="padding-bottom: 0.5cm">
-		<a style = "padding-left: 20.1cm; color: #000;" ui-sref="advancedSearch">Advanced Search</a>
+	<div style="padding-bottom: 0.5cm; margin-left: 20cm">
+		<a style = "color: #000;" ui-sref="advancedSearch">Advanced Search</a>
 	</div>
     <div class= "col-sm-12 pull-center " style="background:transparent !important">
     	
@@ -16,6 +16,7 @@
 		            <option>Category</option>
 		            <option>Intervention</option>
 		            <option>Monograph</option>
+		            <option>Study Design</option>
 		        </select>
             	
             	
@@ -46,21 +47,110 @@
 		    <button type="button" class="btn btn-default" ng-click = "allFilter()">ALL</button>
 		  </div>
 		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "fileType()">File Type</button>
+		    
+		  </div>
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "monograph()">Monograph</button>
+		  </div>
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "category()">Category</button>
+		  </div>
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "intervention()">Intervention</button>
+		  </div>
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "studyDesign()">Study Design</button> 
+		  </div>
+		</div>
+
+		<div  ng-hide="fType" style = "padding-bottom: 10px;" class="btn-group btn-group-justified" role="group" aria-label="...">
+		  
+		  <div class="btn-group" role="group">
 		    <button type="button" class="btn btn-default" ng-click = "pdfFilter()">PDF</button>
+		    
 		  </div>
 		  <div class="btn-group" role="group">
 		    <button type="button" class="btn btn-default" ng-click = "excelFilter()">EXCEL</button>
 		  </div>
 		  <div class="btn-group" role="group">
-		    <button type="button" class="btn btn-default" ng-click = "docFilter()">DOC</button>
+		    <button type="button" class="btn btn-default" ng-click = "docFilter()">WORD</button>
 		  </div>
 		  <div class="btn-group" role="group">
-		    <button type="button" class="btn btn-default" ng-click = "hzFilter()">HZ</button>
-		  </div>
-		  <div class="btn-group" role="group">
-		    <button type="button" class="btn btn-default" ng-click = "phnFilter()">PHN</button> 
+		    <button type="button" class="btn btn-default" ng-click = "txtFilter()">TXT</button>
 		  </div>
 		</div>
+
+		<div  ng-hide="studyDes" style = "padding-bottom: 10px;" class="btn-group btn-group-justified" role="group" aria-label="...">
+		  
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "cctFilter()">CCT</button>
+		    
+		  </div>
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "ncsFilter()">NCS</button>
+		  </div>
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "rctFilter()">RCT</button>
+		  </div>
+		  
+		</div>
+
+		<div  ng-hide="inte" style = "padding-bottom: 10px;" class="btn-group btn-group-justified" role="group" aria-label="...">
+		  
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "acuFilter()">ACU</button>
+		    
+		  </div>
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "chmFilter()">CHM</button>
+		  </div>
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "combFilter()">COMB</button>
+		  </div>
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "othFilter()">OTH</button>
+		  </div>
+		</div>
+
+		<div  ng-hide="mono" style = "padding-bottom: 10px;" class="btn-group btn-group-justified" role="group" aria-label="...">
+		  
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "hzFilter()">HZ</button>
+		    
+		  </div>
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "phnFilter()">PHN</button>
+		  </div>
+		  
+		</div>
+
+		<div  ng-hide="cate" style = "padding-bottom: 10px;" class="btn-group btn-group-justified" role="group" aria-label="...">
+		  
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "publFilter()">Publications</button>
+		    
+		  </div>
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "modeFilter()">Modern Clinical</button>
+		  </div>
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "endnFilter()">EndNote</button>
+		  </div>
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "expeFilter()">Experimental</button>
+		  </div>
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "classFilter()">Classical literature</button>
+		  </div>
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "epidFilter()">Epidata</button>
+		  </div>
+		  <div class="btn-group" role="group">
+		    <button type="button" class="btn btn-default" ng-click = "monoFilter()">Monograph</button>
+		  </div>
+		</div>
+
 		<div ng-show = "files">
 			<label style="float:left">{{choices[0].search}} Search For:</label> 
 			<div ng-show = "type" style="float:left ">
@@ -88,9 +178,11 @@
 	        <tbody>
 	          	<tr style = "height: 50px" ng-repeat="x in files  | startFrom:(currentPage - 1) * pageSize | limitTo: pageSize" >
 	          		<td>{{x[6] | split:' ':0}}</td>
-	          		<td class="col-md-6" > <a style="color: #000; font-weight: bold;" href ng-click = "getDetails($index)">{{x[2]}}</a></td>
+	          		<td class="col-md-6" > <a style="color: #000; font-weight: bold;" href ng-click = "getDetails($index + (currentPage-1) * 20)">{{x[2]}}</a></td>
 	          		
 		            
+		            <!-- <td>{{x[7]}}</td>
+		            <td>{{x[8]}}</td> -->
 		            <td>{{x[3]}}</td>
 		            <td>{{x[4]}}</td>
 		            <td>{{x[1]}}</td>
@@ -106,8 +198,8 @@
 	        </tbody>
 	        <tfoot ng-show = "files">
 
-	            <td  colspan="6">
-	                <div >
+	            <td colspan="6">
+	                <div class="text-center" >
 	                    <ul uib-pagination total-items="files.length" ng-model="currentPage" items-per-page ="pageSize" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" rotate="false">
 			                
 			            </ul>

@@ -45,11 +45,11 @@ angular.module('scotchApp')
         dataFactory.getUsersCount = function () {
             
             
-            return $http.get(baseApiUrl + "/getUsersCount");
+            return $http.get(baseApiUrl + "/getRequestCount");
         };
 
-        dataFactory.getAllTempUsers = function () {
-            return $http.get(baseApiUrl + "/getRequestList");
+        dataFactory.getcurrentUsers = function () {
+            return $http.get(baseApiUrl + "/getUserList");
         };
 
         dataFactory.changePassword = function (userId, password) {
@@ -76,7 +76,7 @@ angular.module('scotchApp')
             return $http.post(baseApiUrl + "/acceptRequest", data);
         };
 
-        dataFactory.register = function (username, password, permission, email, comment) {
+        dataFactory.register = function (username, password, permission, email, comment, firstname, lastname) {
             var data = {};
             
             console.log("test");
@@ -86,6 +86,8 @@ angular.module('scotchApp')
             data.permission = permission;
             data.email = email;
             data.comment = comment;
+            data.first = firstname;
+            data.last = lastname;
 
             console.log(baseApiUrl + "/register");
             return $http.post(baseApiUrl + "/register", data);
@@ -103,24 +105,31 @@ angular.module('scotchApp')
             return $http.post(baseApiUrl + "/forgetPassword", data);
         };
 
-        dataFactory.addUser = function (username, password, email) {
+        dataFactory.addUser = function (username, password, email, firstname, lastname) {
             var data = {};
             data.username = username;
             data.password = password;
             data.email = email;
-            
+            data.first = firstname;
+            data.last = lastname;
             console.log(data)
 
 
             return $http.post(baseApiUrl + "/addAdminUser", data);
         };
 
-        dataFactory.deleteUser = function (userId,adimkey) {
+        dataFactory.deleteUser = function (userId) {
             var data = {};
             data.requestID = userId
-            data.adimkey = adimkey;
-            console.log(data.requestID);
+            
             return $http.post(baseApiUrl + '/rejectRequest', data);
+        };
+
+        dataFactory.deleteCurrentUser = function (userId) {
+            var data = {};
+            data.userID = userId
+            
+            return $http.post(baseApiUrl + '/deleteUser', data);
         };
 
         dataFactory.doSearch = function (key,word) {
@@ -133,9 +142,11 @@ angular.module('scotchApp')
             return $http.post(baseApiUrl + '/search', data);
         };
 
-        dataFactory.view = function (bookID) {
+        dataFactory.view = function (bookID, type) {
             var data = {};
-            data.id = bookID
+            data.id = bookID;
+            data.type = type;
+
             //data.count = 1;
             console.log(data);
             return $http.post(baseApiUrl + '/viewFile', data);
@@ -159,6 +170,15 @@ angular.module('scotchApp')
             return $http.post(baseApiUrl + '/deleteFile', data);
         };
 
+        dataFactory.recovery = function (logID) {
+            var data = {};
+            data.logID = logID;
+
+            //data.count = 1;
+            console.log(data);
+            return $http.post(baseApiUrl + '/recoveryFile', data);
+        };
+
         dataFactory.getDetails = function (bookID, bookType) {
             var data = {};
             data.id = bookID
@@ -169,6 +189,7 @@ angular.module('scotchApp')
             
 
         };
+
         dataFactory.advancedSearch = function (choices) {
             data =  {
                 "type":[],
@@ -232,5 +253,35 @@ angular.module('scotchApp')
             
 
         };
+
+        dataFactory.upload = function (file, title, studyID, studyRef, monograph, intervention, category, studyDesgin, userID, type) {
+            
+            
+            var data = new FormData();
+
+            data.append("title", title);
+            data.append('type', type);
+            data.append('file', file);
+            data.append('studyID', studyID);
+            data.append("studyRef", studyRef);
+            data.append('monograph', monograph);
+            data.append('intervention', intervention);
+            data.append('category', category);
+            data.append('studyDesgin', studyDesgin);
+            data.append('userID', userID);
+
+            return $http({
+                url: baseApiUrl + '/addFile',
+                method: 'POST',
+                data: data,
+                //assign content-type as undefined, the browser
+                //will assign the correct boundary for us
+                headers: { 'Content-Type': undefined},
+                
+            });
+            
+
+        };
+
         return dataFactory;
     }]);
