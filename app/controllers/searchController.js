@@ -19,6 +19,7 @@ scotchApp.controller('searchController', ['$scope', '$location', '$rootScope', '
         $scope.mono = true;
         $scope.cate = true;
         
+        
 
         
         if(window.localStorage.searchType)
@@ -126,7 +127,7 @@ scotchApp.controller('searchController', ['$scope', '$location', '$rootScope', '
 
                 }
 
-               
+                
                 
                 //$scope.files = response.data;
 

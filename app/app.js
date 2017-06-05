@@ -119,6 +119,14 @@ scotchApp.config(function ($stateProvider, $urlRouterProvider) {
         controller: 'logsController'
     });
     
+    $stateProvider.state({
+        name: 'emailset',
+        url: '/emailset',
+        cache: false,
+        templateUrl: 'pages/emailCustom.html',
+        controller: 'emailCustomController'
+    });
+    
     // if none of the above states are matched, returned to search page
     $urlRouterProvider.otherwise('/');
 });

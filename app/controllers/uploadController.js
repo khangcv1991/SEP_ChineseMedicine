@@ -6,6 +6,13 @@ scotchApp.controller('uploadController', ['$scope', '$location', '$rootScope', '
 	$scope.upload = function(file){
 		
 		console.log(file);
+
+		if (!file)
+		{
+			window.alert("Empty file");
+			return;
+		}
+
 		userID = window.localStorage['currentUserID'];
 		type = (file.name.split('.')[1]);
 		title = (file.name.split('.')[0]);
