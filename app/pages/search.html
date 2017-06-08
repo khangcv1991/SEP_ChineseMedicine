@@ -166,18 +166,18 @@
 	    </div>
 	    <table class="table table-striped table-condensed table-hover" >
 	        <thead ng-show = "files">
-	          	<tr>
-	          		<th><a style="color: #000; font-weight: bold;" ng-click="sortData('6')">Study ID <span class="fa fa-sort"></span></th>
+	          	<tr style="width: 200px;">
+	          		<th style="width: 80px;"><a style="color: #000; font-weight: bold" ng-click="sortData('6')">Study ID <span class="fa fa-sort"></span></th>
 	          		<th><a style="color: #000; font-weight: bold;" ng-click="sortData('2')">Title <span class="fa fa-sort"></span></th>
-		            <th><a style="color: #000; font-weight: bold;" ng-click="sortData('3')">Monograph <span class="fa fa-sort"></span></th>
-		            <th><a style="color: #000; font-weight: bold;" ng-click="sortData('4')">Category <span class="fa fa-sort"></span></th>
-		            <th><a style="color: #000; font-weight: bold;" ng-click="sortData('1')">File Type <span class="fa fa-sort"></span></th>
-		            <th><a style="color: #000; font-weight: bold;" ng-click="sortData('5')">Modification <span class="fa fa-sort"></span></th>
+		            <th style="width: 100px;"><a style="color: #000; font-weight: bold;" ng-click="sortData('3')">Monograph <span class="fa fa-sort"></span></th>
+		            <th style="width: 120px;"><a style="color: #000; font-weight: bold;" ng-click="sortData('4')">Category <span class="fa fa-sort"></span></th>
+		            <th style="width: 90px;"><a style="color: #000; font-weight: bold;" ng-click="sortData('1')">File Type <span class="fa fa-sort"></span></th>
+		            <th style="width: 120px;"><a style="color: #000; font-weight: bold;" ng-click="sortData('5')">Modification <span class="fa fa-sort"></span></th>
 		        </tr>
 	        </thead>
 	        <tbody>
-	          	<tr style = "height: 50px" ng-repeat="x in files  | startFrom:(currentPage - 1) * pageSize | limitTo: pageSize" >
-	          		<td>{{x[6] | split:' ':0}}</td>
+	          	<tr style = "height: 50px;" ng-repeat="x in files  | startFrom:(currentPage - 1) * pageSize | limitTo: pageSize" >
+	          		<td ">{{x[6] | split:' ':0}}</td>
 	          		<td class="col-md-6" > <a style="color: #000; font-weight: bold;" href ng-click = "getDetails($index + (currentPage-1) * 20)">{{x[2]}}</a></td>
 	          		
 		            

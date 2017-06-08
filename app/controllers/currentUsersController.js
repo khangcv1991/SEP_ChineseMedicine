@@ -1,6 +1,33 @@
 scotchApp.controller('currentUsersController', ['$scope', '$location', '$rootScope', '$http', '$cookies', 'dataFactory',
     function ($scope, $location, $rootScope, $http, $cookies, dataFactory) {
-        console.log("currentUsersController");
+
+        dataFactory.verifyToken().then(function (response)
+        {
+            console.log(response);
+
+        }, function(error){
+
+            console.log(error);
+            window.alert("Login is exipred");
+            delete window.localStorage['currentUsername'];
+            delete window.localStorage['currentUserID'];
+            delete window.localStorage['currentToken'];
+            delete window.localStorage['currentPermission'];
+            delete window.localStorage['key'];
+            delete window.localStorage['word'];
+            delete window.localStorage['files'];
+            delete window.localStorage['usersCount'];
+            delete window.localStorage['currfiles'];
+            delete window.localStorage['currchoices'];
+            delete window.localStorage['searchType'];
+            delete window.localStorage['searchKeyword'];
+            $http.defaults.headers.common.Authorization = '';
+            $rootScope.currentUserSignedIn = false;
+            $rootScope.permission = ''; 
+            $location.path('/login');
+
+        });
+
         $scope.users = [];
         dataFactory.getcurrentUsers().then(function (response) {
 
@@ -30,6 +57,33 @@ scotchApp.controller('currentUsersController', ['$scope', '$location', '$rootSco
         })
 
         $scope.deleteCurrentUser = function (index) {
+
+            dataFactory.verifyToken().then(function (response)
+            {
+                console.log(response);
+
+            }, function(error){
+
+                console.log(error);
+                window.alert("Login is exipred");
+                delete window.localStorage['currentUsername'];
+                delete window.localStorage['currentUserID'];
+                delete window.localStorage['currentToken'];
+                delete window.localStorage['currentPermission'];
+                delete window.localStorage['key'];
+                delete window.localStorage['word'];
+                delete window.localStorage['files'];
+                delete window.localStorage['usersCount'];
+                delete window.localStorage['currfiles'];
+                delete window.localStorage['currchoices'];
+                delete window.localStorage['searchType'];
+                delete window.localStorage['searchKeyword'];
+                $http.defaults.headers.common.Authorization = '';
+                $rootScope.currentUserSignedIn = false;
+                $rootScope.permission = ''; 
+                $location.path('/login');
+
+            });
 
             console.log("deleteUser");
             console.log($scope.users[index][0]);

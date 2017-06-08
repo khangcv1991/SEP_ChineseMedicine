@@ -35,6 +35,7 @@ angular.module('scotchApp')
         dataFactory.getAllUsers = function () {
             
             return $http.get(baseApiUrl + "/getRequestList");
+
         };
 
         dataFactory.getLogs = function () {
@@ -148,7 +149,8 @@ angular.module('scotchApp')
             data.type = type;
 
             //data.count = 1;
-            console.log(data);
+            
+
             return $http.post(baseApiUrl + '/viewFile', data);
         };
 
@@ -282,6 +284,45 @@ angular.module('scotchApp')
             
 
         };
+
+        dataFactory.verifyToken = function() {
+
+            var data = {
+
+                "token": localStorage['currentToken']
+            };
+
+            return $http.post('http://127.0.0.1:8000/verifyToken', data);
+
+
+
+            // a.then(function (response)
+            // {
+            //     console.log(response);
+
+            // }, function(error){
+
+            //     console.log(error);
+            //     window.alert("Login is exipred");
+            //     delete window.localStorage['currentUsername'];
+            //     delete window.localStorage['currentUserID'];
+            //     delete window.localStorage['currentToken'];
+            //     delete window.localStorage['currentPermission'];
+            //     delete window.localStorage['key'];
+            //     delete window.localStorage['word'];
+            //     delete window.localStorage['files'];
+            //     delete window.localStorage['usersCount'];
+            //     delete window.localStorage['currfiles'];
+            //     delete window.localStorage['currchoices'];
+            //     delete window.localStorage['searchType'];
+            //     delete window.localStorage['searchKeyword'];
+            //     $http.defaults.headers.common.Authorization = '';
+            //     $rootScope.currentUserSignedIn = false;
+            //     $rootScope.permission = ''; 
+
+            // }); 
+
+        }
 
         return dataFactory;
     }]);

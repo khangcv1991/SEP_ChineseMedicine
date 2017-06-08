@@ -2,6 +2,33 @@ scotchApp.controller('advancedSearchController', ['$scope', '$location', '$rootS
     function ($scope, $location, $rootScope, $http, $cookies, dataFactory, orderBy) {
          console.log("advancedSearchController");
 
+         dataFactory.verifyToken().then(function (response)
+        {
+            console.log(response);
+
+        }, function(error){
+
+            console.log(error);
+            window.alert("Login is exipred");
+            delete window.localStorage['currentUsername'];
+            delete window.localStorage['currentUserID'];
+            delete window.localStorage['currentToken'];
+            delete window.localStorage['currentPermission'];
+            delete window.localStorage['key'];
+            delete window.localStorage['word'];
+            delete window.localStorage['files'];
+            delete window.localStorage['usersCount'];
+            delete window.localStorage['currfiles'];
+            delete window.localStorage['currchoices'];
+            delete window.localStorage['searchType'];
+            delete window.localStorage['searchKeyword'];
+            $http.defaults.headers.common.Authorization = '';
+            $rootScope.currentUserSignedIn = false;
+            $rootScope.permission = ''; 
+            $location.path('/login');
+
+        }); 
+
         if($rootScope.currentUserSignedIn == false || $rootScope.currentUserSignedIn== null){
             console.log("test");
             $location.path('/login');
@@ -11,17 +38,95 @@ scotchApp.controller('advancedSearchController', ['$scope', '$location', '$rootS
         $scope.choices = [{id: 'choice1', key: 'All', word:''}, {id: 'choice2', key: 'All', word:''}];
         currchoices = [];
         $scope.addNewChoice = function() {
+            dataFactory.verifyToken().then(function (response)
+            {
+                console.log(response);
+
+            }, function(error){
+
+                console.log(error);
+                window.alert("Login is exipred");
+                delete window.localStorage['currentUsername'];
+                delete window.localStorage['currentUserID'];
+                delete window.localStorage['currentToken'];
+                delete window.localStorage['currentPermission'];
+                delete window.localStorage['key'];
+                delete window.localStorage['word'];
+                delete window.localStorage['files'];
+                delete window.localStorage['usersCount'];
+                delete window.localStorage['currfiles'];
+                delete window.localStorage['currchoices'];
+                delete window.localStorage['searchType'];
+                delete window.localStorage['searchKeyword'];
+                $http.defaults.headers.common.Authorization = '';
+                $rootScope.currentUserSignedIn = false;
+                $rootScope.permission = ''; 
+                $location.path('/login');
+
+            }); 
             var newItemNo = $scope.choices.length+1;
             $scope.choices.push({'id':'choice'+newItemNo});
         };
             
         $scope.removeChoice = function() {
+            dataFactory.verifyToken().then(function (response)
+            {
+                console.log(response);
+
+            }, function(error){
+
+                console.log(error);
+                window.alert("Login is exipred");
+                delete window.localStorage['currentUsername'];
+                delete window.localStorage['currentUserID'];
+                delete window.localStorage['currentToken'];
+                delete window.localStorage['currentPermission'];
+                delete window.localStorage['key'];
+                delete window.localStorage['word'];
+                delete window.localStorage['files'];
+                delete window.localStorage['usersCount'];
+                delete window.localStorage['currfiles'];
+                delete window.localStorage['currchoices'];
+                delete window.localStorage['searchType'];
+                delete window.localStorage['searchKeyword'];
+                $http.defaults.headers.common.Authorization = '';
+                $rootScope.currentUserSignedIn = false;
+                $rootScope.permission = ''; 
+                $location.path('/login');
+
+            }); 
             var lastItem = $scope.choices.length-1;
             $scope.choices.splice(lastItem);
         };  
         console.log($scope.choices);  
             
         $scope.advancedSearch = function (choices) {
+            dataFactory.verifyToken().then(function (response)
+            {
+                console.log(response);
+
+            }, function(error){
+
+                console.log(error);
+                window.alert("Login is exipred");
+                delete window.localStorage['currentUsername'];
+                delete window.localStorage['currentUserID'];
+                delete window.localStorage['currentToken'];
+                delete window.localStorage['currentPermission'];
+                delete window.localStorage['key'];
+                delete window.localStorage['word'];
+                delete window.localStorage['files'];
+                delete window.localStorage['usersCount'];
+                delete window.localStorage['currfiles'];
+                delete window.localStorage['currchoices'];
+                delete window.localStorage['searchType'];
+                delete window.localStorage['searchKeyword'];
+                $http.defaults.headers.common.Authorization = '';
+                $rootScope.currentUserSignedIn = false;
+                $rootScope.permission = ''; 
+                $location.path('/login');
+
+            }); 
             console.log(choices.length);  
             window.localStorage.searchType = '';
             
@@ -131,7 +236,32 @@ scotchApp.controller('advancedSearchController', ['$scope', '$location', '$rootS
             console.log(choices.length); 
             window.localStorage.searchType = '';
 
-            
+            dataFactory.verifyToken().then(function (response)
+            {
+                console.log(response);
+
+            }, function(error){
+
+                console.log(error);
+                window.alert("Login is exipred");
+                delete window.localStorage['currentUsername'];
+                delete window.localStorage['currentUserID'];
+                delete window.localStorage['currentToken'];
+                delete window.localStorage['currentPermission'];
+                delete window.localStorage['key'];
+                delete window.localStorage['word'];
+                delete window.localStorage['files'];
+                delete window.localStorage['usersCount'];
+                delete window.localStorage['currfiles'];
+                delete window.localStorage['currchoices'];
+                delete window.localStorage['searchType'];
+                delete window.localStorage['searchKeyword'];
+                $http.defaults.headers.common.Authorization = '';
+                $rootScope.currentUserSignedIn = false;
+                $rootScope.permission = ''; 
+                $location.path('/login');
+
+            }); 
             
             // console.log($scope.key);
             for (var i = 0; i < choices.length; i++)

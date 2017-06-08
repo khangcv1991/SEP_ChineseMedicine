@@ -15,7 +15,7 @@ scotchApp.controller('registerController', ['$scope', '$location', '$rootScope',
                 // $scope.message = response.data.Status;
 
                 $rootScope.currentUserSignedIn = false;
-                window.alert("Hello " + $scope.username + ",\nYour registertration is successful. We will send an email to you, when admin accept.");
+                window.alert("Hello " + $scope.username + ",\nYour request is sent, you will get an email when admin acceot the request.");
                 $location.path('/login');
                 window.location.reload();
             }, function (error) {

@@ -1,6 +1,33 @@
 scotchApp.controller('fileDetailsController', ['$scope', '$location', '$rootScope', '$http', '$cookies', 'dataFactory',
     function ($scope, $location, $rootScope, $http, $cookies, dataFactory, $stateParams) {
-        console.log(dataFactory.getDetails);
+        
+        dataFactory.verifyToken().then(function (response)
+        {
+            console.log(response);
+
+        }, function(error){
+
+            console.log(error);
+            window.alert("Login is exipred");
+            delete window.localStorage['currentUsername'];
+            delete window.localStorage['currentUserID'];
+            delete window.localStorage['currentToken'];
+            delete window.localStorage['currentPermission'];
+            delete window.localStorage['key'];
+            delete window.localStorage['word'];
+            delete window.localStorage['files'];
+            delete window.localStorage['usersCount'];
+            delete window.localStorage['currfiles'];
+            delete window.localStorage['currchoices'];
+            delete window.localStorage['searchType'];
+            delete window.localStorage['searchKeyword'];
+            $http.defaults.headers.common.Authorization = '';
+            $rootScope.currentUserSignedIn = false;
+            $rootScope.permission = ''; 
+            $location.path('/login');
+
+        });
+
         if($rootScope.currentUserSignedIn == false || $rootScope.currentUserSignedIn== null){
             console.log("test");
             $location.path('/login');
@@ -27,6 +54,33 @@ scotchApp.controller('fileDetailsController', ['$scope', '$location', '$rootScop
 
 
         $scope.view = function (id) {
+
+            dataFactory.verifyToken().then(function (response)
+            {
+                console.log(response);
+
+            }, function(error){
+
+                console.log(error);
+                window.alert("Login is exipred");
+                delete window.localStorage['currentUsername'];
+                delete window.localStorage['currentUserID'];
+                delete window.localStorage['currentToken'];
+                delete window.localStorage['currentPermission'];
+                delete window.localStorage['key'];
+                delete window.localStorage['word'];
+                delete window.localStorage['files'];
+                delete window.localStorage['usersCount'];
+                delete window.localStorage['currfiles'];
+                delete window.localStorage['currchoices'];
+                delete window.localStorage['searchType'];
+                delete window.localStorage['searchKeyword'];
+                $http.defaults.headers.common.Authorization = '';
+                $rootScope.currentUserSignedIn = false;
+                $rootScope.permission = ''; 
+                $location.path('/login');
+
+            });
             
             console.log(id);
             dataFactory.view(id, $scope.fileType).then(function (response) {
@@ -47,7 +101,7 @@ scotchApp.controller('fileDetailsController', ['$scope', '$location', '$rootScop
                 //$scope.files = response.data;
 
             }, function (error) {
-                $scope.message = "Error";
+                console.log(statusText);
             });
             
 
@@ -57,6 +111,33 @@ scotchApp.controller('fileDetailsController', ['$scope', '$location', '$rootScop
 
         $scope.edit = function (id) {
             
+            dataFactory.verifyToken().then(function (response)
+            {
+                console.log(response);
+
+            }, function(error){
+
+                console.log(error);
+                window.alert("Login is exipred");
+                delete window.localStorage['currentUsername'];
+                delete window.localStorage['currentUserID'];
+                delete window.localStorage['currentToken'];
+                delete window.localStorage['currentPermission'];
+                delete window.localStorage['key'];
+                delete window.localStorage['word'];
+                delete window.localStorage['files'];
+                delete window.localStorage['usersCount'];
+                delete window.localStorage['currfiles'];
+                delete window.localStorage['currchoices'];
+                delete window.localStorage['searchType'];
+                delete window.localStorage['searchKeyword'];
+                $http.defaults.headers.common.Authorization = '';
+                $rootScope.currentUserSignedIn = false;
+                $rootScope.permission = ''; 
+                $location.path('/login');
+
+            });
+
             console.log(id);
             dataFactory.edit(id).then(function (response) {
                 console.log(response);
@@ -86,6 +167,32 @@ scotchApp.controller('fileDetailsController', ['$scope', '$location', '$rootScop
 
         $scope.download = function (index) {
             
+            dataFactory.verifyToken().then(function (response)
+            {
+                console.log(response);
+
+            }, function(error){
+
+                console.log(error);
+                window.alert("Login is exipred");
+                delete window.localStorage['currentUsername'];
+                delete window.localStorage['currentUserID'];
+                delete window.localStorage['currentToken'];
+                delete window.localStorage['currentPermission'];
+                delete window.localStorage['key'];
+                delete window.localStorage['word'];
+                delete window.localStorage['files'];
+                delete window.localStorage['usersCount'];
+                delete window.localStorage['currfiles'];
+                delete window.localStorage['currchoices'];
+                delete window.localStorage['searchType'];
+                delete window.localStorage['searchKeyword'];
+                $http.defaults.headers.common.Authorization = '';
+                $rootScope.currentUserSignedIn = false;
+                $rootScope.permission = ''; 
+                $location.path('/login');
+
+            });
             console.log($scope.files[index][0]);
             dataFactory.download($scope.files[index][0]).then(function (response) {
                 console.log(response);
@@ -111,6 +218,33 @@ scotchApp.controller('fileDetailsController', ['$scope', '$location', '$rootScop
         };
 
         $scope.removeFile = function (id) {
+            
+            dataFactory.verifyToken().then(function (response)
+            {
+                console.log(response);
+
+            }, function(error){
+
+                console.log(error);
+                window.alert("Login is exipred");
+                delete window.localStorage['currentUsername'];
+                delete window.localStorage['currentUserID'];
+                delete window.localStorage['currentToken'];
+                delete window.localStorage['currentPermission'];
+                delete window.localStorage['key'];
+                delete window.localStorage['word'];
+                delete window.localStorage['files'];
+                delete window.localStorage['usersCount'];
+                delete window.localStorage['currfiles'];
+                delete window.localStorage['currchoices'];
+                delete window.localStorage['searchType'];
+                delete window.localStorage['searchKeyword'];
+                $http.defaults.headers.common.Authorization = '';
+                $rootScope.currentUserSignedIn = false;
+                $rootScope.permission = ''; 
+                $location.path('/login');
+
+            });
             
             console.log(id);
             userID = window.localStorage['currentUserID'];

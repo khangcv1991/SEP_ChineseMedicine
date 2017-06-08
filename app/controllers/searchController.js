@@ -3,6 +3,33 @@ scotchApp.controller('searchController', ['$scope', '$location', '$rootScope', '
          console.log("searchController");
 
 
+        dataFactory.verifyToken().then(function (response)
+        {
+            console.log(response);
+
+        }, function(error){
+
+            console.log(error);
+            window.alert("Login is exipred");
+            delete window.localStorage['currentUsername'];
+            delete window.localStorage['currentUserID'];
+            delete window.localStorage['currentToken'];
+            delete window.localStorage['currentPermission'];
+            delete window.localStorage['key'];
+            delete window.localStorage['word'];
+            delete window.localStorage['files'];
+            delete window.localStorage['usersCount'];
+            delete window.localStorage['currfiles'];
+            delete window.localStorage['currchoices'];
+            delete window.localStorage['searchType'];
+            delete window.localStorage['searchKeyword'];
+            $http.defaults.headers.common.Authorization = '';
+            $rootScope.currentUserSignedIn = false;
+            $rootScope.permission = ''; 
+            $location.path('/login');
+
+        });
+
         $scope.message = 'Please populate user name, password and permission!!!';
         $scope.key =  'All';
         $scope.word = '';
@@ -47,6 +74,33 @@ scotchApp.controller('searchController', ['$scope', '$location', '$rootScope', '
         }
         
         $scope.search = function () {
+
+            dataFactory.verifyToken().then(function (response)
+            {
+                console.log(response);
+
+            }, function(error){
+
+                console.log(error);
+                window.alert("Login is exipred");
+                delete window.localStorage['currentUsername'];
+                delete window.localStorage['currentUserID'];
+                delete window.localStorage['currentToken'];
+                delete window.localStorage['currentPermission'];
+                delete window.localStorage['key'];
+                delete window.localStorage['word'];
+                delete window.localStorage['files'];
+                delete window.localStorage['usersCount'];
+                delete window.localStorage['currfiles'];
+                delete window.localStorage['currchoices'];
+                delete window.localStorage['searchType'];
+                delete window.localStorage['searchKeyword'];
+                $http.defaults.headers.common.Authorization = '';
+                $rootScope.currentUserSignedIn = false;
+                $rootScope.permission = ''; 
+                $location.path('/login');
+
+            });
             key = $scope.key;
             $scope.choices = null;
             delete window.localStorage['currchoices'];

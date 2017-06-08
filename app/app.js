@@ -131,11 +131,14 @@ scotchApp.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
 });
 
-scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage, $location) {
+scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage, $location, dataFactory) {
+    
     
     
     // keep user logged in after page refresh
     if (localStorage['currentUsername']) {
+
+    
 
         $rootScope.currentUserSignedIn = true;
 
@@ -170,8 +173,9 @@ scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage
 
     console.log("App run");
     $rootScope.hasVisitedAboutPage = false;
-    console.log($rootScope);
+
     
+
     //Logout function and remove user from local storage and clear http auth header
     $rootScope.doLogout = function () {
         console.log('Logout function');
@@ -185,14 +189,19 @@ scotchApp.run(function ($rootScope, $http, $cookies, $httpBackend, $localStorage
         delete window.localStorage['usersCount'];
         delete window.localStorage['currfiles'];
         delete window.localStorage['currchoices'];
+        delete window.localStorage['searchType'];
+        delete window.localStorage['searchKeyword'];
         console.log($rootScope);
         $http.defaults.headers.common.Authorization = '';
         $rootScope.currentUserSignedIn = false;
         $rootScope.permission = '';
-    }
+    };
+
+
 
     console.log($rootScope);
 });
+
 
 scotchApp.filter('startFrom', function(){
     return function(data, start){
