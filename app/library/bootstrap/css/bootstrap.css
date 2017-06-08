@@ -4724,7 +4724,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: 6px 12px;
   margin-left: -1px;
   line-height: 1.42857143;
-  color: #337ab7;
+  color: #000;
   text-decoration: none;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -4745,7 +4745,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination > li > a:focus,
 .pagination > li > span:focus {
   z-index: 2;
-  color: #23527c;
+  color: #000;
   background-color: #eee;
   border-color: #ddd;
 }
@@ -4758,8 +4758,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   z-index: 3;
   color: #fff;
   cursor: default;
-  background-color: #337ab7;
-  border-color: #337ab7;
+  background-color: #000;
+  border-color: #000;
 }
 .pagination > .disabled > span,
 .pagination > .disabled > span:hover,
@@ -4790,6 +4790,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .pagination-sm > li > a,
 .pagination-sm > li > span {
+  color: black;
   padding: 5px 10px;
   font-size: 12px;
   line-height: 1.5;
@@ -4920,8 +4921,14 @@ a.label:focus {
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
-  background-color: #777;
+  background-color: #d43f3a;
   border-radius: 10px;
+}
+.badge-error {
+  background-color: #d43f3a;
+}
+.badge-error:hover {
+  background-color: #d43f3a;
 }
 .badge:empty {
   display: none;
@@ -6915,6 +6922,23 @@ fieldset[disabled] .btn-black.active {
 .navbar-custom .navbar-link:hover {
   color: #c0c0c0;
 }
+
+
+.redbadge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #d43f3a;
+  border-radius: 10px;
+}
+
 
 
 /*# sourceMappingURL=bootstrap.css.map */

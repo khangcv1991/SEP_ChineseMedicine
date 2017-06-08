@@ -1,30 +1,53 @@
 <div class="container" style="padding-right: 10%; padding-left: 10%;">
 
     <h2>Register</h2>
-    <form name="form" ng-submit="register()" role="form">
-        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+
+    <label>{{ message }}</label>
+
+    <form name="form" ng-submit="register()" role="form" novalidate>
+        <div class="form-group" ng-class="{ 'has-error': form.firstname.$invalid && !form.firstname.$pristine}">
+            <label for="firstname">First Name</label>
+            <input type="text" name="firstname" id="firstname" class="form-control" ng-model="firstname" required placeholder="First Name" ng-minlength="2" ng-maxlength="20" ng-pattern="/^[a-zA-Z]*$/"/>
+            <p ng-show="form.firstname.$error.minlength" class="help-block">First Name is too short.</p>
+            <p ng-show="form.firstname.$error.maxlength" class="help-block">First Name is too long.</p>
+            <p ng-show="form.firstname.$error.required && !form.firstname.$pristine" class="help-block">First Name is required.</p>
+            <p class="help-block" ng-show="form.firstname.$error.pattern">Username must be letters only.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.lastname.$invalid && !form.lastname.$pristine}">
+            <label for="lastname">Last Name</label>
+            <input type="text" name="lastname" id="lastname" class="form-control" ng-model="lastname" required placeholder="Last Name" ng-minlength="2" ng-maxlength="20" ng-pattern="/^[a-zA-Z]*$/"/>
+            <p ng-show="form.lastname.$error.minlength" class="help-block">Last Name is too short.</p>
+            <p ng-show="form.lastname.$error.maxlength" class="help-block">Last Name is too long.</p>
+            <p ng-show="form.lastname.$error.required && !form.lastname.$pristine" class="help-block">Last Name is required.</p>
+            <p class="help-block" ng-show="form.lastname.$error.pattern">Username must be letters only.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.email.$invalid &&  !form.email.$pristine}">
             <label for="email">E-mail</label>
             <input type="email" name="email" id="email" class="form-control" ng-model="email" required placeholder="E-mail" />
             <p ng-show="form.email.$error.email" class="help-block">E-mail is invalid.</p>
+            <p ng-show="form.email.$error.required && !form.email.$pristine" class="help-block">E-mail is required.</p>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+        <div class="form-group" ng-class="{ 'has-error': form.username.$invalid && !form.username.$pristine}">
             <label for="username">Username</label>
-            <input type="text" name="username" id="username" class="form-control" ng-model="username" required placeholder="Username" ng-minlength="6" ng-maxlength="10"/>
+            <input type="text" name="username" id="username" class="form-control" ng-model="username" required placeholder="Username" ng-minlength="5" ng-maxlength="16" ng-pattern="/^[a-zA-Z0-9]*$/"/>
             <p ng-show="form.username.$error.minlength" class="help-block">Username is too short.</p>
             <p ng-show="form.username.$error.maxlength" class="help-block">Username is too long.</p>
+            <p ng-show="form.username.$error.required && !form.username.$pristine" class="help-block">Username is required.</p>
+            <p class="help-block" ng-show="form.username.$error.pattern">Username must be letters and numbers only.</p>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+        <div class="form-group" ng-class="{ 'has-error': form.password.$invalid && !form.password.$pristine}">
             <label for="password">Password</label>
             <input type="password" name="password" id="password" class="form-control" ng-model="password" required placeholder="Password" ng-minlength="8" ng-maxlength="16"/>
             <p ng-show="form.password.$error.minlength" class="help-block">Password is too short.</p>
             <p ng-show="form.password.$error.maxlength" class="help-block">Password is too long.</p>
+            <p ng-show="form.password.$error.required && !form.password.$pristine" class="help-block">Password is required.</p>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.repassword.$dirty && form.repassword.$error.required }">
+        <div class="form-group" ng-class="{ 'has-error': form.repassword.$invalid && !form.repassword.$pristine}">
             <label for="repassword">Re-Enter Password</label>
             <input type="password" name="repassword" id="repassword" class="form-control" ng-model="repassword" required  placeholder="ReEnter Password" match-password="password" />
             <p ng-show="form.repassword.$error.passwordMatch" class="help-block">Your passwords did not match</p>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': comment.Comment.$dirty && form.comment.$error.required }">
+        <div class="form-group" ng-class="{ 'has-error': form.comment.$invalid && !form.comment.$pristine}">
             <label for="comment">Comment</label>
             <input type="text" name="comment" id="comment" class="form-control" ng-model="comment" placeholder="Comment" ng-maxlength="16"/>
             <p ng-show="form.comment.$error.maxlength" class="help-block">Comment is too long.</p>
@@ -37,6 +60,7 @@
 		    </select>
 
         </div>
+        
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid" class="btn btn-black">Register</button>
             

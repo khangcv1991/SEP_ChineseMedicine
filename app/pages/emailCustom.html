@@ -1,0 +1,36 @@
+<div  class="container" style="padding-right: 10%; padding-left: 10%;">
+    <h2>Email</h2>
+    <div class="form-group" >
+        <label for="studyDesgin">Email Setting</label>
+        <select class="form-control" ng-model = "emailswitch">
+            <option>ON</option>
+            <option>OFF</option>
+        </select>
+    </div>
+    <div ng-switch="emailswitch">
+        <form ng-switch-when="ON" name="form"  enctype="multipart/form-data" role="form">
+
+            <div  class="form-group" >
+                <select class="form-control" ng-model = "timeset">
+                    <option>1 DAY</option>
+                    <option>1 WEEK</option>
+                    <option>1 MONTH</option>
+                </select>
+            </div>
+        
+            <div class="form-actions">
+                <button  ng-click="change()" class="btn btn-black">SAVE</button>
+    			<button ui-sref="search" class="btn btn-black">Cancel</button>
+            </div>
+    		
+    		
+        </form>
+
+        <form ng-switch-when="OFF" name="form"  enctype="multipart/form-data" role="form">
+             <div class="form-actions">
+                <button  ng-click="change()" class="btn btn-black">SAVE</button>
+                <button ui-sref="search" class="btn btn-black">Cancel</button>
+            </div>
+        </form>
+	</div>
+</div>

@@ -1,0 +1,40 @@
+<h1  style="padding-left: 15cm; padding-bottom: 1cm">Advanced Search</h1>
+<div class="container" style="padding-right: 10%; padding-left: 10%">
+	
+    <div class= "col-sm-12 pull-center " style="background:transparent !important">
+	<button style="margin: 10px;" class="btn btn-black" ng-click="addNewChoice()">Add Field</button>
+    	<fieldset  data-ng-repeat="choice in choices" style="padding: 10px;">
+	        <form class="form-inline" action="#" method="POST">
+	            
+	                <select style = "width: 110px" class="form-control" ng-model = "choice.key">
+	                	<option>All</option>
+			            <option>Title</option>
+			            <option>Study Ref</option>
+			            <option>Study ID</option>
+			            <option>File Type</option>
+			            <option>Category</option>
+			            <option>Intervention</option>
+		            	<option>Monograph</option>
+			        </select>
+	            	
+	            
+	               <div style = "width: 420px" class="input-group custom-search-form">
+	                    <input type="text" class="form-control" ng-model = "choice.word" placeholder="Search...">
+	                </div>
+	               <!--  <button class="btn btn-black btn-sm"  ng-click="removeChoice()">-</button> -->
+	               <button class="btn btn-black btn-sm" ng-show="$last" ng-click="removeChoice()">-</button>	
+	    
+		    </form>
+		    
+
+	   	</fieldset>
+	   	<div style="padding: 10px;">
+	   		<button ng-click = "advancedSearch(choices)" class="btn btn-black" type="button">
+	                          Or Search</button>
+		   		
+		   	<button ng-click = "andSearch(choices)" class="btn btn-black" type="button">
+	                          And Search</button>
+	   	</div>
+    </div>
+    
+</div>
